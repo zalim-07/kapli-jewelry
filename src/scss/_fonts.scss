@@ -1,0 +1,39 @@
+@font-face {
+  font-family: 'Feature Display LC Web';
+  src:
+    url('../assets/fonts/type/Feature%20Display-Regular-Web.woff2') format('woff2'),
+    url('../assets/fonts/type/Feature%20Display-Regular-Web.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Feature Display LC Web';
+  src:
+    url('../assets/fonts/type/Feature%20Display-Regular%20Italic-Web.woff2') format('woff2'),
+    url('../assets/fonts/type/Feature%20Display-Regular%20Italic-Web.woff') format('woff');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'TT Turns';
+  src:
+    url('../assets/fonts/TT%20Turns/woff2/TT_Turns_Regular.woff2') format('woff2'),
+    url('../assets/fonts/TT%20Turns/woff/TT_Turns_Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'TT Turns';
+  src:
+    url('../assets/fonts/TT%20Turns/woff2/TT_Turns_Medium.woff2') format('woff2'),
+    url('../assets/fonts/TT%20Turns/woff/TT_Turns_Medium.woff') format('woff');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}

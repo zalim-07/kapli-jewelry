@@ -1,0 +1,146 @@
+{
+  "featured": [
+    {
+      "id": "featured-earrings-1",
+      "title": "Серьги",
+      "material": "Серебро 925",
+      "price": "от 12 500 ₽",
+      "href": "#",
+      "images": [
+        { "src": "/src/assets/coming-soon.webp", "alt": "Серьги — основной вид" },
+        { "src": "/src/assets/coming-soon.webp", "alt": "Серьги — вид на модели" }
+      ]
+    },
+    {
+      "id": "featured-ring-1",
+      "title": "Кольцо",
+      "material": "Серебро 925",
+      "price": "от 15 900 ₽",
+      "href": "#",
+      "images": [
+        { "src": "/src/assets/coming-soon.webp", "alt": "Кольцо — основной вид" },
+        { "src": "/src/assets/coming-soon.webp", "alt": "Кольцо — вид сбоку" }
+      ]
+    },
+    {
+      "id": "featured-earrings-2",
+      "title": "Серьги",
+      "material": "Серебро 925",
+      "price": "от 11 900 ₽",
+      "href": "#",
+      "images": [
+        { "src": "/src/assets/coming-soon.webp", "alt": "Серьги — основной вид" },
+        { "src": "/src/assets/coming-soon.webp", "alt": "Серьги — деталь камня" }
+      ]
+    },
+    {
+      "id": "featured-ring-2",
+      "title": "Кольцо",
+      "material": "Серебро 925",
+      "price": "от 18 500 ₽",
+      "href": "#",
+      "images": [
+        { "src": "/src/assets/coming-soon.webp", "alt": "Кольцо — основной вид" },
+        { "src": "/src/assets/coming-soon.webp", "alt": "Кольцо — вид на руке" }
+      ]
+    }
+  ],
+  "catalog": [
+    {
+      "id": "siyanie",
+      "title": "Сияние",
+      "material": "Серебро 925",
+      "price": "от 12 500 ₽",
+      "category": "earrings",
+      "href": "#",
+      "images": [
+        { "src": "/src/assets/products/siyanie-1.webp", "alt": "Сияние — основной вид" },
+        { "src": "/src/assets/products/siyanie-2.webp", "alt": "Сияние — альтернативный вид" }
+      ]
+    },
+    {
+      "id": "grani",
+      "title": "Грани",
+      "material": "Серебро 925",
+      "price": "от 9 500 ₽",
+      "category": "rings",
+      "href": "#",
+      "images": [
+        { "src": "/src/assets/products/grani-1.webp", "alt": "Грани — основной вид" },
+        { "src": "/src/assets/products/grani-2.webp", "alt": "Грани — альтернативный вид" }
+      ]
+    },
+    {
+      "id": "led",
+      "title": "Лёд",
+      "material": "Серебро 925",
+      "price": "от 16 200 ₽",
+      "category": "pendants",
+      "href": "#",
+      "images": [
+        { "src": "/src/assets/products/led-1.webp", "alt": "Лёд — основной вид" },
+        { "src": "/src/assets/products/led-2.webp", "alt": "Лёд — альтернативный вид" }
+      ]
+    },
+    {
+      "id": "iskra",
+      "title": "Искра",
+      "material": "Серебро 925",
+      "price": "от 10 500 ₽",
+      "category": "earrings",
+      "href": "#",
+      "images": [
+        { "src": "/src/assets/products/iskra-1.webp", "alt": "Искра — основной вид" },
+        { "src": "/src/assets/products/iskra-2.webp", "alt": "Искра — альтернативный вид" }
+      ]
+    },
+    {
+      "id": "zatmenie",
+      "title": "Затмение",
+      "material": "Серебро 925",
+      "price": "от 18 900 ₽",
+      "category": "rings",
+      "href": "#",
+      "images": [
+        { "src": "/src/assets/products/zatmenie-1.webp", "alt": "Затмение — основной вид" },
+        { "src": "/src/assets/products/zatmenie-2.webp", "alt": "Затмение — альтернативный вид" }
+      ]
+    },
+    {
+      "id": "orion",
+      "title": "Орион",
+      "material": "Серебро 925",
+      "price": "от 14 500 ₽",
+      "category": "earrings",
+      "href": "#",
+      "images": [
+        { "src": "/src/assets/products/orion-1.webp", "alt": "Орион — основной вид" },
+        { "src": "/src/assets/products/orion-2.webp", "alt": "Орион — альтернативный вид" }
+      ]
+    },
+    {
+      "id": "sozvezdie",
+      "title": "Созвездие",
+      "material": "Серебро 925",
+      "price": "от 17 500 ₽",
+      "category": "pendants",
+      "href": "#",
+      "images": [
+        { "src": "/src/assets/products/sozvezdie-1.webp", "alt": "Созвездие — основной вид" },
+        { "src": "/src/assets/products/sozvezdie-2.webp", "alt": "Созвездие — альтернативный вид" }
+      ]
+    },
+    {
+      "id": "glubina",
+      "title": "Глубина",
+      "material": "Серебро 925",
+      "price": "от 19 500 ₽",
+      "category": "rings",
+      "href": "#",
+      "images": [
+        { "src": "/src/assets/products/glubina-1.webp", "alt": "Глубина — основной вид" },
+        { "src": "/src/assets/products/glubina-2.webp", "alt": "Глубина — альтернативный вид" }
+      ]
+    }
+  ]
+}

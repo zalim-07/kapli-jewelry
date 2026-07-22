@@ -1,0 +1,61 @@
+:root {
+  --layout-max-width: 1440px;
+  --content-max-width: 2560px;
+  --layout-padding: 4px;
+  --column-padding: 40px;
+  --controls-gap: 8px;
+
+  --color-background: #ffffff;
+  --color-text: #111;
+  --color-text-secondary: #434343;
+  --color-border: #000;
+
+  --font-family: 'Feature Display LC Web', sans-serif;
+  --font-family-secondary: 'TT Turns', sans-serif;
+  --font-serif: var(--font-family);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  min-width: 320px;
+  background: var(--color-background);
+}
+
+body {
+  min-width: 320px;
+  max-width: var(--content-max-width);
+  min-height: 100vh;
+  margin: 0;
+  color: var(--color-text);
+  background: var(--color-background);
+  font-family: var(--font-family-secondary);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+p,
+h1 {
+  margin: 0;
+}
+
+.page-shell {
+  width: 100%;
+  max-width: var(--content-max-width);
+  min-height: 100svh;
+  margin-inline: auto;
+}

@@ -1,0 +1,37 @@
+.collections {
+  padding-top: 48px;
+
+  &__filters {
+    display: flex;
+    justify-content: center;
+    gap: 42px;
+    margin-bottom: 36px;
+
+    button {
+      position: relative;
+      min-width: 68px;
+      padding-top: 34px;
+      font-size: 12px;
+
+      &::before {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        width: 24px;
+        height: 24px;
+        border: 1px solid var(--color-text);
+        border-radius: 50%;
+        content: '';
+        transform: translateX(-50%);
+      }
+    }
+  }
+}
+
+@media (max-width: 640px) {
+  .collections__filters {
+    justify-content: flex-start;
+    gap: 18px;
+    overflow-x: auto;
+  }
+}

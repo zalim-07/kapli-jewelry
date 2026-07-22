@@ -1,0 +1,55 @@
+doctype html
+html(lang="ru")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    meta(
+      name="description"
+      content="Официальный сайт Kapli Jewelry скоро откроется."
+    )
+    title Kapli Jewelry - скоро открытие
+  body
+    main.page-shell
+      section.coming-soon(aria-labelledby="coming-soon-title")
+        .coming-soon__content
+          .coming-soon__intro
+            p.coming-soon__brand KAPLI JEWELRY
+
+            h1.coming-soon__title#coming-soon-title
+              | Красота требует 
+              em времени
+
+            p.coming-soon__description
+              | Мы завершаем работу над сайтом Kapli Jewelry, чтобы каждая его деталь отражала ту же заботу и внимание, с которыми создаются наши украшения.
+
+          .coming-soon__stores
+            p.coming-soon__stores-title
+              | До открытия сайта наши коллекции доступны в официальных магазинах.
+
+            nav.coming-soon__store-links(aria-label="Официальные магазины")
+              a.coming-soon__store-link(
+                href="https://www.wildberries.ru/seller/149717"
+                target="_blank"
+                rel="noopener noreferrer"
+              ) Wildberries
+              a.coming-soon__store-link(
+                href="https://www.ozon.ru/brand/kapli-jewelry-100088366/"
+                target="_blank"
+                rel="noopener noreferrer"
+              ) Ozon
+              a.coming-soon__store-link(
+                href="https://market.yandex.ru/category/kapli-jewelry"
+                target="_blank"
+                rel="noopener noreferrer"
+              ) Яндекс Маркет
+
+        .coming-soon__media
+          img.coming-soon__image(
+            src="/src/assets/coming-soon.webp"
+            alt="Украшения Kapli Jewelry с опалами на голубом фоне"
+            width="716"
+            height="620"
+            fetchpriority="high"
+          )
+
+    script(type="module" src="/src/main.js")

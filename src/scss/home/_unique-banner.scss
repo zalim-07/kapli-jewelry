@@ -1,0 +1,57 @@
+.unique-banner {
+  padding-inline: var(--column-padding);
+
+  &__inner {
+    display: grid;
+    min-height: 330px;
+    grid-template-columns: minmax(0, 1fr) minmax(420px, 0.82fr);
+    align-items: stretch;
+    padding: 0;
+    background: #f4eee6;
+  }
+
+  &__copy {
+    align-self: center;
+    padding: 48px;
+
+    h2 {
+      font-family: var(--font-serif);
+      font-size: clamp(34px, 3vw, 52px);
+      font-weight: 400;
+      line-height: 1;
+      letter-spacing: -0.035em;
+    }
+
+    p {
+      max-width: 520px;
+      margin: 18px 0 26px;
+      color: var(--color-text-secondary);
+      font-size: 14px;
+      line-height: 1.5;
+    }
+  }
+
+  &__media {
+    min-height: 330px;
+  }
+}
+
+@media (max-width: 900px) {
+  .unique-banner {
+    padding-inline: 0;
+
+    &__inner {
+      grid-template-columns: 1fr;
+    }
+
+    &__media {
+      min-height: 320px;
+    }
+  }
+}
+
+@media (max-width: 640px) {
+  .unique-banner__copy {
+    padding: 36px 24px;
+  }
+}
