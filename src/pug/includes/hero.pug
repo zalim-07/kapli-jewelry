@@ -1,0 +1,62 @@
+section.hero(aria-label="Главный слайдер")
+  .swiper.hero-swiper
+    .swiper-wrapper
+      .swiper-slide.hero-slide(data-theme="dark")
+        .section-inner.hero__inner
+          .hero__copy
+            .hero__title.hero__title--size-1
+              .hero__title--regular Натуральные камни,
+              .hero__title--italic отобранные вручную
+
+            .hero__text-grid
+              p Мы создаём серебряные украшения с натуральными камнями, сохраняя красоту, созданную природой.
+              p Каждый камень проходит ручной отбор геммологами, а каждое украшение — контроль качества.
+
+          .hero__media
+            img(
+              src="/src/assets/images/hero/banner-1.webp"
+              alt="Украшения Kapli Jewelry с натуральными камнями"
+              width="1440"
+              height="610"
+              fetchpriority="high"
+            )
+
+          a.button.hero__button(href="#catalog") Перейти в каталог
+
+      .swiper-slide.hero-slide(data-theme="light")
+        .section-inner.hero__inner
+          .hero__copy
+            .hero__title.hero__title--size-2
+              .hero__title--regular Сертификат на украшение,
+              .hero__title--italic которое станет любимым
+
+          .hero__media
+            img(
+              src="/src/assets/images/hero/banner-2.webp"
+              alt="Ручная работа ювелиров Kapli Jewelry"
+              width="1440"
+              height="610"
+              loading="lazy"
+            )
+
+          a.button.hero__button(href="#collections") Подробнее
+
+      .swiper-slide.hero-slide(data-theme="dark")
+        .section-inner.hero__inner
+          .hero__copy
+            .hero__title.hero__title--size-3
+              .hero__title--regular Природа создаёт камни,
+              .hero__title--italic Мы раскрываем их красоту
+
+          .hero__media
+            img(
+              src="/src/assets/images/hero/banner-3.webp"
+              alt="Украшения Kapli Jewelry с натуральными камнями"
+              width="1440"
+              height="610"
+              loading="lazy"
+            )
+
+          a.button.hero__button(href="#gift") От камня к украшению
+
+    .swiper-pagination.hero-swiper__pagination(aria-label="Навигация по слайдам")

@@ -6,6 +6,15 @@
   --controls-gap: 8px;
 
   --color-background: #ffffff;
+  --color-background-hover: #F5F5F5;
+
+  --color-button-background-light: #fff;
+  --color-button-background-light-hover: #E5E5E5;
+
+  --color-button-background-dark: #111;
+  --color-button-background-dark-hover: #252525;
+
+
   --color-text: #111;
   --color-text-secondary: #434343;
   --color-border: #000;
@@ -13,6 +22,10 @@
   --font-family: 'Feature Display LC Web', sans-serif;
   --font-family-secondary: 'TT Turns', sans-serif;
   --font-serif: var(--font-family);
+
+  --transition-duration: 0.3s;
+  --transition-timing-function: ease;
+  --transition: var(--transition-duration) var(--transition-timing-function);
 }
 
 *,

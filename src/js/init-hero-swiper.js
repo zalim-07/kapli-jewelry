@@ -73,14 +73,41 @@ function createCircularPagination({
   let requestedOffset = null;
   let resetTimer = null;
 
-  function getStep() {
+  function getPaginationNumber(name, fallback) {
     const styles = getComputedStyle(element);
 
     return (
-      Number.parseFloat(
-        styles.getPropertyValue('--hero-pagination-step'),
-      ) || 16
+      Number.parseFloat(styles.getPropertyValue(name)) ||
+      fallback
     );
+  }
+
+  function getStep() {
+    return (
+      getPaginationNumber('--hero-pagination-dot-size', 6) +
+      getPaginationNumber('--hero-pagination-gap', 4)
+    );
+  }
+
+  function getTrackTransition() {
+    const styles = getComputedStyle(element);
+    const duration =
+      styles.getPropertyValue('--hero-pagination-duration').trim() ||
+      '400ms';
+    const easing =
+      styles.getPropertyValue('--hero-pagination-easing').trim() ||
+      'ease-in-out';
+
+    return `transform ${duration} ${easing}`;
+  }
+
+  function getTransitionDuration() {
+    const styles = getComputedStyle(element);
+    const duration =
+      styles.getPropertyValue('--hero-pagination-duration').trim() ||
+      '400ms';
+
+    return Number.parseFloat(duration) || 400;
   }
 
   function getInitialTranslate() {
@@ -109,32 +136,34 @@ function createCircularPagination({
     }
   }
 
-  function createBullet(relativeOffset, index) {
-    const button = document.createElement('button');
-    const dot = document.createElement('span');
-
+  function updateBulletContent(button, relativeOffset, index) {
     const targetIndex = modulo(
       index + relativeOffset,
       slidesCount,
     );
 
-    button.className = 'hero-pagination__bullet';
-    button.type = 'button';
-
     button.dataset.offset = String(relativeOffset);
     button.dataset.slideIndex = String(targetIndex);
-
     button.setAttribute(
       'aria-label',
       `Перейти к слайду ${targetIndex + 1}`,
     );
 
+    setBulletState(button, relativeOffset);
+  }
+
+  function createBullet(relativeOffset, index) {
+    const button = document.createElement('button');
+    const dot = document.createElement('span');
+
+    button.className = 'hero-pagination__bullet';
+    button.type = 'button';
+
     dot.className = 'hero-pagination__dot';
     dot.setAttribute('aria-hidden', 'true');
 
     button.append(dot);
-
-    setBulletState(button, relativeOffset);
+    updateBulletContent(button, relativeOffset, index);
 
     return button;
   }
@@ -174,6 +203,38 @@ function createCircularPagination({
       0,
       0
     )`;
+  }
+
+  function settleAfterAnimation(index, limitedOffset) {
+    clearResetTimer();
+
+    activeIndex = index;
+    element.classList.remove('is-animating');
+
+    track.style.transition = 'none';
+    track.style.transform = `translate3d(
+      ${getInitialTranslate()}px,
+      0,
+      0
+    )`;
+
+    if (limitedOffset > 0) {
+      for (let i = 0; i < limitedOffset; i += 1) {
+        track.append(track.firstElementChild);
+      }
+    } else if (limitedOffset < 0) {
+      for (let i = 0; i < -limitedOffset; i += 1) {
+        track.prepend(track.lastElementChild);
+      }
+    }
+
+    [...track.children].forEach((bullet, bulletIndex) => {
+      updateBulletContent(
+        bullet,
+        firstOffset + bulletIndex,
+        index,
+      );
+    });
   }
 
   function animateTo(index, offset) {
@@ -234,8 +295,7 @@ function createCircularPagination({
       setBulletState(bullet, newOffset);
     });
 
-    track.style.transition =
-      'transform 320ms cubic-bezier(0.22, 1, 0.36, 1)';
+    track.style.transition = getTrackTransition();
 
     track.style.transform = `translate3d(
       ${finalTranslate}px,
@@ -245,9 +305,34 @@ function createCircularPagination({
 
     activeIndex = index;
 
+    let isFinished = false;
+
+    const finishAnimation = () => {
+      if (isFinished) {
+        return;
+      }
+
+      isFinished = true;
+      track.removeEventListener('transitionend', onTransitionEnd);
+      settleAfterAnimation(index, limitedOffset);
+    };
+
+    const onTransitionEnd = (event) => {
+      if (
+        event.target !== track ||
+        event.propertyName !== 'transform'
+      ) {
+        return;
+      }
+
+      finishAnimation();
+    };
+
+    track.addEventListener('transitionend', onTransitionEnd);
+
     resetTimer = window.setTimeout(() => {
-      render(index);
-    }, 340);
+      finishAnimation();
+    }, getTransitionDuration() + 40);
   }
 
   function update(index) {

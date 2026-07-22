@@ -8,14 +8,17 @@
 }
 
 .hero-slide {
+  --hero-height: clamp(610px, 50.6vw, 850px);
   --hero-color: #fff;
   --hero-button-color: #111;
   --hero-button-background: #fff;
   --hero-button-border: #fff;
+  --hero-button-color-hover: #111;
+  --hero-button-background-hover: var(--color-button-background-light-hover);
   --hero-pagination-color: #fff;
 
   position: relative;
-  min-height: 610px;
+  min-height: var(--hero-height);
   color: var(--hero-color);
 
   &[data-theme="light"] {
@@ -23,6 +26,8 @@
     --hero-button-color: #fff;
     --hero-button-background: #111;
     --hero-button-border: #111;
+    --hero-button-color-hover: #fff;
+    --hero-button-background-hover: var(--color-button-background-dark-hover);
     --hero-pagination-color: #111;
   }
 }
@@ -30,9 +35,10 @@
 .hero__inner {
   position: relative;
   display: flex;
-  min-height: 610px;
-  padding-top: 94px;
-  padding-bottom: 38px;
+  flex-direction: column;
+  height: var(--hero-height);
+  padding-top: 7vw;
+  padding-bottom: 64px;
   overflow: hidden;
 }
 
@@ -57,66 +63,128 @@
   text-align: center;
 }
 
-.hero__title {
-  margin: 0;
-  color: var(--hero-color);
-  font-size: clamp(36px, 4vw, 64px);
-  font-weight: 400;
-  line-height: 0.95;
-  letter-spacing: -0.04em;
+.hero__inner:not(:has(.hero__text-grid)) .hero__copy {
+  margin-top: auto;
+}
 
-  em {
-    font-weight: 400;
+.hero__inner:not(:has(.hero__text-grid)) .hero__button {
+  margin-top: 40px;
+}
+
+.hero__title {
+  color: var(--hero-color);
+  font-family: var(--font-family);
+  font-size: 52px;
+  line-height: 1;
+  letter-spacing: 0;
+  width: 738px;
+  margin: 0 auto;
+
+  &--size-1 {
+    width: 585px;
+  }
+
+  &--size-2 {
+    .hero__title--italic { 
+      margin-right: -11px;
+    }
+  }
+
+  &--size-3 {
+    width: 662px;
+    .hero__title--italic { 
+      margin-right: -32px;
+    }
+  }
+
+  &--regular {
+    text-align: left;
+    margin-bottom: 8px;
+  }
+
+  &--italic {
+    font-style: italic;
+    text-align: right;
   }
 }
 
 .hero__text-grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 40px;
-  max-width: 670px;
+  grid-template-columns: 304px minmax(0, 1fr);
+  gap: 24px;
+  max-width: 580px;
   margin: 28px auto 0;
   text-align: left;
+  font-family: var(--font-family-secondary);
 
   p {
     margin: 0;
-    color: inherit;
-    font-size: 14px;
-    line-height: 1.4;
+    color: var(--hero-color);
+    font-size: 16px;
+    line-height: 1.3;
+    letter-spacing: 0;
   }
 }
 
 .hero__button {
   position: relative;
   z-index: 2;
-  align-self: flex-end;
-  margin: auto auto 0;
-  border: 1px solid var(--hero-button-border);
+  align-self: center;
+  margin-top: auto;
   color: var(--hero-button-color);
   background-color: var(--hero-button-background);
+  padding-left: 20px;
+  padding-right: 20px;
+  height: 48px;
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  transition:
+    color var(--transition),
+    background-color var(--transition),
+    border-color var(--transition);
+
+
+  font-family: var(--font-family-secondary);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.3;
+  letter-spacing: 0.02em;
+
 
   &:hover {
-    color: var(--hero-button-background);
-    background-color: transparent;
+    color: var(--hero-button-color-hover);
+    background-color: var(--hero-button-background-hover);
   }
 }
 
 .hero-swiper__pagination {
-  --hero-pagination-bullet-box: 10px;
-  --hero-pagination-gap: 6px;
-  --hero-pagination-step: 16px;
-  --hero-pagination-duration: 320ms;
+  --hero-pagination-dot-size: 6px;
+  --hero-pagination-dot-size-sm: 4px;
+  --hero-pagination-gap: 4px;
+  --hero-pagination-visible-bullets: 5;
+  --hero-pagination-bullet-box: var(--hero-pagination-dot-size);
+  --hero-pagination-duration: 400ms;
+  --hero-pagination-easing: ease-in-out;
 
   position: absolute;
   z-index: 10;
-  bottom: 20px !important;
+  bottom: 38px;
   left: 50% !important;
 
-  width: 74px !important;
-  height: 10px;
+  box-sizing: border-box;
+  width: calc(
+    var(--hero-pagination-dot-size) * var(--hero-pagination-visible-bullets) +
+    var(--hero-pagination-gap) * (var(--hero-pagination-visible-bullets) - 1) +
+    4px
+  ) !important;
+  height: var(--hero-pagination-dot-size);
+  padding-inline: 2px;
 
   overflow: hidden;
-  color: #fff;
+  text-align: center;
 
   transform: translateX(-50%);
 
@@ -128,9 +196,7 @@
 .hero-pagination__track {
   display: grid;
   grid-auto-flow: column;
-  grid-auto-columns: var(
-    --hero-pagination-bullet-box
-  );
+  grid-auto-columns: var(--hero-pagination-bullet-box);
   align-items: center;
   gap: var(--hero-pagination-gap);
 
@@ -165,61 +231,32 @@
 
 .hero-pagination__dot {
   display: block;
-
-  width: 4px;
-  height: 4px;
-
+  width: var(--hero-pagination-dot-size);
+  height: var(--hero-pagination-dot-size);
   border-radius: 50%;
-  background-color: currentColor;
-  opacity: 0.3;
-
-  transform: scale(1);
-
-  transition:
-    width var(--hero-pagination-duration)
-      cubic-bezier(0.22, 1, 0.36, 1),
-    height var(--hero-pagination-duration)
-      cubic-bezier(0.22, 1, 0.36, 1),
-    opacity var(--hero-pagination-duration) ease,
-    transform var(--hero-pagination-duration)
-      cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-/* Две крайние видимые точки */
-
-.hero-pagination__bullet[data-distance='2']
-  .hero-pagination__dot {
-  width: 3px;
-  height: 3px;
-  opacity: 0.3;
-}
-
-/* Точки рядом с активной */
-
-.hero-pagination__bullet[data-distance='1']
-  .hero-pagination__dot {
-  width: 6px;
-  height: 6px;
-  opacity: 0.55;
-}
-
-/* Активная центральная точка */
-
-.hero-pagination__bullet.is-active
-  .hero-pagination__dot {
-  width: 10px;
-  height: 10px;
+  background: #fff;
   opacity: 1;
+  transition:
+    width var(--hero-pagination-duration) var(--hero-pagination-easing),
+    height var(--hero-pagination-duration) var(--hero-pagination-easing),
+    opacity var(--hero-pagination-duration) var(--hero-pagination-easing),
+    background-color var(--hero-pagination-duration) var(--hero-pagination-easing);
 }
 
-/* Запасные точки за пределами видимой области */
+.hero-pagination__bullet.is-active .hero-pagination__dot {
+  background: #9C9C9C;
+}
 
-.hero-pagination__bullet[data-distance='3']
-  .hero-pagination__dot {
-  width: 2px;
-  height: 2px;
+.hero-pagination__bullet[data-distance='2'] .hero-pagination__dot {
+  width: var(--hero-pagination-dot-size-sm);
+  height: var(--hero-pagination-dot-size-sm);
+}
+
+.hero-pagination__bullet[data-distance='3'] .hero-pagination__dot,
+.hero-pagination__bullet[data-distance='4'] .hero-pagination__dot {
+  width: var(--hero-pagination-dot-size-sm);
+  height: var(--hero-pagination-dot-size-sm);
   opacity: 0;
-  transform: scale(0.5);
 }
 
 /* Цвет для тёмного баннера */
@@ -253,9 +290,8 @@
 }
 
 @media (max-width: 767px) {
-  .hero-slide,
-  .hero__inner {
-    min-height: 620px;
+  .hero-slide {
+    --hero-height: clamp(620px, 50.6vw, 850px);
   }
 
   .hero__inner {

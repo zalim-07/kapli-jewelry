@@ -1,0 +1,23 @@
+header.site-header
+  .site-header__inner
+    nav.site-header__nav(aria-label="Основная навигация")
+      ul#menu-primary.menu
+        li.menu-item.menu-item-type-custom.menu-item-object-custom
+          a(href="#catalog") Каталог
+        li.menu-item.menu-item-type-custom.menu-item-object-custom
+          a(href="#collections") Бестселлеры
+        li.menu-item.menu-item-type-custom.menu-item-object-custom
+          a(href="#about") Производство
+        li.menu-item.menu-item-type-custom.menu-item-object-custom
+          a(href="#journal") Журнал
+
+    a.site-header__logo(href="/home.html" aria-label="Kapli Jewelry, главная")
+      include ../../assets/svg/logo.svg
+
+    .site-header__actions
+      a.site-header__action(href="#contacts")
+        span.site-header__icon.site-header__icon--phone(aria-hidden="true")
+        span Контакты
+      a.site-header__action(href="#cart")
+        span.site-header__icon.site-header__icon--bag(aria-hidden="true")
+        span Корзина
