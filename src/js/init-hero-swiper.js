@@ -399,6 +399,53 @@ function createCircularPagination({
   };
 }
 
+function isHeroInteractiveTarget(target) {
+  return Boolean(
+    target.closest(
+      'a, button, input, textarea, select, label, .hero-swiper__pagination',
+    ),
+  );
+}
+
+function initHeroSlideClickNavigation(
+  heroSwiperEl,
+  getSwiper,
+) {
+  const clickZoneWidth = 300;
+
+  heroSwiperEl.addEventListener('click', (event) => {
+    if (isHeroInteractiveTarget(event.target)) {
+      return;
+    }
+
+    const slide = event.target.closest(
+      '.hero-slide.swiper-slide-active',
+    );
+
+    if (!slide || !heroSwiperEl.contains(slide)) {
+      return;
+    }
+
+    const swiper = getSwiper();
+
+    if (!swiper) {
+      return;
+    }
+
+    const { left, width } = slide.getBoundingClientRect();
+    const clickX = event.clientX - left;
+
+    if (clickX <= clickZoneWidth) {
+      swiper.slidePrev();
+      return;
+    }
+
+    if (clickX >= width - clickZoneWidth) {
+      swiper.slideNext();
+    }
+  });
+}
+
 export function initHeroSwiper() {
   const heroSwiperEl =
     document.querySelector('.hero-swiper');
@@ -451,6 +498,8 @@ export function initHeroSwiper() {
 
     effect: 'fade',
 
+    simulateTouch: false,
+
     fadeEffect: {
       crossFade: true,
     },
@@ -473,4 +522,9 @@ export function initHeroSwiper() {
       },
     },
   });
+
+  initHeroSlideClickNavigation(
+    heroSwiperEl,
+    () => heroSwiper,
+  );
 }
