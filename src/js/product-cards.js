@@ -17,7 +17,9 @@ export function initProductCards() {
         moreButton.setAttribute('aria-expanded', 'true');
       }
 
-      moreButton.addEventListener('pointerenter', openSizes);
-      moreButton.addEventListener('focus', openSizes);
+      moreButton.addEventListener('click', (event) => {
+        event.preventDefault();
+        openSizes();
+      });
     });
   }

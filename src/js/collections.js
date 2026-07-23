@@ -1,3 +1,8 @@
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
+
 const INITIAL_VISIBLE_COUNT = 8;
 const LOAD_MORE_COUNT = 4;
 
@@ -5,6 +10,39 @@ function getProductCategories(card) {
     return (card.dataset.categories || '')
         .split(/\s+/)
         .filter(Boolean);
+}
+
+let scrollRefreshFrame = null;
+
+function scheduleScrollTriggerRefresh() {
+    if (scrollRefreshFrame) {
+        cancelAnimationFrame(scrollRefreshFrame);
+    }
+
+    scrollRefreshFrame = requestAnimationFrame(() => {
+        scrollRefreshFrame = null;
+        ScrollTrigger.refresh();
+    });
+}
+
+function watchVisibleImages(cards) {
+    cards.forEach((card) => {
+        if (card.hidden) {
+            return;
+        }
+
+        card.querySelectorAll('img').forEach((image) => {
+            if (image.complete) {
+                return;
+            }
+
+            image.addEventListener(
+                'load',
+                scheduleScrollTriggerRefresh,
+                { once: true },
+            );
+        });
+    });
 }
 
 export function initCollections() {
@@ -112,6 +150,9 @@ export function initCollections() {
                     `Показать ещё ${nextCount} товара`,
                 );
             }
+
+            scheduleScrollTriggerRefresh();
+            watchVisibleImages(cards);
         }
 
         function selectCategory(category) {
