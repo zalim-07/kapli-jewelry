@@ -1,0 +1,259 @@
+.journey {
+  background-color: #fff;
+
+  .section-heading--split {
+    align-items: center;
+  }
+
+  .section-heading__title--italic {
+    margin-top: 4px;
+  }
+}
+
+.journey__sticky {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100svh;
+  padding: 60px 48px;
+}
+
+.journey-intro {
+  min-width: 662px;
+  max-width: 49.2%;
+  width: 100%;
+
+  .section-heading__text {
+    max-width: 662px;
+  }
+}
+
+.journey-title {
+  flex: 1;
+}
+
+
+.journey__content {
+  margin-top: 60px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(661px, 49.2%);
+  align-items: center;
+}
+
+.journey__media {
+  position: relative;
+  overflow: hidden;
+  background-color: #eee;  
+  aspect-ratio: 463 / 492;
+  max-width: 463px;
+}
+
+.journey__image {
+  position: absolute;
+  inset: 0;
+
+  display: block;
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+  opacity: 0;
+  transform: scale(1.025);
+
+  transition:
+    opacity 600ms ease,
+    transform 900ms cubic-bezier(0.22, 1, 0.36, 1);
+
+  &.is-active {
+    z-index: 1;
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.journey__steps-wrap {
+  --journey-background: #fff;
+  --journey-number-size: 40px;
+  --journey-line-width: 1px;
+
+  position: relative;
+  width: 100%;
+
+  padding-top: 16px;
+}
+
+.journey__rail,
+.journey__progress {
+  position: absolute;
+  z-index: 0;
+  top: 20px;
+  bottom: 20px;
+  left: 20px;
+
+  width: 1px;
+
+  pointer-events: none;
+}
+
+.journey__rail {
+  background-color: #d8d8d8;
+}
+
+.journey__progress {
+  background-color: #111;
+  opacity: 1;
+
+  transform: scaleY(0);
+  transform-origin: top;
+
+  transition: opacity 300ms ease;
+  will-change: transform, opacity;
+}
+
+
+.journey__steps {
+  position: relative;
+  z-index: 1;
+
+  margin: 0;
+  padding: 0;
+
+  list-style: none;
+}
+
+.journey__step {
+  color: #777;
+  position: relative;
+
+  &:not(:last-child) {
+    padding-bottom: 44px;
+  }
+
+  &:first-child {
+    .journey__answer-inner {
+      max-width: 565px;
+    }
+  }
+
+  &.is-active {
+    color: #111;
+
+    .journey__answer {
+      grid-template-rows: 1fr;
+      opacity: 1;
+    }
+  }
+
+  &.is-active,
+  &.is-complete {
+    color: #111;
+
+    .journey__number {
+      border-color: #111;
+      color: #111;
+    }
+  }
+
+  &:last-child::after {
+    position: absolute;
+    z-index: 1;
+
+    top: calc(var(--journey-number-size) / 2);
+    bottom: 0;
+    left: calc(var(--journey-number-size) / 2);
+
+    width: 5px;
+
+    background-color: var(--journey-background);
+
+    content: '';
+    pointer-events: none;
+    transform: translateX(-50%);
+  }
+}
+
+.journey__trigger {
+  display: grid;
+  grid-template-columns: 40px minmax(0, 1fr);
+  gap: 24px;
+  align-items: center;
+
+  width: 100%;
+  padding: 0;
+
+  color: inherit;
+  text-align: left;
+
+  background: transparent;
+  pointer-events: none;
+}
+
+.journey__number {
+  position: relative;
+  z-index: 2;
+
+  display: grid;
+  place-items: center;
+
+  width: 40px;
+  height: 40px;
+
+  border: 1px solid #d8d8d8;
+
+  color: var(--color-border);
+  font-family: var(--font-family-secondary);
+  font-size: 16px;
+  line-height: 1.4;
+
+  background-color: #fff;
+
+  transition: border-color 300ms ease;
+}
+
+.journey__step-title {
+  font-family: var(--font-family);
+  font-size: 24px;
+  line-height: 1.16;
+  transition: color 300ms ease;
+}
+
+.journey__answer {
+  display: grid;
+  grid-template-rows: 0fr;
+
+  margin-left: 64px;
+
+  opacity: 0;
+
+  transition:
+    grid-template-rows 450ms cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 300ms ease;
+}
+
+.journey__answer-inner {
+  overflow: hidden;
+  max-width: 457px;
+
+
+  p {
+    max-width: 620px;
+    margin: 6px 0 0;
+
+    color: var(--color-text-secondary);
+    font-size: 16px;
+    line-height: 1.4;
+  }
+}
+
+@media (max-width: 1023px) {}
+
+@media (max-width: 600px) {}
+
+@media (prefers-reduced-motion: reduce) {
+
+  .journey__image,
+  .journey__answer,
+  .journey__number {
+    transition: none;
+  }
+}

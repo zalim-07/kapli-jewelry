@@ -1,0 +1,88 @@
+-
+  const journeySteps = [
+    {
+      title: 'Как две капли воды',
+      text: 'Природа не создаёт одинаковых камней. Поэтому наши геммологи вручную подбирают минералы по оттенку, рисунку и характеру, которые становятся идеальной парой. Эта работа требует времени, но именно она создаёт разницу между массовым производством и настоящей ювелирной работой.',
+      image: '/src/assets/images/journey/step-1.webp',
+      alt: 'Парные украшения Kapli Jewelry'
+    },
+    {
+      title: 'Поиск лучших камней',
+      text: 'Мы работаем с проверенными поставщиками и отбираем минералы, которые отличаются выразительным цветом, рисунком и качеством.',
+      image: '/src/assets/images/journey/step-2.webp',
+      alt: 'Натуральный камень в породе'
+    },
+    {
+      title: 'Работа геммологов',
+      text: 'Каждый камень проходит индивидуальную проверку. Мы оцениваем оттенок, структуру и природные особенности, чтобы в коллекции оставались только лучшие экземпляры.',
+      image: '/src/assets/images/journey/step-3.webp',
+      alt: 'Проверка камня геммологом'
+    },
+    {
+      title: 'Работа ювелиров',
+      text: 'После отбора камни передаются мастерам. Ювелиры создают оправу, закрепляют камни и вручную доводят каждое изделие до финального вида.',
+      image: '/src/assets/images/journey/step-4.webp',
+      alt: 'Работа ювелира над украшением'
+    },
+    {
+      title: 'Контроль качества',
+      text: 'Перед тем как попасть к владельцу, украшение проходит несколько этапов проверки.',
+      image: '/src/assets/images/journey/step-5.webp',
+      alt: 'Контроль качества украшения'
+    }
+  ]
+
+section.journey(
+  data-journey
+  aria-labelledby="journey-title"
+)
+  .journey__sticky(data-journey-sticky)
+    .section-inner
+      .section-heading.section-heading--split
+        .journey-title
+          .section-heading__title--regular От камня
+          .section-heading__title--italic к готовому украшению
+
+        .journey-intro
+          .section-heading__text
+            p Каждое украшение Kapli Jewelry проходит долгий путь, прежде чем оказаться в вашей коллекции. За его созданием стоит работа специалистов, объединённых любовью к природным камням и ювелирному мастерству.
+
+      .journey__content
+        .journey__media
+          each step, index in journeySteps
+            img.journey__image(
+              class=index === 0 ? 'is-active' : null
+              src=step.image
+              alt=step.alt
+              width="560"
+              height="600"
+              loading=index === 0 ? 'eager' : 'lazy'
+              decoding="async"
+              data-journey-image=index
+              aria-hidden=index === 0 ? 'false' : 'true'
+            )
+
+        .journey__steps-wrap
+          span.journey__rail(aria-hidden="true")
+          span.journey__progress(
+            data-journey-progress
+            aria-hidden="true"
+          )
+
+          ol.journey__steps
+            each step, index in journeySteps
+              li.journey__step(
+                class=index === 0 ? 'is-active' : null
+                data-journey-step=index
+              )
+                .journey__trigger
+                  span.journey__number
+                    = String(index + 1).padStart(2, '0')
+
+                  span.journey__step-title= step.title
+
+                .journey__answer(
+                  id=`journey-answer-${index}`
+                )
+                  .journey__answer-inner
+                    p= step.text

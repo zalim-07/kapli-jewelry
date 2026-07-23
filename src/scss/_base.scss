@@ -18,7 +18,7 @@
 
   --color-text: #111;
   --color-text-secondary: #434343;
-  --color-border: #000;
+  --color-border: #111;
 
   --font-family: 'Feature Display LC Web', sans-serif;
   --font-family-secondary: 'TT Turns', sans-serif;
@@ -158,6 +158,12 @@ h6 {
 }
 
 .button--dark {}
+
+
+
+.section-inner {
+  width: 100%;
+}
 
 .section-heading {
   &__text {
