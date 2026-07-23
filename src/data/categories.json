@@ -1,0 +1,22 @@
+[
+  {
+    "slug": "all",
+    "title": "Все",
+    "image": "/src/assets/images/categories/all.webp"
+  },
+  {
+    "slug": "earrings",
+    "title": "Серьги",
+    "image": "/src/assets/images/categories/earrings.webp"
+  },
+  {
+    "slug": "rings",
+    "title": "Кольца",
+    "image": "/src/assets/images/categories/rings.webp"
+  },
+  {
+    "slug": "pendants",
+    "title": "Подвески",
+    "image": "/src/assets/images/categories/pendants.webp"
+  }
+]

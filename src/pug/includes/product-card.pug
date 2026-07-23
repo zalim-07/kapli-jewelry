@@ -1,0 +1,82 @@
+mixin productCard(product, options = {})
+  - const cardOptions = options && typeof options === 'object' ? options : {}
+  - const productHref = product.href || '#'
+  - const images = Array.isArray(product.images) ? product.images : []
+  - const sizes = Array.isArray(product.sizes) ? product.sizes : []
+  - const badges = Array.isArray(product.badges) ? product.badges : []
+  - const materials = Array.isArray(product.material) ? product.material : (product.material ? [product.material] : [])
+  - const categories = Array.isArray(product.categories) ? product.categories : (product.category ? [product.category] : [])
+  - const categoriesAttr = categories.length ? categories.join(' ') : null
+  - const visibleSizesCount = 6
+  - const querySeparator = productHref.includes('?') ? '&' : '?'
+  - const cardClass = cardOptions.large ? 'product-card product-card--large' : 'product-card'
+
+  article(
+    class=cardClass
+    data-product-card
+    data-categories=categoriesAttr
+  )
+    //- Растянутая ссылка отвечает за клик по карточке
+    a.product-card__stretched-link(
+      href=productHref
+      aria-label=`Открыть товар «${product.title}»`
+    )
+
+    .product-card__media
+      if images[0]
+        img.product-card__image.product-card__image--primary(
+          src=images[0].src
+          alt=images[0].alt || product.title
+          width="720"
+          height="950"
+          loading=cardOptions.eager ? 'eager' : 'lazy'
+        )
+
+      if images[1]
+        img.product-card__image.product-card__image--secondary(
+          src=images[1].src
+          alt=""
+          width="720"
+          height="950"
+          loading="lazy"
+          aria-hidden="true"
+        )
+
+      if badges.length
+        ul.product-card__badges(aria-label="Особенности товара")
+          each badge in badges
+            li.product-card__badge= badge
+
+      if sizes.length
+        .product-card__sizes(data-product-sizes)
+          each size, index in sizes
+            a.product-card__size(
+              class=index >= visibleSizesCount ? 'product-card__size--hidden' : null
+              href=`${productHref}${querySeparator}size=${encodeURIComponent(size)}`
+              data-product-size=size
+              aria-label=`Открыть товар в размере ${size}`
+            )= size
+
+          if sizes.length > visibleSizesCount
+            button.product-card__sizes-more(
+              type="button"
+              data-product-sizes-more
+              aria-expanded="false"
+              aria-label="Показать все размеры"
+            )
+              span(aria-hidden="true") …
+
+    .product-card__info      
+      .product-card__header
+        h3.product-card__title= product.title
+        if product.price
+          p.product-card__price= product.price
+      
+      if materials.length
+        p.product-card__material
+          each material, index in materials
+            if index > 0
+              span.product-card__material-separator(aria-hidden="true")
+            = material
+
+      

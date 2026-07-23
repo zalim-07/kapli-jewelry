@@ -1,0 +1,52 @@
+include /includes/product-card
+
+section.section.collections#collections(
+  aria-labelledby="collections-title"
+  data-collections
+)
+  .section-inner
+    .section-heading.section-heading--center
+      #collections-title.section-heading__title Коллекция
+
+      .section-heading__text
+        p Натуральные украшения, которые становятся частью личных историй
+
+    .collections__filters(
+      aria-label="Категории коллекций"
+      role="group"
+    )
+      each filter, index in categories
+        button.collections__filter(
+          class=index === 0 ? 'is-active' : null
+          type="button"
+          data-collection-filter=filter.slug
+          aria-controls="collections-grid"
+          aria-pressed=index === 0 ? 'true' : 'false'
+        )
+          if filter.image
+            img.collections__filter-image(
+              src=filter.image
+              alt=""
+              width="48"
+              height="48"
+              loading="lazy"
+            )
+
+          span.collections__filter-title= filter.title
+
+    .product-grid.product-grid--catalog#collections-grid
+      each product, index in products.catalog.slice(0, 24)
+        +productCard(product, { eager: index < 8 })
+
+    p.visually-hidden(
+      data-collections-status
+      aria-live="polite"
+      aria-atomic="true"
+    )
+
+    .section-action(data-collections-action)
+      button.button.button--dark(
+        type="button"
+        data-collections-more
+        aria-controls="collections-grid"
+      ) Смотреть ещё

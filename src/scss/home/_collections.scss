@@ -1,13 +1,24 @@
 .collections {
-  padding-block: 96px;
+  padding: 0 var(--layout-padding);
+
+  .section-heading__text {
+    margin-top: 15px;
+  }
+
+
+
+  .section-inner {
+    margin-top: 70px;
+    margin-bottom: 80px;
+  }
 }
 
 .collections__filters {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(120px, 1fr));
-
-  width: min(100%, 680px);
-  margin: 32px auto 28px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+  margin-top: 24px;
 }
 
 .collections__filter {
@@ -16,13 +27,11 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 8px;
-
-  min-height: 86px;
-  padding: 4px 16px 14px;
-
+  gap: 2px;
+  min-width: 165px;
+  padding: 0 4px;
   border: 0;
-  border-bottom: 1px solid #dedede;
+  border-bottom: 1px solid #EBEBEB;
 
   color: #111;
   font: inherit;
@@ -32,47 +41,59 @@
 
   &::after {
     position: absolute;
-    right: 0;
+    right: 1px;
     bottom: -1px;
-    left: 0;
+    left: 1px;
 
-    height: 2px;
+    height: 3px;
 
-    background-color: #111;
+    background-color: transparent;
 
     content: '';
-    transform: scaleX(0);
-    transform-origin: center;
-    transition: transform 250ms ease;
+    transform: scaleY(0.25);
+    transform-origin: bottom center;
+    transition:
+      transform var(--transition),
+      background-color var(--transition);
   }
 
-  &:hover::after,
   &.is-active::after {
-    transform: scaleX(1);
+    background-color: #111;
+    transform: scaleY(1);
+  }
+
+  &:not(.is-active):hover::after {
+    background-color: #EBEBEB;
+    transform: scaleY(1);
   }
 
   &:focus-visible {
-    outline: 1px solid #111;
+    outline: 1px solid #EBEBEB;
     outline-offset: 3px;
   }
 }
 
 .collections__filter-image {
   display: block;
-  width: 42px;
-  height: 42px;
+  width: 48px;
+  height: 48px;
   object-fit: contain;
 }
 
 .collections__filter-title {
-  font-size: 16px;
-  line-height: 1;
+  font-family: var(--font-family-secondary);
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 1.16;
+  letter-spacing: 0;
+  margin-bottom: 12px;
 }
 
 .product-grid--catalog {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 28px 4px;
+  gap: 24px 4px;
+  margin-top: 24px;
 
   .product-card[hidden] {
     display: none !important;
@@ -88,7 +109,7 @@
 .section-action {
   display: flex;
   justify-content: center;
-  margin-top: 36px;
+  margin-top: 24px;
 }
 
 .section-action[hidden] {

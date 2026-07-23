@@ -48,7 +48,13 @@
       column-gap: 4px;
       row-gap: 20px;
       align-content: space-between;
-      padding-bottom: 6px;      
+      padding-bottom: 6px;
+
+
+
+      .product-card__info {
+        padding: 8px;
+      }
     }
   }
 

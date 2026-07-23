@@ -9,6 +9,9 @@ const pugRoot = resolve(__dirname, 'src/pug');
 const products = JSON.parse(
   readFileSync(resolve(__dirname, 'src/data/products.json'), 'utf-8'),
 );
+const categories = JSON.parse(
+  readFileSync(resolve(__dirname, 'src/data/categories.json'), 'utf-8'),
+);
 
 const pugSettings = {
   options: {
@@ -16,6 +19,7 @@ const pugSettings = {
   },
   locals: {
     products,
+    categories,
   },
 };
 
