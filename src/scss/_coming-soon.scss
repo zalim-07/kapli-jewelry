@@ -68,8 +68,8 @@
     letter-spacing: 0.02em;
 
     transition:
-      color 180ms ease,
-      background-color 180ms ease;
+      color var(--transition),
+      background-color var(--transition);
 
     &:hover,
     &:focus-visible {

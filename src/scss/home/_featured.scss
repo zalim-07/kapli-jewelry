@@ -1,8 +1,71 @@
 .featured {
+  padding: var(--layout-padding);
+
+  &-title {
+    max-width: 831px;
+    flex: 1;
+  }
+
+  .section-heading {
+    padding-left: 40px;
+    padding-right: 40px;
+    margin-bottom: 40px;
+    align-items: end;
+
+    &__title--regular {}
+
+    &__title--italic {
+      text-align: right;
+      padding-right: 84px;
+      margin-top: 10px;
+    }
+  }
+
+  .section-inner {
+    padding-top: 80px;
+    padding-bottom: 80px;
+  }
+
+  .section-heading__text {
+    max-width: 511px;
+  }
+
   &__grid {
     display: grid;
-    grid-template-columns: minmax(0, 1.05fr) minmax(0, 1.4fr);
-    gap: var(--controls-gap);
+    grid-template-columns: minmax(0, 42.4%) minmax(0, 1.4fr);
+    gap: var(--items-gap);
+  }
+
+
+  .product-grid {
+    display: grid;
+    min-width: 0;
+    height: 100%;
+
+    &--compact {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      grid-template-rows: repeat(2, auto);
+      column-gap: 4px;
+      row-gap: 20px;
+      align-content: space-between;
+      padding-bottom: 6px;      
+    }
+  }
+
+  .section-action {
+    margin-top: 24px;
+    text-align: center;
+  }
+
+  .product-card__sizes {
+    transition: opacity var(--transition);
+  }
+
+  .product-card__size,
+  .product-card__sizes-more {
+    transition:
+      color var(--transition),
+      background-color var(--transition);
   }
 }
 
@@ -14,6 +77,16 @@
   &__media {
     flex: 1;
     min-height: 640px;
+
+    .product-card {
+      height: 100%;
+    }
+
+    .product-card__media {
+      flex: 1;
+      min-height: 640px;
+      aspect-ratio: 608/806;
+    }
   }
 
   &__meta {
@@ -33,18 +106,16 @@
   }
 }
 
-@media (max-width: 1100px) {
-  .featured__grid {
-    gap: 40px;
-  }
-}
-
-@media (max-width: 900px) {
+@media (max-width: 1023px) {
   .featured__grid {
     grid-template-columns: 1fr;
   }
+}
 
-  .editorial-card__media {
-    min-height: 520px;
+@media (max-width: 991px) {}
+
+@media (max-width: 767px) {
+  .featured .product-grid--compact {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }

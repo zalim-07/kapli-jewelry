@@ -1,0 +1,22 @@
+include /includes/product-card
+
+section.section.featured#catalog(aria-labelledby="featured-title")
+  .section-inner
+    .section-heading.section-heading--split      
+      #featured-title.featured-title
+        .section-heading__title--regular Украшения, в которые        
+        .section-heading__title--italic влюбляются с первого взгляда
+      .section-heading__text
+        p Именно с этих украшений чаще всего начинается знакомство с Kapli Jewelry. Модели, которые полюбились нашим покупателям и стали визитной карточкой бренда.
+
+    .featured__grid
+      article.editorial-card
+        .editorial-card__media
+          +productCard(products.editorial, { large: true, eager: true })
+
+      .product-grid.product-grid--compact
+        each product in products.featured
+          +productCard(product, { eager: true })
+
+    .section-action
+      a.button.button--dark(href="#collections") Смотреть всё

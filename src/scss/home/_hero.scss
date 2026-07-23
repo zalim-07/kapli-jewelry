@@ -259,30 +259,12 @@
   opacity: 0;
 }
 
-/* Цвет для тёмного баннера */
-
 .hero-swiper[data-theme='dark'] {
   .hero-swiper__pagination {
     color: #fff;
   }
 }
 
-/* Цвет для светлого баннера */
-
-.hero-swiper[data-theme='light'] {
-  .hero-swiper__pagination {
-    color: #111;
-  }
-}
-
-// Тёмный баннер — белая пагинация.
-.hero-swiper[data-theme='dark'] {
-  .hero-swiper__pagination {
-    color: #fff;
-  }
-}
-
-// Светлый баннер — чёрная пагинация.
 .hero-swiper[data-theme='light'] {
   .hero-swiper__pagination {
     color: #111;
