@@ -1,45 +1,101 @@
 .gift {
+  padding: 71.5px var(--layout-padding);
+
   &__inner {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(420px, 0.72fr);
-    gap: 80px;
+    grid-template-columns: 1fr 1fr;
     align-items: center;
   }
 
   &__copy {
-    h2 {
-      font-family: var(--font-serif);
-      font-size: clamp(38px, 4vw, 62px);
-      font-weight: 400;
-      line-height: 0.98;
-      letter-spacing: -0.04em;
+    padding: 48px;
+
+    .section-heading__text {
+      margin-top: 16px;
+      max-width: 580px;
+
+      p {
+        line-height: 1.4;
+      }
     }
 
-    p {
-      max-width: 560px;
-      margin: 20px 0 28px;
-      color: var(--color-text-secondary);
-      font-size: 14px;
-      line-height: 1.5;
+    &>a.button {
+      margin-top: 36px;
     }
   }
 
   &__prices {
-    display: grid;
-    max-width: 560px;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    margin-bottom: 28px;
-    border-top: 1px solid var(--color-border);
-    border-bottom: 1px solid var(--color-border);
+    display: flex;
+    margin-top: 36px;
+  }
 
-    button {
-      min-height: 52px;
-      font-size: 12px;
+  &__price {
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 2px;
+    width: calc(100%/4);
+    padding: 8px 12px 16px;
+    border: 0;
+    border-bottom: 1px solid #EBEBEB;
+
+    color: #111;
+    font-family: var(--font-family-secondary);
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 1.16;
+    letter-spacing: 0;
+
+    background: transparent;
+    cursor: pointer;
+
+    &::after {
+      position: absolute;
+      right: 1px;
+      bottom: -1px;
+      left: 1px;
+
+      height: 3px;
+
+      background-color: transparent;
+
+      content: '';
+      transform: scaleY(0.25);
+      transform-origin: bottom center;
+      transition:
+        transform var(--transition),
+        background-color var(--transition);
+    }
+
+    &.is-active::after {
+      background-color: #111;
+      transform: scaleY(1);
+    }
+
+    &:not(.is-active):hover::after {
+      background-color: #EBEBEB;
+      transform: scaleY(1);
+    }
+
+    &:focus-visible {
+      outline: 1px solid #EBEBEB;
+      outline-offset: 3px;
     }
   }
 
   &__media {
-    aspect-ratio: 1.25 / 1;
+    aspect-ratio: 3 / 2;
+
+    // height: 32vw;
+
+    img {
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+    }
   }
 }
 
@@ -56,7 +112,7 @@
 }
 
 @media (max-width: 640px) {
-  .gift__prices {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+  .gift__price {
+    flex: 0 0 112px;
   }
 }

@@ -3,6 +3,7 @@ import { initHeroSwiper } from './js/init-hero-swiper.js';
 import { initProductCards } from './js/product-cards.js';
 import { initCollections } from './js/collections.js';
 import { initJourneySections } from './js/journey.js';
+import { initGiftPrices } from './js/gift.js';
 
 
 
@@ -20,4 +21,8 @@ if (document.querySelector('.collections')) {
 
 if (document.querySelector('.journey')) {
   initJourneySections();
+}
+
+if (document.querySelector('[data-gift-prices]')) {
+  initGiftPrices();
 }

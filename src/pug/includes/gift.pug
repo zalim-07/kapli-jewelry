@@ -1,0 +1,29 @@
+section.section.gift#gift(aria-labelledby="gift-title")
+  .section-inner.gift__inner
+    .gift__copy
+      .section-heading__title
+        em Подарок, 
+        | который точно
+        br
+        | станет 
+        em любимым
+      .section-heading__text
+        p
+          | Подарочный сертификат Kapli Jewelry — красивый способ подарить свободу выбора. Ведь самые любимые драгоценности каждый выбирает сердцем.
+
+      .gift__prices(
+        aria-label="Выбор бюджета"
+        role="group"
+        data-gift-prices
+      )
+        button.gift__price.is-active(
+          type="button"
+          aria-pressed="true"
+        ) 5000 ₽
+        button.gift__price(type="button" aria-pressed="false") 7500 ₽
+        button.gift__price(type="button" aria-pressed="false") 10000 ₽
+        button.gift__price(type="button" aria-pressed="false") 20000 ₽
+
+      a.button.button--dark(href="#catalog") Оформить сертификат
+    .gift__media
+      img(src="src/assets/images/gift/image.webp")
