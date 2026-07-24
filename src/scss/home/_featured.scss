@@ -11,10 +11,9 @@
     padding-right: 40px;
     margin-bottom: 40px;
     align-items: end;
+    gap: 10px;
 
-    &__title--regular {}
-
-    &__title--italic {
+    .featured-title__accent {
       text-align: right;
       padding-right: 84px;
       margin-top: 10px;
