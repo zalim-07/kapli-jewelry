@@ -28,7 +28,8 @@
 
 .stat-card {
   display: flex;
-  min-height: 400px;
+  // min-height: 400px;
+  aspect-ratio: 9/8;
   flex-direction: column;
   padding: 20px 24px;
   color: #ffffff;
