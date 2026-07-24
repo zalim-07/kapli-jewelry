@@ -138,6 +138,7 @@ h6 {
   align-items: center;
   justify-content: center;
   gap: 20px;
+  cursor: pointer;
   transition:
     color var(--transition),
     background-color var(--transition),
@@ -157,7 +158,17 @@ h6 {
   }
 }
 
-.button--dark {}
+.button--light {
+  background-color: var(--color-button-background-light);
+  border-color: var(--color-button-background-light);
+  color: #111;
+
+  &:hover {
+    background-color: var(--color-button-background-light-hover);
+  }
+
+
+}
 
 
 
@@ -217,5 +228,17 @@ h6 {
 
   @media (max-width: 1023px) {
     flex-direction: column;
+  }
+}
+
+.text-muted {
+  color: #999;
+
+  a {
+    color: #999;
+
+    &:hover {
+      color: #fff !important;
+    }
   }
 }

@@ -1,0 +1,70 @@
+footer.site-footer#contacts
+  .section-inner.site-footer__inner
+    .site-footer__newsletter
+      .section-heading__title
+        em Станьте 
+        span к нам 
+        em ближе
+      .section-heading__text
+        p Подпишитесь на рассылку, чтобы первыми узнавать о новых украшениях, лимитированных коллекциях и специальных предложениях.
+      form.newsletter-form(action="#" method="post")
+        label.visually-hidden(for="newsletter-email") Ваш email
+        input#newsletter-email(
+          type="email"
+          name="email"
+          placeholder="Example@mail.ru"
+        )
+        button.button.button--light(type="submit") Подписаться
+
+    .site-footer__bottom
+      .site-footer__row
+        .site-footer__contacts
+          a.site-footer__phone(href="tel:+79999999999") +7 499 999 99 99
+          p.site-footer__address.text-muted г. Москва, ул. Симоновская, д. 19/2
+          ul.site-footer__social
+            li
+              a.site-footer__social-link(href="#" aria-label="VK")
+                include ../../assets/svg/vk.svg
+            li
+              a.site-footer__social-link(href="#" aria-label="Instagram")
+                include ../../assets/svg/instagram.svg
+
+        nav.site-footer__links(aria-label="Навигация по сайту")
+          ul.menu
+            li.menu-item
+              a(href="#catalog") Каталог
+            li.menu-item
+              a(href="#collections") Бестселлеры
+            li.menu-item
+              a(href="#about") Производство
+            li.menu-item
+              a(href="#journal") Журнал
+
+        nav.site-footer__links.text-muted(aria-label="Информация")
+          ul.menu
+            li.menu-item
+              a(href="#delivery") Доставка и оплата
+            li.menu-item
+              a(href="#return") Сертификаты
+            li.menu-item
+              a(href="#care") Правила возврата
+            li.menu-item
+              a(href="#contacts") Как выбрать размер?
+          
+      .site-footer__legal.text-muted
+        .site-footer__copyright
+          p © 2026 Все права защищены
+
+        nav.site-footer__links(aria-label="Политики")
+          ul.menu
+            li.menu-item
+              a(href="#catalog") Политика обработки персональных данных
+            li.menu-item
+              a(href="#collections") Политика конфиденциальности
+
+        nav.site-footer__links(aria-label="Документы")
+          ul.menu
+            li.menu-item
+              a(href="#delivery") Публичная оферта
+            li.menu-item
+              a(href="#return") Пользовательское соглашение
