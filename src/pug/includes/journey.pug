@@ -36,54 +36,55 @@ section.journey(
   data-journey
   aria-labelledby="journey-title"
 )
-  .journey__sticky(data-journey-sticky)
-    .section-inner
-      .section-heading.section-heading--split
-        .section-heading__title.journey-title
-          p От камня
-          .journey-title__accent 
-            em к готовому украшению
+  .journey__scroller(data-journey-scroller)
+    .journey__sticky(data-journey-sticky)
+      .section-inner
+        .section-heading.section-heading--split
+          .section-heading__title.journey-title
+            p От камня
+            .journey-title__accent 
+              em к готовому украшению
 
-        .journey-intro
-          .section-heading__text
-            p Каждое украшение Kapli Jewelry проходит долгий путь, прежде чем оказаться в вашей коллекции. За его созданием стоит работа специалистов, объединённых любовью к природным камням и ювелирному мастерству.
+          .journey-intro
+            .section-heading__text
+              p Каждое украшение Kapli Jewelry проходит долгий путь, прежде чем оказаться в вашей коллекции. За его созданием стоит работа специалистов, объединённых любовью к природным камням и ювелирному мастерству.
 
-      .journey__content
-        .journey__media
-          each step, index in journeySteps
-            img.journey__image(
-              class=index === 0 ? 'is-active' : null
-              src=step.image
-              alt=step.alt
-              width="560"
-              height="600"
-              loading=index === 0 ? 'eager' : 'lazy'
-              decoding="async"
-              data-journey-image=index
-              aria-hidden=index === 0 ? 'false' : 'true'
+        .journey__content
+          .journey__media
+            each step, index in journeySteps
+              img.journey__image(
+                class=index === 0 ? 'is-active' : null
+                src=step.image
+                alt=step.alt
+                width="560"
+                height="600"
+                loading=index === 0 ? 'eager' : 'lazy'
+                decoding="async"
+                data-journey-image=index
+                aria-hidden=index === 0 ? 'false' : 'true'
+              )
+
+          .journey__steps-wrap
+            span.journey__rail(aria-hidden="true")
+            span.journey__progress(
+              data-journey-progress
+              aria-hidden="true"
             )
 
-        .journey__steps-wrap
-          span.journey__rail(aria-hidden="true")
-          span.journey__progress(
-            data-journey-progress
-            aria-hidden="true"
-          )
-
-          ol.journey__steps
-            each step, index in journeySteps
-              li.journey__step(
-                class=index === 0 ? 'is-active' : null
-                data-journey-step=index
-              )
-                .journey__trigger
-                  span.journey__number
-                    = String(index + 1).padStart(2, '0')
-
-                  span.journey__step-title= step.title
-
-                .journey__answer(
-                  id=`journey-answer-${index}`
+            ol.journey__steps
+              each step, index in journeySteps
+                li.journey__step(
+                  class=index === 0 ? 'is-active' : null
+                  data-journey-step=index
                 )
-                  .journey__answer-inner
-                    p= step.text
+                  .journey__trigger
+                    span.journey__number
+                      = String(index + 1).padStart(2, '0')
+
+                    span.journey__step-title= step.title
+
+                  .journey__answer(
+                    id=`journey-answer-${index}`
+                  )
+                    .journey__answer-inner
+                      p= step.text

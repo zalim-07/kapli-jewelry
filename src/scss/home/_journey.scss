@@ -10,6 +10,21 @@
   }
 }
 
+@media (min-width: 1024px) {
+  .journey__scroller {
+    position: relative;
+  }
+
+  .journey__sticky {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    height: 100svh;
+    max-height: 100svh;
+    overflow: clip;
+  }
+}
+
 .journey__sticky {
   display: flex;
   align-items: center;

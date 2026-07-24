@@ -7,8 +7,8 @@ export function initJourneySections() {
     const sections = document.querySelectorAll('[data-journey]');
 
     sections.forEach((section) => {
-        const stickyElement = section.querySelector(
-            '[data-journey-sticky]',
+        const scrollerElement = section.querySelector(
+            '[data-journey-scroller]',
         );
 
         const progressElement = section.querySelector(
@@ -24,7 +24,7 @@ export function initJourneySections() {
         ];
 
         if (
-            !stickyElement ||
+            !scrollerElement ||
             !progressElement ||
             steps.length === 0
         ) {
@@ -32,9 +32,18 @@ export function initJourneySections() {
         }
 
         const lastIndex = steps.length - 1;
+        const BUFFER_RATIO = 0.035;
         let activeIndex = -1;
 
-        function getStepIndex(animationProgress, scrollProgress) {
+        function getScrollMetrics() {
+            return {
+                stepsStart: BUFFER_RATIO,
+                stepsEnd: 1 - BUFFER_RATIO,
+                stepsRange: 1 - BUFFER_RATIO * 2,
+            };
+        }
+
+        function getStepsProgress(scrollProgress) {
             if (lastIndex <= 0) {
                 return 0;
             }
@@ -43,23 +52,30 @@ export function initJourneySections() {
                 1,
                 Math.max(0, scrollProgress),
             );
+            const { stepsStart, stepsEnd, stepsRange } =
+                getScrollMetrics();
 
-            if (clampedScroll >= 1 - 1e-4) {
-                return lastIndex;
+            if (clampedScroll <= stepsStart) {
+                return 0;
             }
 
-            if (
-                clampedScroll >=
-                (lastIndex - 0.5) / lastIndex
-            ) {
-                return lastIndex;
+            if (clampedScroll >= stepsEnd) {
+                return 1;
             }
+
+            return (clampedScroll - stepsStart) / stepsRange;
+        }
+
+        function getStepIndex(scrollProgress) {
+            if (lastIndex <= 0) {
+                return 0;
+            }
+
+            const stepsProgress = getStepsProgress(scrollProgress);
 
             return Math.min(
                 lastIndex,
-                Math.floor(
-                    animationProgress * lastIndex + 1e-6,
-                ),
+                Math.floor(stepsProgress * lastIndex + 1e-6),
             );
         }
 
@@ -103,6 +119,14 @@ export function initJourneySections() {
             });
         }
 
+        function updateScrollState(scrollProgress) {
+            gsap.set(progressElement, {
+                scaleY: getStepsProgress(scrollProgress),
+            });
+
+            setActiveStep(getStepIndex(scrollProgress));
+        }
+
         setActiveStep(0);
 
         const media = gsap.matchMedia();
@@ -110,77 +134,53 @@ export function initJourneySections() {
         media.add(
             '(min-width: 1024px) and (prefers-reduced-motion: no-preference)',
             () => {
-                /*
-                 * Для пяти этапов секция остаётся закреплённой
-                 * примерно на четыре высоты экрана.
-                 *
-                 * Умножитель можно уменьшить до 0.7–0.8,
-                 * если переключение кажется слишком долгим.
-                 */
-                const getScrollDistance = () =>
-                    window.innerHeight * lastIndex;
+                section.classList.add('is-scroll-active');
 
-                const progressAnimation = gsap.fromTo(
-                    progressElement,
-                    {
-                        scaleY: 0,
-                    },
-                    {
-                        scaleY: 1,
-                        ease: 'none',
-                    },
-                );
+                function setScrollerHeight() {
+                    scrollerElement.style.height = `${window.innerHeight * (lastIndex + 1)}px`;
+                }
+
+                setScrollerHeight();
 
                 const scrollTrigger = ScrollTrigger.create({
-                    trigger: section,
-                    pin: stickyElement,
-
+                    trigger: scrollerElement,
                     start: 'top top',
-
-                    end: () => `+=${getScrollDistance()}`,
-
-                    animation: progressAnimation,
-
-                    scrub: 0.35,
-
-                    /*
-                     * Плавно доводит прокрутку до ближайшего этапа.
-                     * Этот блок можно удалить, если snap не нужен.
-                     */
-                    snap:
-                        lastIndex > 0
-                            ? {
-                                snapTo: 1 / lastIndex,
-                                duration: {
-                                    min: 0.15,
-                                    max: 0.4,
-                                },
-                                delay: 0.08,
-                                ease: 'power1.inOut',
-                            }
-                            : false,
-
-                    pinSpacing: true,
-                    anticipatePin: 1,
+                    end: 'bottom bottom',
                     invalidateOnRefresh: true,
 
                     onUpdate(self) {
-                        setActiveStep(
-                            getStepIndex(
-                                progressAnimation.progress(),
-                                self.progress,
-                            ),
-                        );
+                        updateScrollState(self.progress);
                     },
 
                     onLeave: () => {
-                        setActiveStep(lastIndex);
+                        updateScrollState(1);
+                    },
+
+                    onLeaveBack: () => {
+                        updateScrollState(0);
                     },
                 });
 
+                const onRefreshInit = () => {
+                    setScrollerHeight();
+                };
+
+                ScrollTrigger.addEventListener(
+                    'refreshInit',
+                    onRefreshInit,
+                );
+
+                ScrollTrigger.refresh();
+
                 return () => {
+                    ScrollTrigger.removeEventListener(
+                        'refreshInit',
+                        onRefreshInit,
+                    );
+
                     scrollTrigger.kill();
-                    progressAnimation.kill();
+                    section.classList.remove('is-scroll-active');
+                    scrollerElement.style.removeProperty('height');
 
                     gsap.set(progressElement, {
                         clearProps: 'transform',
