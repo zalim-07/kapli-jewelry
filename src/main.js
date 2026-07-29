@@ -8,14 +8,20 @@ import { initGiftPrices } from './js/gift.js';
 
 
 if (document.querySelector('.hero-swiper')) {
-  initHeroSwiper();
+  const startHero = () => initHeroSwiper();
+
+  if (document.fonts?.ready) {
+    document.fonts.ready.then(startHero);
+  } else {
+    startHero();
+  }
 }
 
-if (document.querySelector('.featured, .collections')) {
+if (document.querySelector('.featured, .collections, [data-collections]')) {
   initProductCards();
 }
 
-if (document.querySelector('.collections')) {
+if (document.querySelector('[data-collections]')) {
   initCollections();
 }
 

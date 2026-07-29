@@ -1,5 +1,6 @@
 import Swiper from 'swiper';
 import { Autoplay, EffectFade } from 'swiper/modules';
+import { gsap } from 'gsap';
 
 import 'swiper/css';
 import 'swiper/css/effect-fade';
@@ -89,16 +90,28 @@ function createCircularPagination({
     );
   }
 
-  function getTrackTransition() {
-    const styles = getComputedStyle(element);
-    const duration =
-      styles.getPropertyValue('--hero-pagination-duration').trim() ||
-      '400ms';
-    const easing =
-      styles.getPropertyValue('--hero-pagination-easing').trim() ||
-      'ease-in-out';
+  function parseCssTime(value, fallbackMs) {
+    const trimmed = value.trim();
 
-    return `transform ${duration} ${easing}`;
+    if (!trimmed) {
+      return fallbackMs;
+    }
+
+    const amount = Number.parseFloat(trimmed);
+
+    if (!Number.isFinite(amount)) {
+      return fallbackMs;
+    }
+
+    if (trimmed.endsWith('ms')) {
+      return amount;
+    }
+
+    if (trimmed.endsWith('s')) {
+      return amount * 1000;
+    }
+
+    return amount;
   }
 
   function getTransitionDuration() {
@@ -107,11 +120,24 @@ function createCircularPagination({
       styles.getPropertyValue('--hero-pagination-duration').trim() ||
       '400ms';
 
-    return Number.parseFloat(duration) || 400;
+    return parseCssTime(duration, 400);
   }
 
   function getInitialTranslate() {
     return -bufferBullets * getStep();
+  }
+
+  function stopTrackAnimation() {
+    gsap.killTweensOf(track);
+  }
+
+  function resetTrackPosition(translate) {
+    stopTrackAnimation();
+
+    gsap.set(track, {
+      x: Math.round(translate),
+      force3D: true,
+    });
   }
 
   function setBulletState(button, relativeOffset) {
@@ -169,12 +195,12 @@ function createCircularPagination({
   }
 
   function clearResetTimer() {
-    if (!resetTimer) {
-      return;
+    if (resetTimer) {
+      window.clearTimeout(resetTimer);
+      resetTimer = null;
     }
 
-    window.clearTimeout(resetTimer);
-    resetTimer = null;
+    stopTrackAnimation();
   }
 
   function render(index) {
@@ -196,13 +222,7 @@ function createCircularPagination({
     track.replaceChildren(fragment);
 
     element.classList.remove('is-animating');
-
-    track.style.transition = 'none';
-    track.style.transform = `translate3d(
-      ${getInitialTranslate()}px,
-      0,
-      0
-    )`;
+    resetTrackPosition(getInitialTranslate());
   }
 
   function settleAfterAnimation(index, limitedOffset) {
@@ -210,13 +230,7 @@ function createCircularPagination({
 
     activeIndex = index;
     element.classList.remove('is-animating');
-
-    track.style.transition = 'none';
-    track.style.transform = `translate3d(
-      ${getInitialTranslate()}px,
-      0,
-      0
-    )`;
+    resetTrackPosition(getInitialTranslate());
 
     if (limitedOffset > 0) {
       for (let i = 0; i < limitedOffset; i += 1) {
@@ -248,7 +262,7 @@ function createCircularPagination({
      * предыдущей анимации, сначала приводим пагинацию
      * к актуальному состоянию.
      */
-    if (resetTimer) {
+    if (gsap.isTweening(track)) {
       render(activeIndex);
     }
 
@@ -274,19 +288,7 @@ function createCircularPagination({
     ];
 
     element.classList.add('is-animating');
-
-    track.style.transition = 'none';
-    track.style.transform = `translate3d(
-      ${initialTranslate}px,
-      0,
-      0
-    )`;
-
-    /*
-     * Принудительно фиксируем начальное положение,
-     * чтобы браузер запустил CSS transition.
-     */
-    track.getBoundingClientRect();
+    resetTrackPosition(initialTranslate);
 
     bullets.forEach((bullet) => {
       const oldOffset = Number(bullet.dataset.offset);
@@ -294,14 +296,6 @@ function createCircularPagination({
 
       setBulletState(bullet, newOffset);
     });
-
-    track.style.transition = getTrackTransition();
-
-    track.style.transform = `translate3d(
-      ${finalTranslate}px,
-      0,
-      0
-    )`;
 
     activeIndex = index;
 
@@ -313,26 +307,21 @@ function createCircularPagination({
       }
 
       isFinished = true;
-      track.removeEventListener('transitionend', onTransitionEnd);
       settleAfterAnimation(index, limitedOffset);
     };
 
-    const onTransitionEnd = (event) => {
-      if (
-        event.target !== track ||
-        event.propertyName !== 'transform'
-      ) {
-        return;
-      }
-
-      finishAnimation();
-    };
-
-    track.addEventListener('transitionend', onTransitionEnd);
+    gsap.to(track, {
+      x: Math.round(finalTranslate),
+      duration: getTransitionDuration() / 1000,
+      ease: 'sine.inOut',
+      force3D: true,
+      overwrite: true,
+      onComplete: finishAnimation,
+    });
 
     resetTimer = window.setTimeout(() => {
       finishAnimation();
-    }, getTransitionDuration() + 40);
+    }, getTransitionDuration() + 100);
   }
 
   function update(index) {
