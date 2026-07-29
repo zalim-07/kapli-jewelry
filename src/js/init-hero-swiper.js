@@ -89,8 +89,8 @@ function createCircularPagination({
 
   function getStep() {
     return (
-      getPaginationNumber('--hero-pagination-dot-size', 6) +
-      getPaginationNumber('--hero-pagination-gap', 4)
+      getPaginationNumber('--hero-pagination-dot-size', 4) +
+      getPaginationNumber('--hero-pagination-gap', 2)
     );
   }
 

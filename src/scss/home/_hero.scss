@@ -184,14 +184,12 @@
 }
 
 .hero-swiper__pagination {
-  --hero-pagination-dot-size: 6px;
-  --hero-pagination-dot-size-sm: 4px;
-  --hero-pagination-gap: 4px;
+  --hero-pagination-dot-size: 4px;
+  --hero-pagination-gap: 2px;
   --hero-pagination-visible-bullets: 3;
   --hero-pagination-bullet-box: var(--hero-pagination-dot-size);
   --hero-pagination-duration: 400ms;
   --hero-pagination-easing: ease-in-out;
-  --hero-pagination-dot-scale-sm: 0.667;
 
   position: absolute;
   z-index: 10;
@@ -209,7 +207,6 @@
 
   overflow: hidden;
   text-align: center;
-
   transform: translateX(-50%);
 
   &.is-animating {
@@ -223,10 +220,8 @@
   grid-auto-columns: var(--hero-pagination-bullet-box);
   align-items: center;
   gap: var(--hero-pagination-gap);
-
   width: max-content;
   height: 100%;
-
   backface-visibility: hidden;
   will-change: transform;
 }
@@ -234,17 +229,13 @@
 .hero-pagination__bullet {
   display: grid;
   place-items: center;
-
   width: var(--hero-pagination-bullet-box);
   height: var(--hero-pagination-bullet-box);
   padding: 0;
-
   border: 0;
   border-radius: 50%;
-
   color: inherit;
   background: transparent;
-
   cursor: pointer;
   appearance: none;
 
@@ -259,31 +250,21 @@
   width: var(--hero-pagination-dot-size);
   height: var(--hero-pagination-dot-size);
   border-radius: 50%;
-  background: #fff;
+  background-color: #D7D7D7;
   opacity: 1;
   transform: scale(1);
   transform-origin: center;
   transition:
-    transform var(--hero-pagination-duration) var(--hero-pagination-easing),
     opacity var(--hero-pagination-duration) var(--hero-pagination-easing),
     background-color var(--hero-pagination-duration) var(--hero-pagination-easing);
 }
 
 .hero-pagination__bullet.is-active .hero-pagination__dot {
-  background: #9C9C9C;
-}
-
-.hero-pagination__bullet:not(.is-active)[data-distance='1'] .hero-pagination__dot {
-  transform: scale(var(--hero-pagination-dot-scale-sm));
-}
-
-.hero-pagination__bullet[data-distance='2'] .hero-pagination__dot {
-  transform: scale(var(--hero-pagination-dot-scale-sm));
+  background-color: #999999;
 }
 
 .hero-pagination__bullet[data-distance='3'] .hero-pagination__dot,
 .hero-pagination__bullet[data-distance='4'] .hero-pagination__dot {
-  transform: scale(var(--hero-pagination-dot-scale-sm));
   opacity: 0;
 }
 
