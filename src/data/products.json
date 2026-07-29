@@ -22,6 +22,26 @@
       {
         "src": "/src/assets/images/products/product-6.png",
         "alt": "Серьги «Сияние» — вид на модели"
+      },
+      {
+        "src": "/src/assets/images/products/featured.png",
+        "alt": "Сияние — альтернативный вид"
+      },
+      {
+        "src": "/src/assets/images/products/product-1.png",
+        "alt": "Сияние — альтернативный вид"
+      },
+      {
+        "src": "/src/assets/images/products/product-2.png",
+        "alt": "Сияние — альтернативный вид"
+      },
+      {
+        "src": "/src/assets/images/products/product-3.png",
+        "alt": "Сияние — альтернативный вид"
+      },
+      {
+        "src": "/src/assets/images/products/product-4.png",
+        "alt": "Сияние — основной вид"
       }
     ]
   },
@@ -44,6 +64,18 @@
         {
           "src": "/src/assets/images/products/featured.png",
           "alt": "Серьги — вид на модели"
+        },
+        {
+          "src": "/src/assets/images/products/product-2.png",
+          "alt": "Сияние — альтернативный вид"
+        },
+        {
+          "src": "/src/assets/images/products/product-3.png",
+          "alt": "Сияние — альтернативный вид"
+        },
+        {
+          "src": "/src/assets/images/products/product-4.png",
+          "alt": "Сияние — основной вид"
         }
       ]
     },
@@ -190,6 +222,22 @@
         {
           "src": "/src/assets/images/products/featured.png",
           "alt": "Сияние — альтернативный вид"
+        },
+        {
+          "src": "/src/assets/images/products/product-1.png",
+          "alt": "Сияние — альтернативный вид"
+        },
+        {
+          "src": "/src/assets/images/products/product-2.png",
+          "alt": "Сияние — альтернативный вид"
+        },
+        {
+          "src": "/src/assets/images/products/product-3.png",
+          "alt": "Сияние — альтернативный вид"
+        },
+        {
+          "src": "/src/assets/images/products/product-4.png",
+          "alt": "Сияние — основной вид"
         }
       ]
     },

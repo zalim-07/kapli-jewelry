@@ -57,7 +57,7 @@ function createCircularPagination({
   slidesCount,
   getSwiper,
 }) {
-  const visibleBullets = 5;
+  const visibleBullets = slidesCount;
   const bufferBullets = 2;
   const totalBullets = visibleBullets + bufferBullets * 2;
 
@@ -68,6 +68,10 @@ function createCircularPagination({
   track.className = 'hero-pagination__track';
 
   element.replaceChildren(track);
+  element.style.setProperty(
+    '--hero-pagination-visible-bullets',
+    String(visibleBullets),
+  );
 
   let activeIndex = 0;
   let initialized = false;
@@ -500,6 +504,10 @@ export function initHeroSwiper() {
         circularPagination?.render(
           swiperInstance.realIndex,
         );
+
+        requestAnimationFrame(() => {
+          swiperInstance.update();
+        });
       },
 
       realIndexChange(swiperInstance) {
