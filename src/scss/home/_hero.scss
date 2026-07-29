@@ -250,7 +250,7 @@
   width: var(--hero-pagination-dot-size);
   height: var(--hero-pagination-dot-size);
   border-radius: 50%;
-  background-color: #D7D7D7;
+  background-color: #fff;
   opacity: 1;
   transform: scale(1);
   transform-origin: center;
@@ -260,7 +260,7 @@
 }
 
 .hero-pagination__bullet.is-active .hero-pagination__dot {
-  background-color: #999999;
+  background-color: #9C9C9C;
 }
 
 .hero-pagination__bullet[data-distance='3'] .hero-pagination__dot,
