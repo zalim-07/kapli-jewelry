@@ -44,6 +44,7 @@ export default defineConfig({
       input: [
         resolve(__dirname, 'index.pug'),
         resolve(__dirname, 'home.pug'),
+        resolve(__dirname, 'archive.pug'),
         resolve(__dirname, 'coming-soon.pug'),
       ],
     },

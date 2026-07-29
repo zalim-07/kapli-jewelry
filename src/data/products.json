@@ -379,7 +379,7 @@
       "title": "Кольцо Океан",
       "material": [
         "Сапфир",
-        "Фианит", 
+        "Фианит",
         "Серебро 925"
       ],
       "price": "от 12 502 ₽",
@@ -611,7 +611,7 @@
       "title": "Кольцо Океан",
       "material": [
         "Сапфир",
-        "Фианит", 
+        "Фианит",
         "Серебро 925"
       ],
       "price": "от 12 502 ₽",
@@ -630,6 +630,679 @@
         {
           "src": "/src/assets/images/products/featured.png",
           "alt": "Глубина — альтернативный вид"
+        }
+      ]
+    }
+  ],
+  "archive": [
+    {
+      "id": "archive-01-rings-siyanie",
+      "title": "Кольцо Сияние",
+      "material": [
+        "Муассанит",
+        "Серебро 925"
+      ],
+      "price": "от 13 871 ₽",
+      "category": "rings",
+      "href": "#",
+      "badges": [
+        "Новинка"
+      ],
+      "images": [
+        {
+          "src": "/src/assets/images/products/product-5.png",
+          "alt": "Сияние — основной вид"
+        },
+        {
+          "src": "/src/assets/images/products/featured.png",
+          "alt": "Сияние — альтернативный вид"
+        }
+      ]
+    },
+    {
+      "id": "archive-02-earrings-grani",
+      "title": "Серьги Искра",
+      "material": [
+        "Муассанит",
+        "Фианит",
+        "Серебро 925"
+      ],
+      "price": "от 10 772 ₽",
+      "category": "earrings",
+      "href": "#",
+      "badges": [],
+      "sizes": [
+        "17",
+        "17.5"
+      ],
+      "images": [
+        {
+          "src": "/src/assets/images/products/product-1.png",
+          "alt": "Грани — основной вид"
+        },
+        {
+          "src": "/src/assets/images/products/featured.png",
+          "alt": "Грани — альтернативный вид"
+        }
+      ]
+    },
+    {
+      "id": "archive-03-rings-led",
+      "title": "Кольцо Ледник",
+      "material": [
+        "Топаз",
+        "Фианит",
+        "Серебро 925"
+      ],
+      "price": "от 9879 ₽",
+      "category": "rings",
+      "href": "#",
+      "badges": [],
+      "sizes": [
+        "16",
+        "16.5",
+        "18",
+        "18.5",
+        "19",
+        "19.5",
+        "20",
+        "20.5",
+        "21",
+        "21.5",
+        "22",
+        "22.5",
+        "23",
+        "23.5",
+        "24"
+      ],
+      "images": [
+        {
+          "src": "/src/assets/images/products/product-2.png",
+          "alt": "Лёд — основной вид"
+        },
+        {
+          "src": "/src/assets/images/products/featured.png",
+          "alt": "Лёд — альтернативный вид"
+        }
+      ]
+    },
+    {
+      "id": "archive-04-earrings-laguna",
+      "title": "Серьги Лагуна ",
+      "material": [
+        "Опал",
+        "Фианит",
+        "Серебро 925"
+      ],
+      "price": "от 10 926 ₽",
+      "category": "earrings",
+      "href": "#",
+      "badges": [],
+      "sizes": [
+        "17",
+        "17.5"
+      ],
+      "images": [
+        {
+          "src": "/src/assets/images/products/product-3.png",
+          "alt": "Искра — основной вид"
+        },
+        {
+          "src": "/src/assets/images/products/featured.png",
+          "alt": "Искра — альтернативный вид"
+        }
+      ]
+    },
+    {
+      "id": "archive-05-rings-zatmenie",
+      "title": "Кольцо Затмение",
+      "material": [
+        "Опал",
+        "Фианит",
+        "Серебро 925",
+        "Эмаль"
+      ],
+      "price": "от 3980 ₽",
+      "category": "rings",
+      "href": "#",
+      "badges": [
+        "Выбор покупателя"
+      ],
+      "sizes": [
+        "16.5",
+        "18",
+        "18.5",
+        "19",
+        "19.5"
+      ],
+      "images": [
+        {
+          "src": "/src/assets/images/products/product-5.png",
+          "alt": "Затмение — основной вид"
+        },
+        {
+          "src": "/src/assets/images/products/featured.png",
+          "alt": "Затмение — альтернативный вид"
+        }
+      ]
+    },
+    {
+      "id": "archive-06-rings-sozvezdie",
+      "title": "Кольцо Созвездие",
+      "material": [
+        "Опал",
+        "Фианит",
+        "Серебро 925"
+      ],
+      "price": "от 11 071 ₽",
+      "category": "rings",
+      "href": "#",
+      "badges": [],
+      "sizes": [
+        "17",
+        "17.5"
+      ],
+      "images": [
+        {
+          "src": "/src/assets/images/products/product-6.png",
+          "alt": "Орион — основной вид"
+        },
+        {
+          "src": "/src/assets/images/products/featured.png",
+          "alt": "Орион — альтернативный вид"
+        }
+      ]
+    },
+    {
+      "id": "archive-07-pendants-sozvezdie",
+      "title": "Подвеска Созвездие",
+      "material": [
+        "Опал",
+        "Фианит",
+        "Серебро 925"
+      ],
+      "price": "от 6212 ₽",
+      "category": "pendants",
+      "href": "#",
+      "badges": [],
+      "sizes": [
+        "17",
+        "17.5"
+      ],
+      "images": [
+        {
+          "src": "/src/assets/images/products/product-4.png",
+          "alt": "Созвездие — основной вид"
+        },
+        {
+          "src": "/src/assets/images/products/featured.png",
+          "alt": "Созвездие — альтернативный вид"
+        }
+      ]
+    },
+    {
+      "id": "archive-08-rings-glubina",
+      "title": "Кольцо Океан",
+      "material": [
+        "Сапфир",
+        "Фианит",
+        "Серебро 925"
+      ],
+      "price": "от 12 502 ₽",
+      "category": "rings",
+      "href": "#",
+      "badges": [],
+      "sizes": [
+        "17",
+        "17.5"
+      ],
+      "images": [
+        {
+          "src": "/src/assets/images/products/product-2.png",
+          "alt": "Глубина — основной вид"
+        },
+        {
+          "src": "/src/assets/images/products/featured.png",
+          "alt": "Глубина — альтернативный вид"
+        }
+      ]
+    },
+    {
+      "id": "archive-09-rings-siyanie",
+      "title": "Кольцо Сияние",
+      "material": [
+        "Муассанит",
+        "Серебро 925"
+      ],
+      "price": "от 13 871 ₽",
+      "category": "rings",
+      "href": "#",
+      "badges": [
+        "Новинка"
+      ],
+      "images": [
+        {
+          "src": "/src/assets/images/products/product-5.png",
+          "alt": "Сияние — основной вид"
+        },
+        {
+          "src": "/src/assets/images/products/featured.png",
+          "alt": "Сияние — альтернативный вид"
+        }
+      ]
+    },
+    {
+      "id": "archive-10-earrings-grani",
+      "title": "Серьги Искра",
+      "material": [
+        "Муассанит",
+        "Фианит",
+        "Серебро 925"
+      ],
+      "price": "от 10 772 ₽",
+      "category": "earrings",
+      "href": "#",
+      "badges": [],
+      "sizes": [
+        "17",
+        "17.5"
+      ],
+      "images": [
+        {
+          "src": "/src/assets/images/products/product-1.png",
+          "alt": "Грани — основной вид"
+        },
+        {
+          "src": "/src/assets/images/products/featured.png",
+          "alt": "Грани — альтернативный вид"
+        }
+      ]
+    },
+    {
+      "id": "archive-11-rings-led",
+      "title": "Кольцо Ледник",
+      "material": [
+        "Топаз",
+        "Фианит",
+        "Серебро 925"
+      ],
+      "price": "от 9879 ₽",
+      "category": "rings",
+      "href": "#",
+      "badges": [],
+      "sizes": [
+        "16",
+        "16.5",
+        "18",
+        "18.5",
+        "19",
+        "19.5",
+        "20",
+        "20.5",
+        "21",
+        "21.5",
+        "22",
+        "22.5",
+        "23",
+        "23.5",
+        "24"
+      ],
+      "images": [
+        {
+          "src": "/src/assets/images/products/product-5.png",
+          "alt": "Лёд — основной вид"
+        },
+        {
+          "src": "/src/assets/images/products/featured.png",
+          "alt": "Лёд — альтернативный вид"
+        }
+      ]
+    },
+    {
+      "id": "archive-12-earrings-laguna",
+      "title": "Серьги Лагуна ",
+      "material": [
+        "Опал",
+        "Фианит",
+        "Серебро 925"
+      ],
+      "price": "от 10 926 ₽",
+      "category": "earrings",
+      "href": "#",
+      "badges": [],
+      "sizes": [
+        "17",
+        "17.5"
+      ],
+      "images": [
+        {
+          "src": "/src/assets/images/products/product-3.png",
+          "alt": "Искра — основной вид"
+        },
+        {
+          "src": "/src/assets/images/products/featured.png",
+          "alt": "Искра — альтернативный вид"
+        }
+      ]
+    },
+    {
+      "id": "archive-13-rings-zatmenie",
+      "title": "Кольцо Затмение",
+      "material": [
+        "Опал",
+        "Фианит",
+        "Серебро 925",
+        "Эмаль"
+      ],
+      "price": "от 3980 ₽",
+      "category": "rings",
+      "href": "#",
+      "badges": [
+        "Выбор покупателя"
+      ],
+      "sizes": [
+        "16.5",
+        "18",
+        "18.5",
+        "19",
+        "19.5"
+      ],
+      "images": [
+        {
+          "src": "/src/assets/images/products/product-5.png",
+          "alt": "Затмение — основной вид"
+        },
+        {
+          "src": "/src/assets/images/products/featured.png",
+          "alt": "Затмение — альтернативный вид"
+        }
+      ]
+    },
+    {
+      "id": "archive-14-rings-sozvezdie",
+      "title": "Кольцо Созвездие",
+      "material": [
+        "Опал",
+        "Фианит",
+        "Серебро 925"
+      ],
+      "price": "от 11 071 ₽",
+      "category": "rings",
+      "href": "#",
+      "badges": [],
+      "sizes": [
+        "17",
+        "17.5"
+      ],
+      "images": [
+        {
+          "src": "/src/assets/images/products/product-6.png",
+          "alt": "Орион — основной вид"
+        },
+        {
+          "src": "/src/assets/images/products/featured.png",
+          "alt": "Орион — альтернативный вид"
+        }
+      ]
+    },
+    {
+      "id": "archive-15-pendants-sozvezdie",
+      "title": "Подвеска Созвездие",
+      "material": [
+        "Опал",
+        "Фианит",
+        "Серебро 925"
+      ],
+      "price": "от 6212 ₽",
+      "category": "pendants",
+      "href": "#",
+      "badges": [],
+      "sizes": [
+        "17",
+        "17.5"
+      ],
+      "images": [
+        {
+          "src": "/src/assets/images/products/product-4.png",
+          "alt": "Созвездие — основной вид"
+        },
+        {
+          "src": "/src/assets/images/products/featured.png",
+          "alt": "Созвездие — альтернативный вид"
+        }
+      ]
+    },
+    {
+      "id": "archive-16-rings-glubina",
+      "title": "Кольцо Океан",
+      "material": [
+        "Сапфир",
+        "Фианит",
+        "Серебро 925"
+      ],
+      "price": "от 12 502 ₽",
+      "category": "rings",
+      "href": "#",
+      "badges": [],
+      "sizes": [
+        "17",
+        "17.5"
+      ],
+      "images": [
+        {
+          "src": "/src/assets/images/products/product-2.png",
+          "alt": "Глубина — основной вид"
+        },
+        {
+          "src": "/src/assets/images/products/featured.png",
+          "alt": "Глубина — альтернативный вид"
+        }
+      ]
+    },
+    {
+      "id": "archive-earrings-rassvet",
+      "title": "Серьги Рассвет",
+      "material": [
+        "Цитрин",
+        "Серебро 925"
+      ],
+      "price": "от 9 480 ₽",
+      "category": "earrings",
+      "href": "#",
+      "badges": [
+        "Архив"
+      ],
+      "images": [
+        {
+          "src": "/src/assets/images/products/product-1.png",
+          "alt": "Рассвет — основной вид"
+        },
+        {
+          "src": "/src/assets/images/products/featured.png",
+          "alt": "Рассвет — альтернативный вид"
+        }
+      ]
+    },
+    {
+      "id": "archive-ring-vecher",
+      "title": "Кольцо Вечер",
+      "material": [
+        "Аметист",
+        "Фианит",
+        "Серебро 925"
+      ],
+      "price": "от 11 320 ₽",
+      "category": "rings",
+      "href": "#",
+      "badges": [],
+      "sizes": [
+        "17",
+        "17.5",
+        "18"
+      ],
+      "images": [
+        {
+          "src": "/src/assets/images/products/product-2.png",
+          "alt": "Вечер — основной вид"
+        },
+        {
+          "src": "/src/assets/images/products/featured.png",
+          "alt": "Вечер — альтернативный вид"
+        }
+      ]
+    },
+    {
+      "id": "archive-pendant-zarya",
+      "title": "Подвеска Заря",
+      "material": [
+        "Жемчуг",
+        "Серебро 925"
+      ],
+      "price": "от 7 890 ₽",
+      "category": "pendants",
+      "href": "#",
+      "badges": [],
+      "images": [
+        {
+          "src": "/src/assets/images/products/product-4.png",
+          "alt": "Заря — основной вид"
+        },
+        {
+          "src": "/src/assets/images/products/featured.png",
+          "alt": "Заря — альтернативный вид"
+        }
+      ]
+    },
+    {
+      "id": "archive-earrings-noch",
+      "title": "Серьги Ночь",
+      "material": [
+        "Оникс",
+        "Серебро 925"
+      ],
+      "price": "от 10 150 ₽",
+      "category": "earrings",
+      "href": "#",
+      "badges": [],
+      "sizes": [
+        "17",
+        "17.5"
+      ],
+      "images": [
+        {
+          "src": "/src/assets/images/products/product-3.png",
+          "alt": "Ночь — основной вид"
+        },
+        {
+          "src": "/src/assets/images/products/featured.png",
+          "alt": "Ночь — альтернативный вид"
+        }
+      ]
+    },
+    {
+      "id": "archive-ring-more",
+      "title": "Кольцо Море",
+      "material": [
+        "Аквамарин",
+        "Фианит",
+        "Серебро 925"
+      ],
+      "price": "от 13 240 ₽",
+      "category": "rings",
+      "href": "#",
+      "badges": [
+        "Архив"
+      ],
+      "sizes": [
+        "16.5",
+        "17",
+        "17.5"
+      ],
+      "images": [
+        {
+          "src": "/src/assets/images/products/product-5.png",
+          "alt": "Море — основной вид"
+        },
+        {
+          "src": "/src/assets/images/products/featured.png",
+          "alt": "Море — альтернативный вид"
+        }
+      ]
+    },
+    {
+      "id": "archive-pendant-luna",
+      "title": "Подвеска Луна",
+      "material": [
+        "Лунный камень",
+        "Серебро 925"
+      ],
+      "price": "от 8 640 ₽",
+      "category": "pendants",
+      "href": "#",
+      "badges": [],
+      "images": [
+        {
+          "src": "/src/assets/images/products/product-6.png",
+          "alt": "Луна — основной вид"
+        },
+        {
+          "src": "/src/assets/images/products/featured.png",
+          "alt": "Луна — альтернативный вид"
+        }
+      ]
+    },
+    {
+      "id": "archive-earrings-sumerki",
+      "title": "Серьги Сумерки",
+      "material": [
+        "Гранат",
+        "Фианит",
+        "Серебро 925"
+      ],
+      "price": "от 10 890 ₽",
+      "category": "earrings",
+      "href": "#",
+      "badges": [],
+      "sizes": [
+        "17",
+        "17.5"
+      ],
+      "images": [
+        {
+          "src": "/src/assets/images/products/product-1.png",
+          "alt": "Сумерки — основной вид"
+        },
+        {
+          "src": "/src/assets/images/products/featured.png",
+          "alt": "Сумерки — альтернативный вид"
+        }
+      ]
+    },
+    {
+      "id": "archive-ring-tuman",
+      "title": "Кольцо Туман",
+      "material": [
+        "Горный хрусталь",
+        "Серебро 925"
+      ],
+      "price": "от 9 970 ₽",
+      "category": "rings",
+      "href": "#",
+      "badges": [],
+      "sizes": [
+        "17",
+        "17.5",
+        "18",
+        "18.5"
+      ],
+      "images": [
+        {
+          "src": "/src/assets/images/products/product-2.png",
+          "alt": "Туман — основной вид"
+        },
+        {
+          "src": "/src/assets/images/products/featured.png",
+          "alt": "Туман — альтернативный вид"
         }
       ]
     }

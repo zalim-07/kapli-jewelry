@@ -3,8 +3,22 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const INITIAL_VISIBLE_COUNT = 8;
-const LOAD_MORE_COUNT = 4;
+const DEFAULT_INITIAL_VISIBLE_COUNT = 8;
+const DEFAULT_LOAD_MORE_COUNT = 4;
+
+function getSectionConfig(section) {
+    const initial = Number(section.dataset.collectionsInitial);
+    const step = Number(section.dataset.collectionsStep);
+
+    return {
+        initial: Number.isFinite(initial) && initial > 0
+            ? initial
+            : DEFAULT_INITIAL_VISIBLE_COUNT,
+        step: Number.isFinite(step) && step > 0
+            ? step
+            : DEFAULT_LOAD_MORE_COUNT,
+    };
+}
 
 function getProductCategories(card) {
     return (card.dataset.categories || '')
@@ -73,8 +87,10 @@ export function initCollections() {
             return;
         }
 
+        const { initial, step } = getSectionConfig(section);
+
         let activeCategory = 'all';
-        let visibleCount = INITIAL_VISIBLE_COUNT;
+        let visibleCount = initial;
 
         function getFilteredCards() {
             if (activeCategory === 'all') {
@@ -141,7 +157,7 @@ export function initCollections() {
                     filteredCards.length - shownCount;
 
                 const nextCount = Math.min(
-                    LOAD_MORE_COUNT,
+                    step,
                     remaining,
                 );
 
@@ -157,7 +173,7 @@ export function initCollections() {
 
         function selectCategory(category) {
             activeCategory = category;
-            visibleCount = INITIAL_VISIBLE_COUNT;
+            visibleCount = initial;
 
             updateFilters();
             renderProducts();
@@ -177,7 +193,7 @@ export function initCollections() {
         });
 
         loadMoreButton?.addEventListener('click', () => {
-            visibleCount += LOAD_MORE_COUNT;
+            visibleCount += step;
             renderProducts();
         });
 
