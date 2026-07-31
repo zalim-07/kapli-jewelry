@@ -1,0 +1,241 @@
+-
+  const product = {
+    title: 'Кольцо Ледник',
+    sku: 'KA-12934023',
+    badge: 'Выбор покупателей',
+
+    attributes: [
+      'Топаз',
+      'Фианит',
+      'Серебро 925'
+    ],
+
+    description: 'Кольцо из серебра 925 пробы с натуральным эфиопским опалом. Камень раскрывается мягкими переливами оттенков и делает каждое изделие немного непохожим на другое.',
+
+    images: [
+      {
+        src: '/src/assets/images/product/product-1.webp',
+        alt: 'Кольцо Ледник, вид сверху'
+      },
+      {
+        src: '/src/assets/images/product/product-2.webp',
+        alt: 'Кольцо Ледник, вид сбоку'
+      },
+      {
+        src: '/src/assets/images/product/product-3.webp',
+        alt: 'Кольцо Ледник на модели'
+      }
+    ],
+
+    sizes: [
+      '16',
+      '16,5',
+      '17',
+      '17,5',
+      '19',
+      '20,5'
+    ],
+
+    selectedSize: '16,5',
+
+    oldPrice: '18 204 ₽',
+    price: '10 772 ₽',
+
+    characteristics: [
+      ['Материал:', 'Серебро 925 пробы'],
+      ['Камень:', 'Натуральный эфиопский опал'],
+      ['Покрытие:', 'Родированное'],
+      ['Тип изделия:', 'Кольцо'],
+      ['Упаковка:', 'Фирменная подарочная упаковка'],
+      ['Гарантия:', '6 месяцев']
+    ]
+  }
+
+doctype html
+html(lang="ru")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    meta(
+      name="description"
+      content="Kapli Jewelry - карточка товара."
+    )
+    title Kapli Jewelry — Товар
+  body
+    .page-shell.product-page
+      include /includes/header
+
+      main.product-main
+        .product-main__layout
+          //- Галерея
+          .product-gallery(aria-label="Фотографии товара")
+            each image, index in product.images
+              figure.product-gallery__item(
+                class=index < 2 ? 'product-gallery__item--half' : 'product-gallery__item--wide'
+              )
+                img.product-gallery__image(
+                  src=image.src
+                  alt=image.alt
+                  width=index < 2 ? '408' : '820'
+                  height=index < 2 ? '534' : '980'
+                  loading=index === 0 ? 'eager' : 'lazy'
+                  fetchpriority=index === 0 ? 'high' : null
+                  decoding="async"
+                )
+
+          //- Информация
+          aside.product-main__summary
+            .product-main__summary-inner
+              .product-summary__head
+                .product-summary__heading
+                  h1.product-summary__title= product.title
+
+                  ul.product-summary__attributes(
+                    aria-label="Основные характеристики"
+                  )
+                    each attribute in product.attributes
+                      li= attribute
+
+                .product-summary__aside
+                  if product.badge
+                    span.product-summary__badge= product.badge
+
+                  span.product-summary__sku= product.sku
+
+              p.product-summary__description= product.description
+
+              form.product-purchase(action="#" method="post")
+                fieldset.product-sizes
+                  legend.visually-hidden Выберите размер
+
+                  .product-sizes__list
+                    each size, index in product.sizes
+                      .product-sizes__item
+                        input.product-sizes__input(
+                          type="radio"
+                          name="product_size"
+                          id=`product-size-${index}`
+                          value=size
+                          checked=size === product.selectedSize
+                          required
+                        )
+
+                        label.product-sizes__label(
+                          for=`product-size-${index}`
+                        )= size
+
+                  a.product-sizes__guide(href="#size-guide")
+                    | Узнать свой размер
+
+                .product-purchase__row
+                  .product-price
+                    if product.oldPrice
+                      del.product-price__old= product.oldPrice
+
+                    strong.product-price__current= product.price
+
+                  .product-payment
+                    .product-payment__caption
+                      span 4 платежа × 2 404 ₽
+
+                      button.product-payment__info(
+                        type="button"
+                        aria-label="Подробнее об оплате частями"
+                      ) i
+
+                    .product-payment__services(
+                      aria-label="Сервисы оплаты частями"
+                    )
+                      span Подели
+                      span Долями
+                      span Сплит
+
+                button.button.button--dark.product-purchase__submit(
+                  type="submit"
+                )
+                  | Добавить в корзину
+
+              .product-tabs(data-product-tabs)
+                .product-tabs__navigation(
+                  role="tablist"
+                  aria-label="Информация о товаре"
+                )
+                  button.product-tabs__button.is-active(
+                    type="button"
+                    role="tab"
+                    id="product-tab-characteristics"
+                    aria-controls="product-panel-characteristics"
+                    aria-selected="true"
+                    tabindex="0"
+                  )
+                    | Характеристики
+
+                  button.product-tabs__button(
+                    type="button"
+                    role="tab"
+                    id="product-tab-description"
+                    aria-controls="product-panel-description"
+                    aria-selected="false"
+                    tabindex="-1"
+                  )
+                    | Описание
+
+                  button.product-tabs__button(
+                    type="button"
+                    role="tab"
+                    id="product-tab-delivery"
+                    aria-controls="product-panel-delivery"
+                    aria-selected="false"
+                    tabindex="-1"
+                  )
+                    | Доставка
+
+                  button.product-tabs__button(
+                    type="button"
+                    role="tab"
+                    id="product-tab-care"
+                    aria-controls="product-panel-care"
+                    aria-selected="false"
+                    tabindex="-1"
+                  )
+                    | Уход
+
+                .product-tabs__content
+                  section.product-tabs__panel(
+                    role="tabpanel"
+                    id="product-panel-characteristics"
+                    aria-labelledby="product-tab-characteristics"
+                  )
+                    dl.product-characteristics
+                      each characteristic in product.characteristics
+                        .product-characteristics__row
+                          dt= characteristic[0]
+                          dd= characteristic[1]
+
+                  section.product-tabs__panel(
+                    role="tabpanel"
+                    id="product-panel-description"
+                    aria-labelledby="product-tab-description"
+                    hidden
+                  )
+                    p= product.description
+
+                  section.product-tabs__panel(
+                    role="tabpanel"
+                    id="product-panel-delivery"
+                    aria-labelledby="product-tab-delivery"
+                    hidden
+                  )
+                    p Информация о способах, стоимости и сроках доставки.
+
+                  section.product-tabs__panel(
+                    role="tabpanel"
+                    id="product-panel-care"
+                    aria-labelledby="product-tab-care"
+                    hidden
+                  )
+                    p Рекомендации по хранению и уходу за украшением.
+
+      include /includes/footer
+
+    script(type="module" src="/src/main.js")
