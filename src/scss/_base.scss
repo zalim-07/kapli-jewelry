@@ -1,6 +1,9 @@
+@use 'breakpoints' as *;
+
 :root {
   --layout-max-width: 1440px;
   --content-max-width: 2560px;
+  --layout-min-width: #{$mobile-xs-max};
   --layout-padding: 4px;
   --column-padding: 40px;
   --controls-gap: 8px;
@@ -30,6 +33,9 @@
   --transition-image-duration: 0.6s;
   --transition-image-timing-function: ease-in-out;
   --transition-image: var(--transition-image-duration) var(--transition-image-timing-function);
+
+  --viewport-height: 100vh;
+  --viewport-height: 100svh;
 }
 
 *,
@@ -48,6 +54,7 @@ html {
 body {
   min-width: 320px;
   min-height: 100vh;
+  min-height: var(--viewport-height);
   margin: 0;
   color: var(--color-text);
   background: var(--color-background);
@@ -122,8 +129,30 @@ h6 {
 .page-shell {
   width: 100%;
   max-width: var(--content-max-width);
-  min-height: 100svh;
+  min-height: var(--viewport-height);
   margin-inline: auto;
+}
+
+@media (max-width: $mobile-xs-max) {
+  html {
+    min-width: 0;
+    overflow-x: hidden;
+  }
+
+  body {
+    min-width: 0;
+    overflow-x: hidden;
+    display: flex;
+    justify-content: center;
+  }
+
+  .page-shell {
+    width: var(--layout-min-width);
+    min-width: var(--layout-min-width);
+    flex-shrink: 0;
+    transform: scale(calc(100vw / var(--layout-min-width)));
+    transform-origin: top center;
+  }
 }
 
 
@@ -188,6 +217,10 @@ h6 {
       font-size: 18px;
       line-height: 1.26;
       letter-spacing: 0;
+
+      @media (max-width: $mobile-max) {
+        font-size: 16px;
+      }
     }
 
   }
@@ -202,6 +235,10 @@ h6 {
     font-size: 44px;
     line-height: 1;
     letter-spacing: 0;
+
+    @media screen and (max-width: $mobile-max) {
+      font-size: 36px;
+    }
   }
 
   &__title--regular {
@@ -228,7 +265,7 @@ h6 {
 .section-heading--split {
   display: flex;
 
-  @media (max-width: 1023px) {
+  @media (max-width: $desktop-max) {
     flex-direction: column;
   }
 }

@@ -4,8 +4,12 @@ import { initProductCards } from './js/product-cards.js';
 import { initCollections } from './js/collections.js';
 import { initJourneySections } from './js/journey.js';
 import { initGiftPrices } from './js/gift.js';
+import { initSidemenu } from './js/sidemenu.js';
+import { initViewportScale } from './js/viewport-scale.js';
+import { initNumbersSwiper } from './js/init-numbers-swiper.js';
+import { initJournalSwiper } from './js/init-journal-swiper.js';
 
-
+import { initProductTabs } from './js/product-tabs.js';
 
 if (document.querySelector('.hero-swiper')) {
   const startHero = () => initHeroSwiper();
@@ -31,4 +35,24 @@ if (document.querySelector('.journey')) {
 
 if (document.querySelector('[data-gift-prices]')) {
   initGiftPrices();
+}
+
+if (document.querySelector('#site-sidemenu')) {
+  initSidemenu();
+}
+
+if (document.querySelector('.page-shell')) {
+  initViewportScale();
+}
+
+if (document.querySelector('.numbers-swiper')) {
+  initNumbersSwiper();
+}
+
+if (document.querySelector('.journal-swiper')) {
+  initJournalSwiper();
+}
+
+if (document.querySelector('.product-tabs')) {
+  initProductTabs();
 }

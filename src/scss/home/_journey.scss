@@ -1,8 +1,15 @@
+@use '../breakpoints' as *;
+
 .journey {
   background-color: #fff;
 
   .section-heading--split {
     align-items: center;
+
+    @media (max-width: $desktop-max) {
+      align-items: start;
+      gap: 20px;
+    }
   }
 
   .section-heading__title--italic {
@@ -10,7 +17,7 @@
   }
 }
 
-@media (min-width: 1024px) {
+@media screen and (min-width: #{$desktop-max + 1px}) {
   .journey__scroller {
     position: relative;
   }
@@ -19,9 +26,20 @@
     position: sticky;
     top: 0;
     z-index: 1;
-    height: 100svh;
-    max-height: 100svh;
+    height: var(--viewport-height);
+    max-height: var(--viewport-height);
     overflow: clip;
+  }
+}
+
+@media screen and (max-width: $desktop-max) {
+  .journey__sticky {
+    position: static;
+    height: auto;
+    max-height: none;
+    min-height: 0;
+    overflow: visible;
+    height: auto;
   }
 }
 
@@ -29,8 +47,16 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 100svh;
+  min-height: var(--viewport-height);
   padding: 60px 48px;
+
+  @media screen and (max-width: $laptop-max) {
+    padding-left: 16px;
+    padding-right: 16px;
+    min-height: 0;
+    align-items: stretch;
+    justify-content: flex-start;
+  }
 }
 
 .journey-intro {
@@ -40,11 +66,35 @@
 
   .section-heading__text {
     max-width: 662px;
+
+    @media screen and (max-width: $desktop-max) {
+      max-width: inherit;
+    }
+
+    p {
+      @media screen and (max-width: $mobile-max) {
+        line-height: 1.4;
+      }
+    }
+  }
+
+  @media screen and (max-width: $desktop-max) {
+    min-width: inherit;
+    max-width: inherit;
   }
 }
 
 .journey-title {
   flex: 1;
+
+  @media screen and (max-width: $mobile-max) {
+    line-height: 1.1;
+  }
+
+}
+
+.journey-title__accent {
+ 
 }
 
 
@@ -53,14 +103,35 @@
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(661px, 49.2%);
   align-items: center;
+
+  @media screen and (max-width: $desktop-max) {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  @media screen and (max-width: $laptop-max) {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .journey.is-accordion-active & {
+    overflow: hidden;
+  }
 }
 
 .journey__media {
   position: relative;
   overflow: hidden;
-  background-color: #eee;  
+  background-color: #eee;
   aspect-ratio: 463 / 492;
   max-width: 67.8%;
+
+  @media screen and (max-width: $desktop-max) {
+    max-width: calc(100% - 100px);
+  }
+
+  @media screen and (max-width: $laptop-max) {
+    max-width: 480px;
+  }
 }
 
 .journey__image {
@@ -123,6 +194,12 @@
 
   transition: opacity 300ms ease;
   will-change: transform, opacity;
+
+  .journey.is-accordion-active.is-progress-animated & {
+    transition:
+      opacity 300ms ease,
+      transform 450ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
 }
 
 
@@ -142,11 +219,26 @@
 
   &:not(:last-child) {
     padding-bottom: 44px;
+
+    @media screen and (max-width: $laptop-max) {
+      padding-bottom: 40px;
+    }
+  }
+  &:last-child {
+
+    @media screen and (max-width: $laptop-max) {
+      padding-bottom: 20px;
+    }
   }
 
   &:first-child {
     .journey__answer-inner {
       max-width: 565px;
+
+      @media screen and (max-width: $laptop-max) {
+        max-width: 100%;
+      }
+
     }
   }
 
@@ -185,6 +277,11 @@
     pointer-events: none;
     transform: translateX(-50%);
   }
+
+  .journey.is-accordion-active &:last-child::after {
+    bottom: auto;
+    height: calc(100% + 9999px);
+  }
 }
 
 .journey__trigger {
@@ -195,12 +292,23 @@
 
   width: 100%;
   padding: 0;
+  border: 0;
 
   color: inherit;
   text-align: left;
+  font: inherit;
 
   background: transparent;
   pointer-events: none;
+
+  .journey.is-accordion-active & {
+    pointer-events: auto;
+    cursor: pointer;
+  }
+
+  @media screen and (max-width: $laptop-max) {
+    gap: 16px;
+  }
 }
 
 .journey__number {
@@ -243,11 +351,20 @@
   transition:
     grid-template-rows 450ms cubic-bezier(0.22, 1, 0.36, 1),
     opacity 300ms ease;
+
+  @media screen and (max-width: $laptop-max) {
+    margin-left: 56px;
+    margin-right: 16px;
+  }
 }
 
 .journey__answer-inner {
   overflow: hidden;
   max-width: 457px;
+
+  @media screen and (max-width: $laptop-max) {
+    max-width: 100%;
+  }
 
 
   p {
@@ -257,12 +374,12 @@
     color: var(--color-text-secondary);
     font-size: 16px;
     line-height: 1.4;
+
+    @media screen and (max-width: $laptop-max) {
+      max-width: 100%;
+    }
   }
 }
-
-@media (max-width: 1023px) {}
-
-@media (max-width: 600px) {}
 
 @media (prefers-reduced-motion: reduce) {
 

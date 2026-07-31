@@ -1,16 +1,17 @@
+@use '../breakpoints' as *;
+
 .hero {
   position: relative;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  height: 100vh;
-  height: 100dvh;
+  height: var(--viewport-height);
   padding: var(--layout-padding);
 }
 
 .hero-swiper {
   width: 100%;
-  height: calc(100dvh - (var(--layout-padding) * 2));
+  height: calc(var(--viewport-height) - (var(--layout-padding) * 2));
   min-height: 0;
 }
 
@@ -60,7 +61,7 @@
   width: 100%;
   min-height: 0;
   height: 100%;
-  padding-top: 7vw;
+  padding-top: 100px;
   padding-bottom: 64px;
   overflow: hidden;
 }
@@ -84,6 +85,11 @@
   width: 100%;
   margin: 0 auto;
   text-align: center;
+
+  @media screen and (max-width: $mobile-max) {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
 }
 
 .hero__inner:not(:has(.hero__text-grid)) .hero__copy {
@@ -100,23 +106,55 @@
   font-size: 52px;
   line-height: 1;
   letter-spacing: 0;
-  width: 738px;
+  width: 100%;    
+  max-width: 738px;
   margin: 0 auto;
 
+  @media screen and (max-width: $mobile-max) {
+    font-size: 34px;
+  }
+
   &--size-1 {
-    width: 585px;
+    max-width: 585px;
+
+    @media screen and (max-width: $mobile-max) {
+      max-width: 470px;
+    }
   }
 
   &--size-2 {
-    .hero__title--italic { 
+    .hero__title--italic {
       margin-right: -11px;
+
+      @media screen and (max-width: $mobile-max) {
+        margin-right: 0;
+      }
+    }
+
+    @media screen and (max-width: $mobile-max) {
+      max-width: 470px;
+    }
+    @media screen and (max-width: $mobile-sm-max) {
+      font-size: 26px;
     }
   }
 
   &--size-3 {
-    width: 662px;
-    .hero__title--italic { 
+    max-width: 662px;
+
+    .hero__title--italic {
       margin-right: -32px;
+
+      @media screen and (max-width: $mobile-max) {
+        margin-right: 0;
+      }
+    }
+
+    @media screen and (max-width: $mobile-max) {
+      max-width: 470px;
+    }
+    @media screen and (max-width: $mobile-sm-max) {
+      font-size: 26px;
     }
   }
 
@@ -129,6 +167,8 @@
     font-style: italic;
     text-align: right;
   }
+
+
 }
 
 .hero__text-grid {
@@ -139,6 +179,12 @@
   margin: 28px auto 0;
   text-align: left;
   font-family: var(--font-family-secondary);
+
+  @media screen and (max-width: $mobile-max) {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    margin-top: 32px;
+  }
 
   p {
     margin: 0;
@@ -176,6 +222,10 @@
   line-height: 1.3;
   letter-spacing: 0.02em;
 
+  @media screen and (max-width: $mobile-max) {
+    margin-bottom: 26px;
+  }
+
 
   &:hover {
     color: var(--hero-button-color-hover);
@@ -197,11 +247,7 @@
   left: 50% !important;
 
   box-sizing: border-box;
-  width: calc(
-    var(--hero-pagination-dot-size) * var(--hero-pagination-visible-bullets) +
-    var(--hero-pagination-gap) * (var(--hero-pagination-visible-bullets) - 1) +
-    4px
-  ) !important;
+  width: calc(var(--hero-pagination-dot-size) * var(--hero-pagination-visible-bullets) + var(--hero-pagination-gap) * (var(--hero-pagination-visible-bullets) - 1) + 4px) !important;
   height: var(--hero-pagination-dot-size);
   padding-inline: 2px;
 
@@ -282,17 +328,8 @@
 
 @media (max-width: 767px) {
   .hero__inner {
-    padding-top: 90px;
-    padding-bottom: 32px;
+    padding-bottom: 38px;
   }
 
-  .hero__copy {
-    padding-inline: 20px;
-  }
 
-  .hero__text-grid {
-    grid-template-columns: 1fr;
-    gap: 12px;
-    margin-top: 20px;
-  }
 }

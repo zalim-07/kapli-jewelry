@@ -40,9 +40,9 @@ section.journey#journey(
     .journey__sticky(data-journey-sticky)
       .section-inner
         .section-heading.section-heading--split
-          .section-heading__title.journey-title
+          .section-heading__title.journey-title#journey-title
             p От камня
-            .journey-title__accent 
+            .journey-title__accent
               em к готовому украшению
 
           .journey-intro
@@ -77,14 +77,20 @@ section.journey#journey(
                   class=index === 0 ? 'is-active' : null
                   data-journey-step=index
                 )
-                  .journey__trigger
+                  button.journey__trigger(
+                    type="button"
+                    aria-expanded=index === 0 ? 'true' : 'false'
+                    aria-controls=`journey-answer-${index}`
+                  )
                     span.journey__number
                       = String(index + 1).padStart(2, '0')
 
-                    span.journey__step-title= step.title
+                    span.journey__step-title(id=`journey-step-title-${index}`)= step.title
 
                   .journey__answer(
                     id=`journey-answer-${index}`
+                    role="region"
+                    aria-labelledby=`journey-step-title-${index}`
                   )
                     .journey__answer-inner
                       p= step.text

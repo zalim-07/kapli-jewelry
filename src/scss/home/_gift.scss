@@ -1,18 +1,49 @@
+@use '../breakpoints' as *;
+
 .gift {
   padding: 71.5px var(--layout-padding);
+
+  @media screen and (max-width: $desktop-max) {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
 
   &__inner {
     display: grid;
     grid-template-columns: 1fr 1fr;
     align-items: center;
+
+    @media screen and (max-width: $laptop-max) {
+      grid-template-columns: 1fr;
+    }
   }
 
   &__copy {
     padding: 48px;
 
+    @media screen and (max-width: $desktop-max) {
+      padding: 40px 12px;
+    }
+
+    .section-heading__title {
+      @media screen and (max-width: $mobile-max) {
+        line-height: 1.1;
+      }
+
+      br {
+        @media screen and (max-width: $mobile-max) {
+          display: none;
+        }
+      }
+    }
+
     .section-heading__text {
       margin-top: 16px;
       max-width: 580px;
+
+      @media screen and (max-width: $mobile-max) {
+        margin-top: 20px;
+      }
 
       p {
         line-height: 1.4;
@@ -27,6 +58,10 @@
   &__prices {
     display: flex;
     margin-top: 36px;
+
+    @media screen and (max-width: $desktop-max) {
+      flex-wrap: wrap;
+    }
   }
 
   &__price {
@@ -52,6 +87,14 @@
     background: transparent;
     cursor: pointer;
 
+    @media screen and (max-width: $mobile-max) {
+      font-size: 18px;
+      padding-left: 2px;
+      padding-right: 2px;
+
+      padding-bottom: 14px;
+    }
+
     &::after {
       position: absolute;
       right: 1px;
@@ -68,6 +111,10 @@
       transition:
         transform var(--transition),
         background-color var(--transition);
+
+      @media screen and (max-width: $mobile-max) {
+        height: 2px;
+      }
     }
 
     &.is-active::after {
@@ -89,30 +136,14 @@
   &__media {
     aspect-ratio: 3 / 2;
 
-    // height: 32vw;
+    @media screen and (max-width: $mobile-max) {
+      aspect-ratio: 385 / 246;
+    }
 
     img {
       object-fit: cover;
       width: 100%;
       height: 100%;
     }
-  }
-}
-
-@media (max-width: 1100px) {
-  .gift__inner {
-    gap: 40px;
-  }
-}
-
-@media (max-width: 900px) {
-  .gift__inner {
-    grid-template-columns: 1fr;
-  }
-}
-
-@media (max-width: 640px) {
-  .gift__price {
-    flex: 0 0 112px;
   }
 }

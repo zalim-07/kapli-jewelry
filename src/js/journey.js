@@ -3,6 +3,8 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
+const DESKTOP_MAX = 1439;
+
 export function initJourneySections() {
     const sections = document.querySelectorAll('[data-journey]');
 
@@ -79,7 +81,7 @@ export function initJourneySections() {
             );
         }
 
-        function setActiveStep(index) {
+        function setActiveStep(index, { withComplete = true } = {}) {
             const safeIndex = Math.max(
                 0,
                 Math.min(lastIndex, index),
@@ -98,13 +100,26 @@ export function initJourneySections() {
 
             steps.forEach((step, stepIndex) => {
                 const isActive = stepIndex === safeIndex;
-                const isComplete =
-                    stepIndex < safeIndex ||
-                    (safeIndex === lastIndex &&
-                        stepIndex === lastIndex);
+                const isAccordion = section.classList.contains(
+                    'is-accordion-active',
+                );
+                const isComplete = isAccordion
+                    ? stepIndex < safeIndex
+                    : withComplete && (
+                        stepIndex < safeIndex ||
+                        (safeIndex === lastIndex &&
+                            stepIndex === lastIndex)
+                    );
 
                 step.classList.toggle('is-active', isActive);
                 step.classList.toggle('is-complete', isComplete);
+
+                const trigger = step.querySelector('.journey__trigger');
+
+                trigger?.setAttribute(
+                    'aria-expanded',
+                    String(isActive),
+                );
             });
 
             images.forEach((image, imageIndex) => {
@@ -117,6 +132,81 @@ export function initJourneySections() {
                     String(!isActive),
                 );
             });
+
+            if (section.classList.contains('is-accordion-active')) {
+                requestAnimationFrame(() => {
+                    updateAccordionProgress({ animate: true });
+                });
+            }
+        }
+
+        function updateAccordionProgress({ animate = false } = {}) {
+            if (!section.classList.contains('is-accordion-active')) {
+                return;
+            }
+
+            const stepsWrap = section.querySelector('.journey__steps-wrap');
+            const stepsList = section.querySelector('.journey__steps');
+            const activeStep = steps[activeIndex];
+            const activeNumber = activeStep?.querySelector('.journey__number');
+            const progressHeight = progressElement.offsetHeight;
+            const railTop = 20;
+            const shouldAnimate =
+                animate &&
+                !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+            if (
+                !stepsWrap ||
+                !stepsList ||
+                !activeStep ||
+                !activeNumber ||
+                activeIndex < 0 ||
+                progressHeight <= 0
+            ) {
+                section.classList.remove('is-progress-animated');
+                gsap.set(progressElement, { scaleY: 0 });
+                return;
+            }
+
+            let progressEnd = stepsList.offsetTop;
+
+            for (let index = 0; index < activeIndex; index += 1) {
+                const step = steps[index];
+                const trigger = step.querySelector('.journey__trigger');
+                const paddingBottom =
+                    Number.parseFloat(getComputedStyle(step).paddingBottom) || 0;
+
+                progressEnd += (trigger?.offsetHeight ?? 0) + paddingBottom;
+            }
+
+            let numberOffset = 0;
+            let node = activeNumber;
+
+            while (node && node !== activeStep) {
+                numberOffset += node.offsetTop;
+                node = node.offsetParent;
+            }
+
+            progressEnd += numberOffset + activeNumber.offsetHeight / 2;
+
+            const scale = Math.min(
+                1,
+                Math.max(0, (progressEnd - railTop) / progressHeight),
+            );
+
+            if (shouldAnimate) {
+                section.classList.add('is-progress-animated');
+                requestAnimationFrame(() => {
+                    gsap.set(progressElement, { scaleY: scale });
+                });
+                return;
+            }
+
+            section.classList.remove('is-progress-animated');
+            progressElement.style.transition = 'none';
+            gsap.set(progressElement, { scaleY: scale });
+            progressElement.offsetHeight;
+            progressElement.style.removeProperty('transition');
         }
 
         function updateScrollState(scrollProgress) {
@@ -132,7 +222,7 @@ export function initJourneySections() {
         const media = gsap.matchMedia();
 
         media.add(
-            '(min-width: 1024px) and (prefers-reduced-motion: no-preference)',
+            `(min-width: ${DESKTOP_MAX + 1}px) and (prefers-reduced-motion: no-preference)`,
             () => {
                 section.classList.add('is-scroll-active');
 
@@ -190,5 +280,82 @@ export function initJourneySections() {
                 };
             },
         );
+
+        media.add(`(max-width: ${DESKTOP_MAX}px)`, () => {
+            section.classList.add('is-accordion-active');
+            setActiveStep(0);
+
+            const stepsWrap = section.querySelector('.journey__steps-wrap');
+
+            function updateStepsMinHeight() {
+                if (!stepsWrap) {
+                    return;
+                }
+
+                const wrapStyles = getComputedStyle(stepsWrap);
+                let height = Number.parseFloat(wrapStyles.paddingTop) || 0;
+                let maxAnswerHeight = 0;
+
+                steps.forEach((step) => {
+                    const trigger = step.querySelector('.journey__trigger');
+                    const answerInner = step.querySelector(
+                        '.journey__answer-inner',
+                    );
+                    const stepStyles = getComputedStyle(step);
+
+                    height += trigger?.offsetHeight ?? 0;
+                    height += Number.parseFloat(stepStyles.paddingBottom) || 0;
+
+                    if (answerInner) {
+                        maxAnswerHeight = Math.max(
+                            maxAnswerHeight,
+                            answerInner.scrollHeight,
+                        );
+                    }
+                });
+
+                stepsWrap.style.minHeight = `${height + maxAnswerHeight}px`;
+                updateAccordionProgress();
+            }
+
+            updateStepsMinHeight();
+
+            window.addEventListener('resize', updateStepsMinHeight, {
+                passive: true,
+            });
+
+            document.fonts?.ready.then(updateStepsMinHeight);
+
+            const handlers = steps.map((step, index) => {
+                const trigger = step.querySelector('.journey__trigger');
+
+                const handler = () => {
+                    setActiveStep(index);
+                };
+
+                trigger?.addEventListener('click', handler);
+
+                return { trigger, handler };
+            });
+
+            return () => {
+                section.classList.remove('is-accordion-active');
+                section.classList.remove('is-progress-animated');
+
+                window.removeEventListener('resize', updateStepsMinHeight);
+
+                stepsWrap?.style.removeProperty('min-height');
+
+                gsap.set(progressElement, {
+                    clearProps: 'transform',
+                });
+
+                handlers.forEach(({ trigger, handler }) => {
+                    trigger?.removeEventListener('click', handler);
+                });
+
+                setActiveStep(0);
+            };
+        });
     });
 }

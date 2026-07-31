@@ -1,14 +1,35 @@
+@use '../breakpoints' as *;
+
 .unique-banner {
   padding: 80px var(--layout-padding);
+
+  @media screen and (max-width: $desktop-max) {
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
 
   &__inner {
     background: #f4eee6 url('/src/assets/images/unique-banner/bg.webp') no-repeat center center / cover;
     padding: 81px 40px;
+
+    @media screen and (max-width: $mobile-max) {
+      padding: 240px 16px 40px;
+      background-image: url('/src/assets/images/unique-banner/bg-mobile.webp');
+    }
   }
 
   &__copy {
 
-    .unique-title {}
+    .unique-title {
+
+      .section-heading__title--regular,
+      .section-heading__title--italic {
+        @media screen and (max-width: $desktop-max) {
+          font-size: 36px;
+          line-height: 1.2;
+        }
+      }
+    }
 
     .section-heading__text {
       max-width: 580px;
@@ -16,16 +37,20 @@
 
       p {
         line-height: 1.4;
+
+        @media screen and (max-width: $desktop-max) {
+          font-size: 18px;
+        }
       }
     }
 
-    .button  {
+    .button {
       margin-top: 32px;
+
+      @media screen and (max-width: $desktop-max) {
+        margin-top: 40px;
+      }
     }
   }
 
 }
-
-@media (max-width: 900px) {}
-
-@media (max-width: 640px) {}

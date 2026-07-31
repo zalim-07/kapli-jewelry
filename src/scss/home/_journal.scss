@@ -1,11 +1,33 @@
+@use '../breakpoints' as *;
+
 .journal {
   padding: 80px var(--layout-padding);
+
+  @media screen and (max-width: $desktop-max) {
+    padding: 60px 0;
+    overflow: visible;
+  }
+
+  .section-inner {
+    @media screen and (max-width: $desktop-max) {
+      overflow: visible;
+    }
+  }
 
   &__header {
     padding-left: 48px;
     padding-right: 48px;
     gap: 10px;
     justify-content: space-between;
+
+    @media screen and (max-width: $desktop-max) {
+      padding-left: 16px;
+      padding-right: 16px;
+
+      .button {
+        display: none;
+      }
+    }
   }
 
   &__grid {
@@ -13,16 +35,67 @@
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 4px;
+
+    @media screen and (max-width: $desktop-max) {
+      margin-top: 0;
+      display: flex;
+      gap: 0;
+    }
+  }
+}
+
+@media screen and (min-width: #{$desktop-max + 1px}) {
+  .journal-swiper {
+    overflow: visible;
+  }
+
+  .journal-swiper.swiper {
+    overflow: visible;
+  }
+
+  .journal-swiper .journal__grid.swiper-wrapper {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 4px;
+    margin-top: 32px;
+    transform: none;
+    transition-duration: 0ms;
+  }
+
+  .journal-swiper .journal-card.swiper-slide {
+    width: auto;
+    height: auto;
+    margin: 0;
+  }
+}
+
+.journal-swiper {
+  @media screen and (max-width: $desktop-max) {
+    margin-top: 32px;
+    overflow: visible;
+
+    .journal-card.swiper-slide {
+      display: flex;
+      flex-direction: column;
+      width: 333px;
+      height: 400px;
+    }
   }
 }
 
 .journal-card {
   display: flex;
-  // min-height: 400px;
-  aspect-ratio: 7/8;
+  aspect-ratio: 355/400;
   flex-direction: column;
   padding: 12px;
   align-items: flex-start;
+
+  @media screen and (max-width: $desktop-max) {
+    width: 333px;
+    height: 400px;
+    aspect-ratio: auto;
+    flex-shrink: 0;
+  }
 
   &:nth-child(1) {
     background: #EAFEFF;
@@ -48,8 +121,9 @@
     font-size: 14px;
     line-height: 1.16;
     letter-spacing: 0;
+    height: 28px;
+    display: inline-block;
   }
-
 
   .date {
     margin-top: auto;
@@ -59,10 +133,13 @@
     font-size: 14px;
     line-height: 1.5;
     letter-spacing: 0;
-
   }
 
   &__body {
+    @media screen and (max-width: $desktop-max) {
+      flex: 1;
+    }
+
     h3 {
       font-family: var(--font-family);
       font-weight: 400;
@@ -81,18 +158,5 @@
       line-height: 1.5;
       letter-spacing: 0;
     }
-  }
-
-}
-
-@media (max-width: 1023px) {
-  .journal__grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
-@media (max-width: 767px) {
-  .journal__grid {
-    grid-template-columns: 1fr;
   }
 }

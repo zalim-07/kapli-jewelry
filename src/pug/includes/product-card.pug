@@ -16,13 +16,14 @@ mixin productCard(product, options = {})
     data-product-card
     data-categories=categoriesAttr
   )
-    //- Растянутая ссылка отвечает за клик по карточке
-    a.product-card__stretched-link(
-      href=productHref
-      aria-label=`Открыть товар «${product.title}»`
-    )
-
     .product-card__media
+      a.product-card__media-link(
+        href=productHref
+        aria-label=`Открыть товар «${product.title}»`
+        tabindex="-1"
+        aria-hidden="true"
+      )
+
       if images.length
         .product-card__images
           each image, index in images
@@ -72,7 +73,8 @@ mixin productCard(product, options = {})
 
     .product-card__info      
       .product-card__header
-        h3.product-card__title= product.title
+        h3.product-card__title
+          a.product-card__title-link(href=productHref)= product.title
         if product.price
           p.product-card__price= product.price
       

@@ -1,5 +1,13 @@
 header.site-header
   .site-header__inner
+    button.site-header__menu(
+      type="button"
+      aria-label="Открыть меню"
+      aria-expanded="false"
+      aria-controls="site-sidemenu"
+    )
+      include ../../assets/svg/menu-linear.svg
+
     nav.site-header__nav(aria-label="Основная навигация")
       ul#menu-primary.menu
         li.menu-item.menu-item-type-custom.menu-item-object-custom
@@ -12,12 +20,31 @@ header.site-header
           a(href="#journal") Журнал
 
     a.site-header__logo(href="/home.html" aria-label="Kapli Jewelry, главная")
-      include ../../assets/svg/logo.svg
+      span.site-header__logo-desktop(aria-hidden="true")
+        include ../../assets/svg/logo.svg
+      span.site-header__logo-mobile(aria-hidden="true")
+        include ../../assets/svg/logo-mobile.svg
 
     .site-header__actions
-      a.site-header__action(href="#contacts")
+      a.site-header__action(href="#contacts" aria-label="Контакты")
         span.site-header__icon.site-header__icon--phone(aria-hidden="true")
-        span Контакты
-      a.site-header__action(href="#cart")
+        span.site-header__action-text Контакты
+      a.site-header__action(href="#cart" aria-label="Корзина")
         span.site-header__icon.site-header__icon--bag(aria-hidden="true")
-        span Корзина
+        span.site-header__action-text Корзина
+
+aside.site-sidemenu#site-sidemenu(aria-hidden="true" aria-label="Меню")
+  button.site-sidemenu__backdrop(type="button" aria-label="Закрыть меню" tabindex="-1")
+  .site-sidemenu__panel
+    button.site-sidemenu__close(type="button" aria-label="Закрыть меню") ×
+    .site-sidemenu__inner
+      nav.site-sidemenu__nav(aria-label="Основная навигация")
+        ul.menu
+          li.menu-item
+            a(href="#collections") Каталог
+          li.menu-item
+            a(href="#catalog") Бестселлеры
+          li.menu-item
+            a(href="#journey") Производство
+          li.menu-item
+            a(href="#journal") Журнал
