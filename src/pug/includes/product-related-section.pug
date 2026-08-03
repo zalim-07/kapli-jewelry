@@ -1,0 +1,27 @@
+include /includes/product-card
+
+mixin productRelatedSection(options = {})
+  - const sectionId = options.id
+  - const sectionClass = options.class || null
+  - const titleEm = options.titleEm
+  - const titleSpan = options.titleSpan
+  - const items = Array.isArray(options.items) ? options.items : []
+  - const viewAllHref = options.viewAllHref || '#'
+
+  section.section.product-related(
+    class=sectionClass
+    id=sectionId
+    aria-labelledby=`${sectionId}-title`
+  )
+    .section-inner
+      .section-heading.section-heading--split.product-related__header
+        .section-heading__title(id=`${sectionId}-title`)
+          em= titleEm
+          | 
+          span= titleSpan
+
+      .swiper.product-related-swiper
+        .product-related__grid.swiper-wrapper
+          each item, index in items
+            .swiper-slide.product-related__slide
+              +productCard(item, { eager: index < 2 })

@@ -11,6 +11,20 @@ import { initJournalSwiper } from './js/init-journal-swiper.js';
 
 import { initProductTabs } from './js/product-tabs.js';
 
+function initStaticHeaderTheme() {
+  const header = document.querySelector('.site-header');
+
+  if (!header || document.querySelector('.home-page')) {
+    return;
+  }
+
+  header.dataset.theme = 'light';
+  header.classList.remove('site-header--dark');
+  header.classList.add('site-header--light');
+}
+
+initStaticHeaderTheme();
+
 if (document.querySelector('.hero-swiper')) {
   const startHero = () => initHeroSwiper();
 
@@ -21,7 +35,7 @@ if (document.querySelector('.hero-swiper')) {
   }
 }
 
-if (document.querySelector('.featured, .collections, [data-collections]')) {
+if (document.querySelector('.featured, .collections, [data-collections], .product-related')) {
   initProductCards();
 }
 
@@ -49,7 +63,7 @@ if (document.querySelector('.numbers-swiper')) {
   initNumbersSwiper();
 }
 
-if (document.querySelector('.journal-swiper')) {
+if (document.querySelector('.journal-swiper, .product-related-swiper')) {
   initJournalSwiper();
 }
 

@@ -4,13 +4,7 @@ import 'swiper/css';
 
 const DESKTOP_MAX = 1439;
 
-export function initJournalSwiper() {
-    const swiperElement = document.querySelector('.journal-swiper');
-
-    if (!swiperElement) {
-        return;
-    }
-
+function initAutoGridSwiper(swiperElement) {
     let swiper = null;
     const mediaQuery = window.matchMedia(
         `(max-width: ${DESKTOP_MAX}px)`,
@@ -50,4 +44,10 @@ export function initJournalSwiper() {
 
     toggleSwiper();
     mediaQuery.addEventListener('change', toggleSwiper);
+}
+
+export function initJournalSwiper() {
+    document
+        .querySelectorAll('.journal-swiper, .product-related-swiper')
+        .forEach(initAutoGridSwiper);
 }

@@ -169,14 +169,16 @@
   }
 }
 
-.site-header--light {
+.site-header--light,
+.site-header[data-theme='light'] {
   --header-color: #111;
   --header-button-color: #fff;
   --header-button-background: #111;
   --header-border-color: rgba(17, 17, 17, 0.35);
 }
 
-.site-header--dark {
+.site-header--dark,
+.site-header[data-theme='dark'] {
   --header-color: #fff;
   --header-button-color: #111;
   --header-button-background: #fff;

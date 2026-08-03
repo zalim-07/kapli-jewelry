@@ -1,4 +1,11 @@
-header.site-header
+-
+  const resolvedHeaderTheme =
+    typeof headerTheme !== 'undefined' ? headerTheme : null
+
+header.site-header(
+  class=resolvedHeaderTheme === 'light' ? 'site-header--light' : resolvedHeaderTheme === 'dark' ? 'site-header--dark' : false
+  data-theme=resolvedHeaderTheme
+)
   .site-header__inner
     button.site-header__menu(
       type="button"

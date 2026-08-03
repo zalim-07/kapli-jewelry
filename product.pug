@@ -51,6 +51,21 @@
     ]
   }
 
+  const primaryStone = product.attributes[0]
+
+  const otherRings = products.catalog
+    .filter((item) => item.category === 'rings' && item.title !== product.title)
+    .slice(0, 4)
+
+  const sameStoneProducts = products.catalog
+    .filter((item) => {
+      const materials = Array.isArray(item.material) ? item.material : [item.material]
+      return materials.includes(primaryStone)
+    })
+    .slice(0, 4)
+
+include /includes/product-related-section
+
 doctype html
 html(lang="ru")
   head
@@ -63,10 +78,11 @@ html(lang="ru")
     title Kapli Jewelry — Товар
   body
     .page-shell.product-page
+      - var headerTheme = 'light'
       include /includes/header
 
       main.product-main
-        .product-main__layout
+        section.product-main__layout
           //- Галерея
           .product-gallery(aria-label="Фотографии товара")
             each image, index in product.images
@@ -90,15 +106,15 @@ html(lang="ru")
                 .product-summary__heading
                   h1.product-summary__title= product.title
 
-                  ul.product-summary__attributes(
-                    aria-label="Основные характеристики"
-                  )
+                  if product.badge
+                    span.product-summary__badge= product.badge                  
+
+                .product-summary__aside
+
+                  ul.product-summary__attributes(aria-label="Основные характеристики")
                     each attribute in product.attributes
                       li= attribute
 
-                .product-summary__aside
-                  if product.badge
-                    span.product-summary__badge= product.badge
 
                   span.product-summary__sku= product.sku
 
@@ -141,14 +157,18 @@ html(lang="ru")
                       button.product-payment__info(
                         type="button"
                         aria-label="Подробнее об оплате частями"
-                      ) i
+                      )
+                        include src/assets/svg/question.svg
 
                     .product-payment__services(
                       aria-label="Сервисы оплаты частями"
                     )
-                      span Подели
-                      span Долями
-                      span Сплит
+                      span.product-payment__service
+                        include src/assets/svg/podeli-black-logo.svg
+                      span.product-payment__service
+                        include src/assets/svg/dolyame-logo.svg
+                      span.product-payment__service
+                        include src/assets/svg/split-logo.svg
 
                 button.button.button--dark.product-purchase__submit(
                   type="submit"
@@ -235,6 +255,22 @@ html(lang="ru")
                     hidden
                   )
                     p Рекомендации по хранению и уходу за украшением.
+
+        +productRelatedSection({
+          id: 'product-other-rings',
+          class: 'product-related--other',
+          titleEm: '',
+          titleSpan: 'Другие кольца',
+          items: otherRings
+        })
+
+        +productRelatedSection({
+          id: 'product-same-stone',
+          class: 'product-related--same-material',
+          titleEm: '',
+          titleSpan: 'Украшения с тем же камнем',
+          items: sameStoneProducts
+        })
 
       include /includes/footer
 
