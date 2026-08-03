@@ -47,6 +47,7 @@ export default defineConfig({
         resolve(__dirname, 'archive.pug'),
         resolve(__dirname, 'coming-soon.pug'),
         resolve(__dirname, 'product.pug'),
+        resolve(__dirname, 'page.pug'),
       ],
     },
   },

@@ -1,0 +1,48 @@
+-
+  const sidebarNav = [
+    { title: 'Политика конфиденциальности', href: 'page.html', active: true },
+    { title: 'Согласие на обработку данных', href: '#' },
+    { title: 'Пользовательское соглашение', href: '#' },
+    { title: 'Публичная оферта', href: '#' },
+  ]
+
+doctype html
+html(lang="ru")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    meta(
+      name="description"
+      content="Kapli Jewelry — доставка и оплата."
+    )
+    title Kapli Jewelry — Доставка и оплата
+  body
+    .page-shell.text-page
+      - var headerTheme = 'light'
+      include /includes/header
+
+      main.text-page__main
+        .text-page__layout
+          aside.text-page__sidebar
+            .text-page__widget
+              h2.text-page__widget-title Правовые документы
+              nav.text-page__nav(aria-label="Разделы информации")
+                ul.text-page__nav-list
+                  each item in sidebarNav
+                    li.text-page__nav-item
+                      a.text-page__nav-link(
+                        href=item.href
+                        class=item.active ? 'is-active' : null
+                        aria-current=item.active ? 'page' : null
+                      )= item.title
+
+          .text-page__content
+            .text-page__header
+              h1.text-page__title Политика конфиденциальности
+              p.text-page__subtitle Дата вступления в силу: 26 мая, 2025
+            .text-page__body
+              include /includes/privacy-policy.pug
+
+      include /includes/footer
+
+    script(type="module" src="/src/main.js")
