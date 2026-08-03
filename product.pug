@@ -84,16 +84,29 @@ html(lang="ru")
       main.product-main
         section.product-main__layout
           //- Галерея
-          .product-gallery(aria-label="Фотографии товара")
+          - const galleryCount = Math.min(product.images.length, 3)
+          .product-gallery(
+            aria-label="Фотографии товара"
+            class=`product-gallery--count-${galleryCount}`
+          )
             each image, index in product.images
-              figure.product-gallery__item(
-                class=index < 2 ? 'product-gallery__item--half' : 'product-gallery__item--wide'
-              )
+              -
+                let itemModifier = ''
+                if (galleryCount === 1) {
+                  itemModifier = 'product-gallery__item--full'
+                } else if (galleryCount === 2) {
+                  itemModifier = 'product-gallery__item--half'
+                } else {
+                  itemModifier = index < 2 ? 'product-gallery__item--half' : 'product-gallery__item--wide'
+                }
+                const imageWidth = galleryCount === 1 || (galleryCount === 3 && index >= 2) ? '820' : '408'
+                const imageHeight = galleryCount === 1 ? '980' : galleryCount === 2 ? '980' : index < 2 ? '534' : '980'
+              figure.product-gallery__item(class=itemModifier)
                 img.product-gallery__image(
                   src=image.src
                   alt=image.alt
-                  width=index < 2 ? '408' : '820'
-                  height=index < 2 ? '534' : '980'
+                  width=imageWidth
+                  height=imageHeight
                   loading=index === 0 ? 'eager' : 'lazy'
                   fetchpriority=index === 0 ? 'high' : null
                   decoding="async"
