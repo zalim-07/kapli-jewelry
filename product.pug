@@ -4,9 +4,11 @@
     sku: 'KA-12934023',
     badge: 'Выбор покупателей',
 
-    attributes: [
-      'Топаз',
-      'Фианит',
+    kamen: [
+      'Топаз'
+    ],
+
+    material: [
       'Серебро 925'
     ],
 
@@ -51,7 +53,12 @@
     ]
   }
 
-  const primaryStone = product.attributes[0]
+  const primaryStone = product.kamen[0]
+
+  const summaryAttributes = [
+    ...product.kamen,
+    ...product.material,
+  ]
 
   const otherRings = products.catalog
     .filter((item) => item.category === 'rings' && item.title !== product.title)
@@ -59,8 +66,8 @@
 
   const sameStoneProducts = products.catalog
     .filter((item) => {
-      const materials = Array.isArray(item.material) ? item.material : [item.material]
-      return materials.includes(primaryStone)
+      const kamen = Array.isArray(item.kamen) ? item.kamen : (item.kamen ? [item.kamen] : [])
+      return kamen.includes(primaryStone)
     })
     .slice(0, 4)
 
@@ -125,7 +132,7 @@ html(lang="ru")
                 .product-summary__aside
 
                   ul.product-summary__attributes(aria-label="Основные характеристики")
-                    each attribute in product.attributes
+                    each attribute in summaryAttributes
                       li= attribute
 
 
