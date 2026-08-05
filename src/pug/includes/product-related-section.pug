@@ -20,8 +20,7 @@ mixin productRelatedSection(options = {})
           | 
           span= titleSpan
 
-      .swiper.product-related-swiper
-        .product-related__grid.swiper-wrapper
-          each item, index in items
-            .swiper-slide.product-related__slide
-              +productCard(item, { eager: index < 2 })
+      .product-related__grid
+        each item, index in items
+          .product-related__item
+            +productCard(item, { eager: index < 2 })

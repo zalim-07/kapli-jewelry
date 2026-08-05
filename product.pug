@@ -64,11 +64,20 @@
     .filter((item) => item.category === 'rings' && item.title !== product.title)
     .slice(0, 4)
 
+  const getProductStones = (item) => {
+    if (Array.isArray(item.kamen) && item.kamen.length) {
+      return item.kamen
+    }
+
+    if (item.kamen) {
+      return [item.kamen]
+    }
+
+    return Array.isArray(item.material) ? item.material : []
+  }
+
   const sameStoneProducts = products.catalog
-    .filter((item) => {
-      const kamen = Array.isArray(item.kamen) ? item.kamen : (item.kamen ? [item.kamen] : [])
-      return kamen.includes(primaryStone)
-    })
+    .filter((item) => getProductStones(item).includes(primaryStone))
     .slice(0, 4)
 
 include /includes/product-related-section

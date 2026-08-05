@@ -8,6 +8,8 @@ import { initSidemenu } from './js/sidemenu.js';
 import { initViewportScale } from './js/viewport-scale.js';
 import { initNumbersSwiper } from './js/init-numbers-swiper.js';
 import { initJournalSwiper } from './js/init-journal-swiper.js';
+import { initAnchorScroll } from './js/anchor-scroll.js';
+import { scheduleScrollTriggerRefresh } from './js/scroll-trigger-refresh.js';
 
 import { initProductTabs } from './js/product-tabs.js';
 
@@ -24,6 +26,7 @@ function initStaticHeaderTheme() {
 }
 
 initStaticHeaderTheme();
+initAnchorScroll();
 
 if (document.querySelector('.hero-swiper')) {
   const startHero = () => initHeroSwiper();
@@ -63,10 +66,14 @@ if (document.querySelector('.numbers-swiper')) {
   initNumbersSwiper();
 }
 
-if (document.querySelector('.journal-swiper, .product-related-swiper')) {
+if (document.querySelector('.journal-swiper')) {
   initJournalSwiper();
 }
 
 if (document.querySelector('.product-tabs')) {
   initProductTabs();
 }
+
+window.addEventListener('load', () => {
+  scheduleScrollTriggerRefresh();
+}, { once: true });

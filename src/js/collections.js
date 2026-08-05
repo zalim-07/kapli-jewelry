@@ -1,5 +1,6 @@
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { scheduleScrollTriggerRefresh } from './scroll-trigger-refresh.js';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -24,19 +25,6 @@ function getProductCategories(card) {
     return (card.dataset.categories || '')
         .split(/\s+/)
         .filter(Boolean);
-}
-
-let scrollRefreshFrame = null;
-
-function scheduleScrollTriggerRefresh() {
-    if (scrollRefreshFrame) {
-        cancelAnimationFrame(scrollRefreshFrame);
-    }
-
-    scrollRefreshFrame = requestAnimationFrame(() => {
-        scrollRefreshFrame = null;
-        ScrollTrigger.refresh();
-    });
 }
 
 function watchVisibleImages(cards) {

@@ -1,5 +1,6 @@
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { scheduleScrollTriggerRefresh } from './scroll-trigger-refresh.js';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -260,7 +261,7 @@ export function initJourneySections() {
                     onRefreshInit,
                 );
 
-                ScrollTrigger.refresh();
+                scheduleScrollTriggerRefresh();
 
                 return () => {
                     ScrollTrigger.removeEventListener(

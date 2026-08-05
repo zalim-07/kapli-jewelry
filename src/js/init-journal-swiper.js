@@ -48,6 +48,6 @@ function initAutoGridSwiper(swiperElement) {
 
 export function initJournalSwiper() {
     document
-        .querySelectorAll('.journal-swiper, .product-related-swiper')
+        .querySelectorAll('.journal-swiper')
         .forEach(initAutoGridSwiper);
 }
