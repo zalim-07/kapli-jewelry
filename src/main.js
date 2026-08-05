@@ -7,6 +7,7 @@ import { initGiftPrices } from './js/gift.js';
 import { initSidemenu } from './js/sidemenu.js';
 import { initHeaderSticky } from './js/header-sticky.js';
 import { initHeaderContacts } from './js/header-contacts.js';
+import { initHeaderCart } from './js/header-cart.js';
 import { initViewportScale } from './js/viewport-scale.js';
 import { initNumbersSwiper } from './js/init-numbers-swiper.js';
 import { initJournalSwiper } from './js/init-journal-swiper.js';
@@ -30,6 +31,7 @@ function initStaticHeaderTheme() {
 initStaticHeaderTheme();
 initHeaderSticky();
 initHeaderContacts();
+initHeaderCart();
 initAnchorScroll();
 
 if (document.querySelector('.hero-swiper')) {

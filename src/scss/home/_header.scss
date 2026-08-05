@@ -90,7 +90,8 @@
     gap: 8px;
   }
 
-  &__action--contacts {
+  &__action--contacts,
+  &__action--cart {
     border: 0;
     background: transparent;
     cursor: pointer;
@@ -119,6 +120,8 @@
     visibility: hidden;
     pointer-events: none;
     transform: translateY(8px);
+    box-shadow: 0px 0px 12px 0px #1F1F1F1A;
+    // box-shadow: 0px 0px 5px 0px #1F1F1F0D;
     transition:
       opacity var(--transition),
       transform var(--transition),
@@ -322,7 +325,7 @@
   --header-border-color: rgba(17, 17, 17, 0.35);
 
   box-shadow: 0px 0px 12px 0px #1F1F1F26;
-  box-shadow: 0px 0px 5px 0px #1F1F1F0D;
+  // box-shadow: 0px 0px 5px 0px #1F1F1F0D;
 
   .site-header__inner {
     padding-top: 8px;
@@ -338,7 +341,7 @@
   .site-header {
     &__inner {
       grid-template-columns: 1fr 200px 1fr;
-      padding: 6px 0;
+      padding: 6px 12px;
       gap: 0;
       min-height: 60px;
     }
@@ -377,6 +380,14 @@
   }
 }
 
+@media screen and (max-width: $laptop-max) {
+  .site-header {
+    &__inner {
+      padding: 6px 0;
+    }
+  }
+}
+
 .site-sidemenu {
   position: fixed;
   inset: 0;
@@ -394,7 +405,7 @@
     inset: 0;
     border: 0;
     padding: 0;
-    background: rgba(17, 17, 17, 0.45);
+    background: #1111112E;
     opacity: 0;
     cursor: pointer;
     transition: opacity var(--transition);

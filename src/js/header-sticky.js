@@ -6,6 +6,10 @@ export function initHeaderSticky() {
   }
 
   const update = () => {
+    if (document.documentElement.classList.contains('is-cart-open')) {
+      return;
+    }
+
     header.classList.toggle('is-sticky', window.scrollY > 0);
   };
 

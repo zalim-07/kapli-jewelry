@@ -1,0 +1,96 @@
+-
+  const isCartFreeDelivery =
+    typeof cartFreeDelivery !== 'undefined' && cartFreeDelivery
+
+aside.site-cart#site-cart(
+  class=isCartFreeDelivery ? 'site-cart--free-delivery' : false
+  aria-hidden="true"
+  aria-label="Корзина"
+)
+  button.site-cart__backdrop(type="button" aria-label="Закрыть корзину" tabindex="-1")
+  .site-cart__panel
+    button.site-cart__close(type="button" aria-label="Закрыть корзину")
+      include ../../assets/svg/close.svg
+    .site-cart__box
+      .site-cart__head
+        h2.site-cart__title Корзина
+        .site-cart__head-actions
+          
+          button.site-cart__clear(type="button") Удалить все
+
+      .site-cart__progress(
+        data-cart-progress
+        style=isCartFreeDelivery ? false : '--cart-progress: 87%'
+      )
+        .site-cart__progress-labels
+          span.site-cart__progress-label платная доставка
+          button.site-cart__progress-label.site-cart__progress-label--free(
+            type="button"
+            disabled=isCartFreeDelivery ? null : true
+          ) бесплатная доставка
+        .site-cart__progress-track
+          .site-cart__progress-fill
+            span.site-cart__progress-arrow(aria-hidden="true")
+        .site-cart__progress-values
+          span 0 ₽
+          span 12 000 ₽
+
+      .site-cart__body
+        article.site-cart__item
+          a.site-cart__item-media(href="/product.html")
+            img(src="/src/assets/images/products/product-1.png" alt="Кольцо Росток" width="160" height="180")
+          .site-cart__item-body
+            a.site-cart__item-title(href="/product.html") Кольцо Росток
+            p.site-cart__item-meta Размер: 16
+            p.site-cart__item-status Украшение добавлено
+            .site-cart__item-prices
+              span.site-cart__item-price.site-cart__item-price--old 18 204 ₽
+              span.site-cart__item-price 10 255 ₽
+            button.site-cart__item-remove(type="button") Удалить
+
+        article.site-cart__item
+          a.site-cart__item-media(href="/product.html")
+            img(src="/src/assets/images/products/product-2.png" alt="Серьги Капля" width="160" height="180")
+          .site-cart__item-body
+            a.site-cart__item-title(href="/product.html") Серьги Капля
+            p.site-cart__item-meta Размер: —
+            p.site-cart__item-status Украшение добавлено
+            .site-cart__item-prices
+              span.site-cart__item-price.site-cart__item-price--old 18 200 ₽
+              span.site-cart__item-price 10 255 ₽
+            button.site-cart__item-remove(type="button") Удалить
+
+        article.site-cart__item
+          a.site-cart__item-media(href="/product.html")
+            img(src="/src/assets/images/products/product-3.png" alt="Кольцо Росток" width="160" height="180")
+          .site-cart__item-body
+            a.site-cart__item-title(href="/product.html") Кольцо Росток
+            p.site-cart__item-meta Размер: 16
+            p.site-cart__item-status Украшение добавлено
+            .site-cart__item-prices
+              span.site-cart__item-price.site-cart__item-price--old 18 204 ₽
+              span.site-cart__item-price 10 255 ₽
+            button.site-cart__item-remove(type="button") Удалить
+
+        article.site-cart__item
+          a.site-cart__item-media(href="/product.html")
+            img(src="/src/assets/images/products/product-4.png" alt="Кольцо Росток" width="160" height="180")
+          .site-cart__item-body
+            a.site-cart__item-title(href="/product.html") Кольцо Росток
+            p.site-cart__item-meta Размер: 16
+            p.site-cart__item-status Украшение добавлено
+            .site-cart__item-prices
+              span.site-cart__item-price.site-cart__item-price--old 18 204 ₽
+              span.site-cart__item-price 10 255 ₽
+            button.site-cart__item-remove(type="button") Удалить
+
+      .site-cart__footer
+        .site-cart__footer-col.site-cart__footer-cols
+          .site-cart__footer-col
+            span.site-cart__footer-label До скидки
+            span.site-cart__footer-value.site-cart__footer-value--old 36 404 ₽
+          .site-cart__footer-col
+            span.site-cart__footer-label Итого
+            span.site-cart__footer-value 20 510 ₽
+        .site-cart__footer-col
+          a.button.site-cart__checkout(href="#") Перейти к оформлению

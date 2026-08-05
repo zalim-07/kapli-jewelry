@@ -54,7 +54,12 @@ header.site-header(
             .site-header__contacts-item
               a.site-header__contacts-value(href="mailto:info@kapli-jewelry.ru") info@kapli-jewelry.ru
               p.site-header__contacts-note Напишите нам
-      a.site-header__action(href="#cart" aria-label="Корзина")
+      button.site-header__action.site-header__action--cart(
+        type="button"
+        aria-label="Корзина"
+        aria-expanded="false"
+        aria-controls="site-cart"
+      )
         span.site-header__icon.site-header__icon--bag(aria-hidden="true")
         span.site-header__action-text Корзина
 
@@ -73,3 +78,5 @@ aside.site-sidemenu#site-sidemenu(aria-hidden="true" aria-label="Меню")
             a(href="#journey") Производство
           li.menu-item
             a(href="#journal") Журнал
+
+include /includes/cart
