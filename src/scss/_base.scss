@@ -85,6 +85,7 @@ h4,
 h5,
 h6 {
   font-family: var(--font-family);
+  font-weight: 500;
   margin: 0;
   padding: 0;
 }
@@ -124,6 +125,43 @@ h6 {
   line-height: 1.2;
   letter-spacing: 0.02em;
 }
+
+
+
+.admin-bar .site-sidemenu,
+.admin-bar .site-header {
+	top: 32px;
+}
+
+.admin-bar .product-gallery {
+	height: calc(100vh - 40px);
+}
+
+@media screen and (max-width: 782px) {
+
+	.admin-bar .site-sidemenu,
+	.admin-bar .site-header {
+		top: 46px;
+	}
+
+	.admin-bar .product-gallery {
+		height: calc(100vh - 54px);
+	}
+}
+
+@media screen and (max-width: 392px) {
+
+	.admin-bar .site-sidemenu,
+	.admin-bar .site-header {
+		top: 0px;
+	}
+}
+
+
+strong {
+	font-weight: 500;
+}
+
 
 
 .page-shell {

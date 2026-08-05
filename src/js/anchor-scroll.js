@@ -3,10 +3,93 @@ import {
     setAnchorScrolling,
 } from './scroll-trigger-refresh.js';
 
+function normalizePathname(pathname) {
+    if (!pathname || pathname === '/') {
+        return '/';
+    }
+
+    return pathname.replace(/\/$/, '') || '/';
+}
+
+function getLinkHash(link) {
+    const href = link.getAttribute('href');
+
+    if (!href || href === '#') {
+        return null;
+    }
+
+    if (href.startsWith('#')) {
+        return href;
+    }
+
+    try {
+        const url = new URL(href, window.location.href);
+
+        if (!url.hash || url.hash === '#') {
+            return null;
+        }
+
+        return url.hash;
+    } catch {
+        return null;
+    }
+}
+
+function isSamePageHashLink(link) {
+    const hash = getLinkHash(link);
+
+    if (!hash) {
+        return false;
+    }
+
+    const href = link.getAttribute('href');
+
+    if (href.startsWith('#')) {
+        return true;
+    }
+
+    try {
+        const url = new URL(href, window.location.href);
+
+        return (
+            url.origin === window.location.origin &&
+            normalizePathname(url.pathname) ===
+                normalizePathname(window.location.pathname) &&
+            url.search === window.location.search
+        );
+    } catch {
+        return false;
+    }
+}
+
+function getStickyHeaderOffset() {
+    const header = document.querySelector('.site-header');
+
+    if (!header) {
+        return 0;
+    }
+
+    const wasSticky = header.classList.contains('is-sticky');
+
+    if (!wasSticky) {
+        header.classList.add('is-sticky');
+    }
+
+    const offset = header.getBoundingClientRect().height;
+
+    if (!wasSticky) {
+        header.classList.remove('is-sticky');
+    }
+
+    return offset;
+}
+
 function getScrollTopForTarget(target) {
     return Math.max(
         0,
-        target.getBoundingClientRect().top + window.scrollY,
+        target.getBoundingClientRect().top +
+            window.scrollY -
+            getStickyHeaderOffset(),
     );
 }
 
@@ -66,21 +149,6 @@ function scrollToTarget(target, { updateHistory = true } = {}) {
     });
 }
 
-function isSamePageHashLink(link) {
-    const href = link.getAttribute('href');
-
-    if (!href || !href.startsWith('#') || href === '#') {
-        return false;
-    }
-
-    const url = new URL(link.href, window.location.href);
-
-    return (
-        url.pathname === window.location.pathname &&
-        url.search === window.location.search
-    );
-}
-
 export function initAnchorScroll() {
     document.addEventListener('click', (event) => {
         const link = event.target.closest('a[href]');
@@ -89,7 +157,8 @@ export function initAnchorScroll() {
             return;
         }
 
-        const target = document.querySelector(link.getAttribute('href'));
+        const hash = getLinkHash(link);
+        const target = hash ? document.querySelector(hash) : null;
 
         if (!target) {
             return;

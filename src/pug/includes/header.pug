@@ -28,14 +28,32 @@ header.site-header(
 
     a.site-header__logo(href="/home.html" aria-label="Kapli Jewelry, главная")
       span.site-header__logo-desktop(aria-hidden="true")
-        include ../../assets/svg/logo.svg
+        include ../../assets/svg/logo-mobile.svg
       span.site-header__logo-mobile(aria-hidden="true")
         include ../../assets/svg/logo-mobile.svg
 
     .site-header__actions
-      a.site-header__action(href="#contacts" aria-label="Контакты")
-        span.site-header__icon.site-header__icon--phone(aria-hidden="true")
-        span.site-header__action-text Контакты
+      .site-header__contacts
+        button.site-header__action.site-header__action--contacts(
+          type="button"
+          aria-label="Контакты"
+          aria-expanded="false"
+          aria-controls="header-contacts-popup"
+        )
+          span.site-header__icon.site-header__icon--phone(aria-hidden="true")
+          span.site-header__action-text Контакты
+        .site-header__contacts-popup#header-contacts-popup(
+          aria-hidden="true"
+          role="dialog"
+          aria-label="Контакты"
+        )
+          .site-header__contacts-popup-box
+            .site-header__contacts-item
+              a.site-header__contacts-value(href="tel:+79252969444") +7 925 296 94 44
+              p.site-header__contacts-note Будем рады вашему звонку
+            .site-header__contacts-item
+              a.site-header__contacts-value(href="mailto:info@kapli-jewelry.ru") info@kapli-jewelry.ru
+              p.site-header__contacts-note Напишите нам
       a.site-header__action(href="#cart" aria-label="Корзина")
         span.site-header__icon.site-header__icon--bag(aria-hidden="true")
         span.site-header__action-text Корзина
