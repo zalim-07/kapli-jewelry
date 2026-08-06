@@ -1,4 +1,5 @@
 include /components/button
+include /components/text-button
 include /components/radio-button
 include /components/input
 include /components/checkbox
@@ -14,11 +15,21 @@ main.ui-kit
         h3.ui-kit__group-title Style=White
         .ui-kit__items.ui-kit__items--row
           +uiButton({ label: 'Перейти в каталог', variant: 'white' })
+          +uiButton({ label: 'Перейти в каталог', variant: 'outline' })
       .ui-kit__group
         h3.ui-kit__group-title Style=Black
         .ui-kit__items.ui-kit__items--row
           +uiButton({ label: 'Перейти в каталог', variant: 'black' })
           +uiButton({ label: 'Перейти в каталог', variant: 'black', disabled: true })
+
+    section.ui-kit__section(id="ui-kit-text-button")
+      h2.ui-kit__section-title Text Button
+      .ui-kit__group
+        h3.ui-kit__group-title Default
+        .ui-kit__items.ui-kit__items--row
+          +uiTextButton({ label: 'Очистить корзину' })
+          +uiTextButton({ label: 'Удалить все' })
+          +uiTextButton({ label: 'Удалить' })
 
     section.ui-kit__section(id="ui-kit-radio")
       h2.ui-kit__section-title Radio Button
@@ -59,16 +70,16 @@ main.ui-kit
           +uiInput({ id: 'input-md-default', label: 'Label', placeholder: 'Placeholder', tooltip: true })
           +uiInput({ id: 'input-md-filled', label: 'Label', placeholder: 'Placeholder', value: 'Placeholder', tooltip: true })
           +uiInput({ id: 'input-md-disabled', label: 'Label', placeholder: 'Placeholder', disabled: true, tooltip: true })
-          +uiInput({ id: 'input-md-error', label: 'Label', placeholder: 'Placeholder', error: true, errorText: 'Error message', tooltip: true })
-          +uiInput({ id: 'input-md-error-filled', label: 'Label', placeholder: 'Placeholder', value: 'Placeholder', error: true, errorText: 'Error message', tooltip: true })
+          +uiInput({ id: 'input-md-error', label: 'Label', placeholder: 'Placeholder', error: true, tooltip: true })
+          +uiInput({ id: 'input-md-error-filled', label: 'Label', placeholder: 'Placeholder', value: 'Placeholder', error: true, tooltip: true })
       .ui-kit__group
         h3.ui-kit__group-title Style=Outline, Size=Lg
         .ui-kit__items.ui-kit__items--input
           +uiInput({ id: 'input-lg-default', label: 'Label', placeholder: 'Placeholder', size: 'lg', tooltip: true })
           +uiInput({ id: 'input-lg-filled', label: 'Label', placeholder: 'Placeholder', value: 'Placeholder', size: 'lg', tooltip: true })
           +uiInput({ id: 'input-lg-disabled', label: 'Label', placeholder: 'Placeholder', size: 'lg', disabled: true, tooltip: true })
-          +uiInput({ id: 'input-lg-error', label: 'Label', placeholder: 'Placeholder', size: 'lg', error: true, errorText: 'Error message', tooltip: true })
-          +uiInput({ id: 'input-lg-error-filled', label: 'Label', placeholder: 'Placeholder', value: 'Placeholder', size: 'lg', error: true, errorText: 'Error message', tooltip: true })
+          +uiInput({ id: 'input-lg-error', label: 'Label', placeholder: 'Placeholder', size: 'lg', error: true, tooltip: true })
+          +uiInput({ id: 'input-lg-error-filled', label: 'Label', placeholder: 'Placeholder', value: 'Placeholder', size: 'lg', error: true, tooltip: true })
 
     section.ui-kit__section(id="ui-kit-checkbox")
       h2.ui-kit__section-title Checkbox
@@ -87,4 +98,4 @@ main.ui-kit
           +uiCheckbox({ id: 'checkbox-md-disabled', name: 'checkbox-md-disabled', label: 'Text', size: 'md', disabled: true })
           +uiCheckbox({ id: 'checkbox-md-active', name: 'checkbox-md-active', label: 'Text', size: 'md', checked: true })
           +uiCheckbox({ id: 'checkbox-md-disabled-active', name: 'checkbox-md-disabled-active', label: 'Text', size: 'md', checked: true, disabled: true })
-          +uiCheckbox({ id: 'checkbox-md-error', name: 'checkbox-md-error', label: 'Text', size: 'md', error: true, checked: true })
+          +uiCheckbox({ id: 'checkbox-md-error', name: 'checkbox-md-error', label: 'Text', size: 'md', error: true, checked: false })

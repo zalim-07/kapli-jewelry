@@ -1,8 +1,5 @@
 mixin uiInputInfoIcon()
-  svg.ui-input-field__info-icon(width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true")
-    circle(cx="8" cy="8" r="7" stroke="currentColor" stroke-width="1")
-    path(d="M8 7V11" stroke="currentColor" stroke-width="1" stroke-linecap="round")
-    circle(cx="8" cy="5" r="0.75" fill="currentColor")
+  include ../../assets/svg/info.svg
 
 mixin uiInput(options = {})
   - const id = options.id || options.name || 'input'
@@ -11,7 +8,8 @@ mixin uiInput(options = {})
   - const style = options.style || 'outline'
   - const disabled = options.disabled || false
   - const hasError = options.error || false
-  - const message = hasError ? options.errorText : options.hint
+  - const hasTooltip = Boolean(options.tooltip)
+  - const tooltipText = typeof options.tooltip === 'string' ? options.tooltip : (options.tooltipText || options.tooltipLabel || 'Подсказка')
   - const className = ['ui-input-field', `ui-input-field--${size}`, `ui-input-field--${style}`, hasError ? 'ui-input-field--error' : null, disabled ? 'ui-input-field--disabled' : null, options.class || null].filter(Boolean).join(' ')
 
   .ui-input-field(class=className)
@@ -28,10 +26,13 @@ mixin uiInput(options = {})
         disabled=disabled ? true : null
         required=options.required ? true : null
         aria-invalid=hasError ? 'true' : null
-        aria-describedby=message ? `${id}-message` : null
       )
-      if options.tooltip
-        button.ui-input-field__info(type="button" aria-label=options.tooltipLabel || options.tooltip || 'Подсказка')
-          +uiInputInfoIcon()
-    if message
-      p.ui-input-field__message(id=`${id}-message` class=hasError ? 'ui-input-field__message--error' : null)= message
+      if hasTooltip
+        span.ui-input-field__info-wrap
+          button.ui-input-field__info(
+            type="button"
+            aria-label=options.tooltipLabel || tooltipText
+            aria-describedby=`${id}-tooltip`
+          )
+            +uiInputInfoIcon()
+          span.ui-input-field__tooltip(id=`${id}-tooltip` role="tooltip")= tooltipText

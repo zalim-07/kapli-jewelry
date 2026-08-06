@@ -72,20 +72,6 @@
 
 }
 
-.cart-page__clear {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  background: transparent;
-  color: #616161;
-  font-family: var(--font-family-secondary);
-  font-size: 14px;
-  line-height: 1.4;
-  text-decoration: underline;
-  text-underline-offset: 2px;
-  cursor: pointer;
-}
-
 .cart-page__items {
   display: flex;
   flex-direction: column;
@@ -183,17 +169,6 @@
   position: absolute;
   right: 16px;
   bottom: 16px;
-  margin: 0;
-  padding: 0;
-  border: 0;
-  background: transparent;
-  color: #616161;
-  font-family: var(--font-family-secondary);
-  font-size: 14px;
-  line-height: 1.4;
-  text-decoration: underline;
-  text-underline-offset: 2px;
-  cursor: pointer;
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
@@ -230,26 +205,6 @@
   display: flex;
   flex-direction: column;
   gap: 40px;
-}
-
-.cart-page__promo-input {
-  box-sizing: border-box;
-  width: 100%;
-  height: 40px;
-  padding: 8.5px 0;
-  border: none;
-  border-bottom: 1px solid #D7D7D7;
-  border-radius: 0;
-  background: transparent;
-  color: #111;
-  font-family: var(--font-family-secondary);
-  font-size: 16px;
-  line-height: 1.4;
-  letter-spacing: 0;
-
-  &::placeholder {
-    color: #999;
-  }
 }
 
 .cart-page__order-title {
@@ -325,9 +280,7 @@
 }
 
 .cart-page__checkout {
-  width: 100%;
   margin-top: 24px;
-  height: 48px;
 }
 
 .cart-page__installments {

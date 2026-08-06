@@ -16,6 +16,8 @@ import { scheduleScrollTriggerRefresh } from './js/scroll-trigger-refresh.js';
 
 import { initProductTabs } from './js/product-tabs.js';
 import { initCartPageItems } from './js/cart-page-items.js';
+import { initUiRadio } from './js/ui-radio.js';
+import { initUiCheckbox } from './js/ui-checkbox.js';
 
 function initStaticHeaderTheme() {
   const header = document.querySelector('.site-header');
@@ -83,6 +85,14 @@ if (document.querySelector('.product-tabs')) {
 
 if (document.querySelector('.cart-page__item')) {
   initCartPageItems();
+}
+
+if (document.querySelector('.ui-radio')) {
+  initUiRadio();
+}
+
+if (document.querySelector('.ui-checkbox')) {
+  initUiCheckbox();
 }
 
 window.addEventListener('load', () => {

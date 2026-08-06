@@ -2,6 +2,9 @@
   const isCartFreeDelivery =
     typeof cartFreeDelivery !== 'undefined' && cartFreeDelivery
 
+include /components/text-button
+include /components/button
+
 aside.site-cart#site-cart(
   class=isCartFreeDelivery ? 'site-cart--free-delivery' : false
   aria-hidden="true"
@@ -16,7 +19,7 @@ aside.site-cart#site-cart(
         h2.site-cart__title Корзина
         .site-cart__head-actions
           
-          button.site-cart__clear(type="button") Удалить все
+          +uiTextButton({ label: 'Удалить все', class: 'site-cart__clear' })
 
       .site-cart__progress(
         data-cart-progress
@@ -46,7 +49,7 @@ aside.site-cart#site-cart(
             .site-cart__item-prices
               span.site-cart__item-price.site-cart__item-price--old 18 204 ₽
               span.site-cart__item-price 10 255 ₽
-            button.site-cart__item-remove(type="button") Удалить
+            +uiTextButton({ label: 'Удалить', class: 'site-cart__item-remove' })
 
         article.site-cart__item
           a.site-cart__item-media(href="/product.html")
@@ -58,7 +61,7 @@ aside.site-cart#site-cart(
             .site-cart__item-prices
               span.site-cart__item-price.site-cart__item-price--old 18 200 ₽
               span.site-cart__item-price 10 255 ₽
-            button.site-cart__item-remove(type="button") Удалить
+            +uiTextButton({ label: 'Удалить', class: 'site-cart__item-remove' })
 
         article.site-cart__item
           a.site-cart__item-media(href="/product.html")
@@ -70,7 +73,7 @@ aside.site-cart#site-cart(
             .site-cart__item-prices
               span.site-cart__item-price.site-cart__item-price--old 18 204 ₽
               span.site-cart__item-price 10 255 ₽
-            button.site-cart__item-remove(type="button") Удалить
+            +uiTextButton({ label: 'Удалить', class: 'site-cart__item-remove' })
 
         article.site-cart__item
           a.site-cart__item-media(href="/product.html")
@@ -82,7 +85,7 @@ aside.site-cart#site-cart(
             .site-cart__item-prices
               span.site-cart__item-price.site-cart__item-price--old 18 204 ₽
               span.site-cart__item-price 10 255 ₽
-            button.site-cart__item-remove(type="button") Удалить
+            +uiTextButton({ label: 'Удалить', class: 'site-cart__item-remove' })
 
       .site-cart__footer
         .site-cart__footer-col.site-cart__footer-cols
@@ -93,4 +96,10 @@ aside.site-cart#site-cart(
             span.site-cart__footer-label Итого
             span.site-cart__footer-value 20 510 ₽
         .site-cart__footer-col
-          a.button.site-cart__checkout(href="#") Перейти к оформлению
+          +uiButton({
+            label: 'Перейти к оформлению',
+            variant: 'black',
+            href: '/checkout.html',
+            fullWidth: true,
+            class: 'site-cart__checkout',
+          })

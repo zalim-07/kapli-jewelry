@@ -30,6 +30,13 @@
   line-height: 1.2;
 }
 
+.ui-kit__group{
+    padding: 10px;
+    border: 1px dashed #aaa;
+    border-radius: 5px;
+    min-width: 360px;
+}
+
 .ui-kit__group-title {
   margin: 0 0 16px;
   font-family: var(--font-family-secondary);

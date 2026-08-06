@@ -1,0 +1,181 @@
+include /components/input
+include /components/radio-button
+include /components/button
+
+mixin checkoutSectionTitle(step, title)
+  .checkout-page__section-head
+    span.checkout-page__section-step= step
+    h2.checkout-page__section-title= title
+
+-
+  const isDeliverySelected =
+    typeof checkoutDeliverySelected !== 'undefined' && checkoutDeliverySelected
+
+mixin checkoutPaymentCard(options = {})
+  .checkout-payment-card
+    .checkout-payment-card__logos
+      block
+    +uiRadio({
+      id: options.id,
+      name: options.name || 'checkout-payment',
+      value: options.value,
+      label: options.label,
+      checked: options.checked || false,
+      size: 'md',
+    })
+
+main.checkout-page__main
+  .checkout-page__header
+    .checkout-page__header-inner
+      h1.checkout-page__title Оформление заказа
+      p.checkout-page__count 2 украшения
+
+  .checkout-page__layout(
+    class=isDeliverySelected ? 'checkout-page__layout--delivery-selected' : null
+  )
+    .checkout-page__content
+      section.checkout-page__section
+        +checkoutSectionTitle('1/3', 'Информация')
+        .checkout-page__fields.checkout-page__fields--grid
+          +uiInput({
+            id: 'checkout-first-name',
+            name: 'first_name',
+            label: 'Имя',
+            placeholder: 'Мария',
+            size: 'lg',
+          })
+          +uiInput({
+            id: 'checkout-last-name',
+            name: 'last_name',
+            label: 'Фамилия',
+            placeholder: 'Иванова',
+            size: 'lg',
+          })
+          +uiInput({
+            id: 'checkout-email',
+            name: 'email',
+            label: 'Email',
+            placeholder: 'info@kapli-jewelry.ru',
+            size: 'lg',
+            type: 'email',
+          })
+          +uiInput({
+            id: 'checkout-phone',
+            name: 'phone',
+            label: 'Номер телефона',
+            placeholder: '+7 999 123 45 67',
+            size: 'lg',
+            type: 'tel',
+          })
+
+      section.checkout-page__section
+        +checkoutSectionTitle('2/3', 'Доставка СДЕК')
+        .checkout-page__delivery
+          +uiInput({
+            id: 'checkout-city',
+            name: 'city',
+            label: 'Город',
+            value: 'Москва',
+            size: 'lg',
+          })
+          .checkout-page__map
+            img(
+              src="/src/assets/images/checkout/map.png"
+              alt="Карта пунктов выдачи СДЭК"
+              width="900"
+              height="481"
+              loading="lazy"
+            )
+          .checkout-page__pickup
+            h3.checkout-page__pickup-title ПВЗ СДЕК
+            .checkout-page__pickup-row
+              p.checkout-page__pickup-address
+                | Ногинск (Московская обл), пер. 3-й Текстильный, 4
+              button.checkout-page__pickup-change(type="button") Изменить адрес
+            .checkout-page__pickup-meta
+              span.checkout-page__pickup-price Бесплатно
+              span.checkout-page__pickup-time 2–3 дн.
+          +uiInput({
+            id: 'checkout-comment',
+            name: 'comment',
+            label: 'Комментарий к заказу',
+            placeholder: 'Информация, которую нам нужно знать',
+            size: 'lg',
+          })
+
+      section.checkout-page__section
+        +checkoutSectionTitle('3/3', 'Оплата заказа')
+        .checkout-page__payment
+          .checkout-page__payment-row.checkout-page__payment-row--primary
+            +checkoutPaymentCard({
+              id: 'checkout-payment-sbp',
+              value: 'sbp',
+              label: 'Оплата через СБП',
+              checked: true,
+            })
+              span.checkout-payment-card__logo.checkout-payment-card__logo--sbp(aria-hidden="true")
+                include ../../assets/svg/sbp.svg
+            +checkoutPaymentCard({
+              id: 'checkout-payment-card',
+              value: 'card',
+              label: 'Банковская картой онлайн',
+            })
+              span.checkout-payment-card__logo-group.checkout-payment-card__logo--tpay-mir(aria-hidden="true")
+                include ../../assets/svg/tpay-mir.svg
+          .checkout-page__payment-row.checkout-page__payment-row--installments
+            +checkoutPaymentCard({
+              id: 'checkout-payment-dolyame',
+              value: 'dolyame',
+              label: 'Долями — 4 платежа по 5125₽',
+            })
+              span.checkout-payment-card__logo(aria-hidden="true")
+                include ../../assets/svg/dolyame-logo.svg
+            +checkoutPaymentCard({
+              id: 'checkout-payment-split',
+              value: 'split',
+              label: 'Яндекс Сплит — 4 × 5125₽',
+            })
+              span.checkout-payment-card__logo.checkout-payment-card__logo--split(aria-hidden="true")
+                include ../../assets/svg/split-logo.svg
+            +checkoutPaymentCard({
+              id: 'checkout-payment-podeli',
+              value: 'podeli',
+              label: 'Подели — 4 платежа по 5125₽',
+            })
+              span.checkout-payment-card__logo.checkout-payment-card__logo--podeli(aria-hidden="true")
+                include ../../assets/svg/podeli-black-logo.svg
+
+    aside.checkout-page__aside
+      +uiInput({
+        id: 'checkout-promo',
+        name: 'promo',
+        label: 'Промокод',
+        value: '',
+        placeholder: 'Promo10',
+        size: 'md',
+      })
+
+      .checkout-page__order
+        h2.checkout-page__order-title Ваш заказ
+
+        .checkout-page__order-rows
+          .checkout-page__order-row
+            span Товары
+            strong 36 408 ₽
+          .checkout-page__order-row
+            span Скидка
+            strong − 15 892 ₽
+          .checkout-page__order-row
+            span Доставка
+            span Бесплатно
+
+        .checkout-page__order-total
+          span Сумма заказа
+          strong 20 510 ₽
+
+      +uiButton({
+        label: isDeliverySelected ? 'Оформить заказ' : 'Заполните все данные',
+        variant: 'black',
+        disabled: !isDeliverySelected,
+        class: 'checkout-page__submit',
+      })

@@ -1,0 +1,18 @@
+mixin uiTextButton(options = {})
+  - const tag = options.href ? 'a' : 'button'
+  - const type = options.type || 'button'
+  - const className = ['ui-text-button', options.class || null].filter(Boolean).join(' ')
+
+  if tag === 'a'
+    a(
+      class=className
+      href=options.href
+      aria-label=options.ariaLabel || null
+    )= options.label || options.text
+  else
+    button(
+      class=className
+      type=type
+      aria-label=options.ariaLabel || null
+      disabled=options.disabled ? true : null
+    )= options.label || options.text

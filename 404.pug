@@ -1,0 +1,44 @@
+include /components/button
+
+doctype html
+html(lang="ru")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    meta(
+      name="description"
+      content="Страница не найдена — Kapli Jewelry."
+    )
+    title Kapli Jewelry — Страница не найдена
+  body
+    main.page-shell
+      section.error-404(aria-labelledby="error-404-title")
+        .error-404__content
+          .error-404__intro
+            p.error-404__brand KAPLI JEWELRY
+
+            h1.error-404__title#error-404-title
+              | Страница 
+              em не найдена
+
+            p.error-404__description
+              | Возможно, страница была перемещена или её больше не существует. Продолжите знакомство с украшениями Kapli Jewelry на главной.
+
+          .error-404__action
+            +uiButton({
+              label: 'Вернуться на главную',
+              variant: 'outline',
+              href: '/home.html',
+              fullWidth: true,
+            })
+
+        .error-404__media
+          img.error-404__image(
+            src="/src/assets/images/404/bg-404.png"
+            alt="Украшения Kapli Jewelry"
+            width="716"
+            height="620"
+            fetchpriority="high"
+          )
+
+    script(type="module" src="/src/main.js")

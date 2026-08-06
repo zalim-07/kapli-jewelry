@@ -5,7 +5,7 @@ function getLayoutMinWidth() {
 
     const parsed = Number.parseFloat(value);
 
-    return Number.isFinite(parsed) ? parsed : 390;
+    return Number.isFinite(parsed) ? parsed : 375;
 }
 
 export function initViewportScale() {

@@ -1,10 +1,14 @@
+include /components/input
+include /components/button
+include /components/text-button
+
 main.cart-page__main
   .cart-page__header
     .cart-page__header-inner
       h1.cart-page__title Корзина
       .cart-page__toolbar
         p.cart-page__count 2 украшения
-        button.cart-page__clear(type="button") Очистить корзину
+        +uiTextButton({ label: 'Очистить корзину', class: 'cart-page__clear' })
 
   .cart-page__layout
     .cart-page__primary
@@ -20,7 +24,7 @@ main.cart-page__main
             .cart-page__item-prices
               span.cart-page__item-price.cart-page__item-price--old 18 204 ₽
               span.cart-page__item-price 10 255 ₽
-            button.cart-page__item-remove(type="button") Удалить
+            +uiTextButton({ label: 'Удалить', class: 'cart-page__item-remove' })
 
         article.cart-page__item
           a.cart-page__item-media(href="/product.html")
@@ -33,19 +37,18 @@ main.cart-page__main
             .cart-page__item-prices
               span.cart-page__item-price.cart-page__item-price--old 18 204 ₽
               span.cart-page__item-price 10 255 ₽
-            button.cart-page__item-remove(type="button") Удалить
+            +uiTextButton({ label: 'Удалить', class: 'cart-page__item-remove' })
 
       p.cart-page__note Корзина автоматически очистится через 24 часа
 
     aside.cart-page__aside
       form.cart-page__promo(action="#" method="post")
-        label.visually-hidden(for="cart-promo") Промокод
-        input#cart-promo.cart-page__promo-input(
-          type="text"
-          name="promo"
-          placeholder="Введите промокод"
-          autocomplete="off"
-        )
+        +uiInput({
+          id: 'cart-promo',
+          name: 'promo',
+          placeholder: 'Введите промокод',
+          size: 'md',
+        })
 
       .cart-page__order
         h2.cart-page__order-title Ваш заказ
@@ -65,7 +68,13 @@ main.cart-page__main
           span Сумма заказа:
           strong 20 510 ₽
 
-        a.button.cart-page__checkout(href="#") Оформить заказ
+        +uiButton({
+          label: 'Оформить заказ',
+          variant: 'black',
+          href: '/checkout.html',
+          fullWidth: true,
+          class: 'cart-page__checkout',
+        })
 
         .cart-page__installments
           .cart-page__installments-caption

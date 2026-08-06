@@ -3,17 +3,17 @@ mixin uiButton(options = {})
   - const type = options.type || 'button'
   - const variant = options.variant || 'black'
   - const disabled = options.disabled || false
-  - const className = ['ui-button', `ui-button--${variant}`, options.class || null].filter(Boolean).join(' ')
+  - const className = ['ui-button', `ui-button--${variant}`, options.fullWidth ? 'ui-button--full' : null, options.class || null].filter(Boolean).join(' ')
 
   if tag === 'a'
-    a.ui-button(
+    a(
       class=className
       href=disabled ? null : options.href
       aria-disabled=disabled ? 'true' : null
       tabindex=disabled ? -1 : null
     )= options.label || options.text
   else
-    button.ui-button(
+    button(
       class=className
       type=type
       disabled=disabled ? true : null

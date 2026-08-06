@@ -54,7 +54,7 @@
   }
 
   &:disabled {
-    cursor: not-allowed;
+    cursor: default;
   }
 }
 
@@ -136,16 +136,27 @@
   border-bottom-color: #d92616;
 }
 
-.ui-input-field__message {
-  margin: 0;
-  font-family: var(--font-family-secondary);
-  font-size: 12px;
-  line-height: 1.2;
-  color: #8f938d;
+.ui-input-field__info-wrap {
+  position: relative;
+  flex-shrink: 0;
+  line-height: 0;
 
-  &--error {
-    color: #d92616;
+  &:hover,
+  &:focus-within {
+    .ui-input-field__info {
+      color: #999;
+    }
+
+    .ui-input-field__tooltip {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
   }
+}
+
+.ui-input-field--disabled .ui-input-field__info-wrap {
+  pointer-events: none;
 }
 
 .ui-input-field__info {
@@ -160,6 +171,35 @@
   background: transparent;
   color: #d7d7d7;
   cursor: pointer;
+  transition: color var(--transition);
+
+  svg {
+    display: block;
+  }
+}
+
+.ui-input-field__tooltip {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 20px);
+  z-index: 5;
+  width: max-content;
+  max-width: 240px;
+  background: #fff;
+  color: #111;
+  font-family: var(--font-family-secondary);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.16;
+  white-space: normal;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(4px);
+  transition:
+    opacity var(--transition),
+    visibility var(--transition),
+    transform var(--transition);
 }
 
 .ui-input-field__info-icon {
