@@ -319,3 +319,19 @@ strong {
     }
   }
 }
+
+.index-list {
+  // list-style: none;
+  li {
+    margin-bottom: 16px;
+  }
+  a {
+    text-decoration: none;
+    font-weight: 500;
+    color: #111;
+
+    &:hover {
+      color: #616161;
+    }
+  }
+}

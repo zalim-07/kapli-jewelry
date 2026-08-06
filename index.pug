@@ -5,14 +5,23 @@ html(lang="en")
     meta(name="viewport" content="width=device-width, initial-scale=1.0")
     title index
   body
-    ul
+    ul.index-list
       li
         a(href="/home.html") Главная страница
+      li
+        a(href="/home-free-delivery.html") Главная - с бесплатной доставкой в корзине
       //- li
       //-   a(href="/archive.html") Каталог
       li
         a(href="/product.html") Страница товара
       li
+        a(href="/cart.html") Корзина
+      li
         a(href="/page.html") Текстовая страница
+      li
+        a(href="/ui-kit.html") UI Kit
       //- li
       //-   a(href="/coming-soon.html") Страница "Красота требует времени"
+
+    script(type="module" src="/src/main.js")
+

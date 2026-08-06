@@ -15,6 +15,7 @@ import { initAnchorScroll } from './js/anchor-scroll.js';
 import { scheduleScrollTriggerRefresh } from './js/scroll-trigger-refresh.js';
 
 import { initProductTabs } from './js/product-tabs.js';
+import { initCartPageItems } from './js/cart-page-items.js';
 
 function initStaticHeaderTheme() {
   const header = document.querySelector('.site-header');
@@ -78,6 +79,10 @@ if (document.querySelector('.journal-swiper')) {
 
 if (document.querySelector('.product-tabs')) {
   initProductTabs();
+}
+
+if (document.querySelector('.cart-page__item')) {
+  initCartPageItems();
 }
 
 window.addEventListener('load', () => {

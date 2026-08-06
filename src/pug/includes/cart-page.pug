@@ -1,0 +1,84 @@
+main.cart-page__main
+  .cart-page__header
+    .cart-page__header-inner
+      h1.cart-page__title Корзина
+      .cart-page__toolbar
+        p.cart-page__count 2 украшения
+        button.cart-page__clear(type="button") Очистить корзину
+
+  .cart-page__layout
+    .cart-page__primary
+      .cart-page__items
+        article.cart-page__item
+          a.cart-page__item-media(href="/product.html")
+            img(src="/src/assets/images/products/product-1.png" alt="Кольцо Росток" width="160" height="160")
+          .cart-page__item-body
+            .cart-page__item-info
+              h2.cart-page__item-title
+                a(href="/product.html") Кольцо Росток
+              p.cart-page__item-meta Размер: 16
+            .cart-page__item-prices
+              span.cart-page__item-price.cart-page__item-price--old 18 204 ₽
+              span.cart-page__item-price 10 255 ₽
+            button.cart-page__item-remove(type="button") Удалить
+
+        article.cart-page__item
+          a.cart-page__item-media(href="/product.html")
+            img(src="/src/assets/images/products/product-2.png" alt="Серьги Капля" width="160" height="160")
+          .cart-page__item-body
+            .cart-page__item-info
+              h2.cart-page__item-title
+                a(href="/product.html") Серьги Капля
+              p.cart-page__item-meta Размер: —
+            .cart-page__item-prices
+              span.cart-page__item-price.cart-page__item-price--old 18 204 ₽
+              span.cart-page__item-price 10 255 ₽
+            button.cart-page__item-remove(type="button") Удалить
+
+      p.cart-page__note Корзина автоматически очистится через 24 часа
+
+    aside.cart-page__aside
+      form.cart-page__promo(action="#" method="post")
+        label.visually-hidden(for="cart-promo") Промокод
+        input#cart-promo.cart-page__promo-input(
+          type="text"
+          name="promo"
+          placeholder="Введите промокод"
+          autocomplete="off"
+        )
+
+      .cart-page__order
+        h2.cart-page__order-title Ваш заказ
+
+        .cart-page__order-rows
+          .cart-page__order-row
+            span Товары
+            strong 36 408 ₽
+          .cart-page__order-row
+            span Скидка
+            strong − 15 892 ₽
+          .cart-page__order-row
+            span Доставка
+            span Бесплатно
+
+        .cart-page__order-total
+          span Сумма заказа:
+          strong 20 510 ₽
+
+        a.button.cart-page__checkout(href="#") Оформить заказ
+
+        .cart-page__installments
+          .cart-page__installments-caption
+            span.cart-page__installments-text 4 платежа × 2 404 ₽
+            button.cart-page__installments-info(
+              type="button"
+              aria-label="Подробнее об оплате частями"
+            )
+              include ../../assets/svg/question.svg
+          .cart-page__installments-logos(aria-label="Сервисы оплаты частями")
+            span.cart-page__installments-logo(aria-label="Подели")
+              include ../../assets/svg/podeli-black-logo.svg
+            span.cart-page__installments-logo(aria-label="Долями")
+              include ../../assets/svg/dolyame-logo.svg
+            span.cart-page__installments-logo(aria-label="Сплит")
+              include ../../assets/svg/split-logo.svg

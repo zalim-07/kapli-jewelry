@@ -1,0 +1,90 @@
+include /components/button
+include /components/radio-button
+include /components/input
+include /components/checkbox
+
+main.ui-kit
+  .ui-kit__inner
+    header.ui-kit__header
+      h1.ui-kit__title Базовые компоненты интерфейса
+
+    section.ui-kit__section(id="ui-kit-button")
+      h2.ui-kit__section-title Button
+      .ui-kit__group
+        h3.ui-kit__group-title Style=White
+        .ui-kit__items.ui-kit__items--row
+          +uiButton({ label: 'Перейти в каталог', variant: 'white' })
+      .ui-kit__group
+        h3.ui-kit__group-title Style=Black
+        .ui-kit__items.ui-kit__items--row
+          +uiButton({ label: 'Перейти в каталог', variant: 'black' })
+          +uiButton({ label: 'Перейти в каталог', variant: 'black', disabled: true })
+
+    section.ui-kit__section(id="ui-kit-radio")
+      h2.ui-kit__section-title Radio Button
+      .ui-kit__group
+        h3.ui-kit__group-title Size=Sm
+        .ui-kit__items
+          +uiRadio({ fieldLabel: 'Label', label: 'Label text', size: 'sm', name: 'radio-sm-default', id: 'radio-sm-default', value: '1' })
+          +uiRadio({ fieldLabel: 'Label', label: 'Label text', size: 'sm', name: 'radio-sm-disabled', id: 'radio-sm-disabled', value: '1', disabled: true })
+          +uiRadio({ fieldLabel: 'Label', label: 'Label text', size: 'sm', name: 'radio-sm-active', id: 'radio-sm-active', value: '1', checked: true })
+          +uiRadio({ fieldLabel: 'Label', label: 'Label text', size: 'sm', name: 'radio-sm-disabled-active', id: 'radio-sm-disabled-active', value: '1', checked: true, disabled: true })
+          +uiRadio({ fieldLabel: 'Label', label: 'Label text', size: 'sm', name: 'radio-sm-error', id: 'radio-sm-error', value: '1', error: true, checked: true })
+      .ui-kit__group
+        h3.ui-kit__group-title Size=Md
+        .ui-kit__items
+          +uiRadio({ fieldLabel: 'Label', label: 'Label text', size: 'md', name: 'radio-md-default', id: 'radio-md-default', value: '1' })
+          +uiRadio({ fieldLabel: 'Label', label: 'Label text', size: 'md', name: 'radio-md-disabled', id: 'radio-md-disabled', value: '1', disabled: true })
+          +uiRadio({ fieldLabel: 'Label', label: 'Label text', size: 'md', name: 'radio-md-active', id: 'radio-md-active', value: '1', checked: true })
+          +uiRadio({ fieldLabel: 'Label', label: 'Label text', size: 'md', name: 'radio-md-disabled-active', id: 'radio-md-disabled-active', value: '1', checked: true, disabled: true })
+          +uiRadio({ fieldLabel: 'Label', label: 'Label text', size: 'md', name: 'radio-md-error', id: 'radio-md-error', value: '1', error: true, checked: true })
+      .ui-kit__group
+        h3.ui-kit__group-title Group
+        .ui-kit__items
+          +uiRadioGroup({
+            name: 'ui-kit-radio-group',
+            size: 'md',
+            items: [
+              { id: 'radio-group-1', value: '1', label: 'Option 1', checked: true },
+              { id: 'radio-group-2', value: '2', label: 'Option 2' },
+              { id: 'radio-group-3', value: '3', label: 'Option 3', disabled: true },
+            ],
+          })
+
+    section.ui-kit__section(id="ui-kit-input")
+      h2.ui-kit__section-title Input
+      .ui-kit__group
+        h3.ui-kit__group-title Style=Outline, Size=Md
+        .ui-kit__items.ui-kit__items--input
+          +uiInput({ id: 'input-md-default', label: 'Label', placeholder: 'Placeholder', tooltip: true })
+          +uiInput({ id: 'input-md-filled', label: 'Label', placeholder: 'Placeholder', value: 'Placeholder', tooltip: true })
+          +uiInput({ id: 'input-md-disabled', label: 'Label', placeholder: 'Placeholder', disabled: true, tooltip: true })
+          +uiInput({ id: 'input-md-error', label: 'Label', placeholder: 'Placeholder', error: true, errorText: 'Error message', tooltip: true })
+          +uiInput({ id: 'input-md-error-filled', label: 'Label', placeholder: 'Placeholder', value: 'Placeholder', error: true, errorText: 'Error message', tooltip: true })
+      .ui-kit__group
+        h3.ui-kit__group-title Style=Outline, Size=Lg
+        .ui-kit__items.ui-kit__items--input
+          +uiInput({ id: 'input-lg-default', label: 'Label', placeholder: 'Placeholder', size: 'lg', tooltip: true })
+          +uiInput({ id: 'input-lg-filled', label: 'Label', placeholder: 'Placeholder', value: 'Placeholder', size: 'lg', tooltip: true })
+          +uiInput({ id: 'input-lg-disabled', label: 'Label', placeholder: 'Placeholder', size: 'lg', disabled: true, tooltip: true })
+          +uiInput({ id: 'input-lg-error', label: 'Label', placeholder: 'Placeholder', size: 'lg', error: true, errorText: 'Error message', tooltip: true })
+          +uiInput({ id: 'input-lg-error-filled', label: 'Label', placeholder: 'Placeholder', value: 'Placeholder', size: 'lg', error: true, errorText: 'Error message', tooltip: true })
+
+    section.ui-kit__section(id="ui-kit-checkbox")
+      h2.ui-kit__section-title Checkbox
+      .ui-kit__group
+        h3.ui-kit__group-title Size=Sm
+        .ui-kit__items
+          +uiCheckbox({ id: 'checkbox-sm-default', name: 'checkbox-sm-default', label: 'Text', size: 'sm' })
+          +uiCheckbox({ id: 'checkbox-sm-disabled', name: 'checkbox-sm-disabled', label: 'Text', size: 'sm', disabled: true })
+          +uiCheckbox({ id: 'checkbox-sm-active', name: 'checkbox-sm-active', label: 'Text', size: 'sm', checked: true })
+          +uiCheckbox({ id: 'checkbox-sm-disabled-active', name: 'checkbox-sm-disabled-active', label: 'Text', size: 'sm', checked: true, disabled: true })
+          +uiCheckbox({ id: 'checkbox-sm-error', name: 'checkbox-sm-error', label: 'Text', size: 'sm', error: true })
+      .ui-kit__group
+        h3.ui-kit__group-title Size=Md
+        .ui-kit__items
+          +uiCheckbox({ id: 'checkbox-md-default', name: 'checkbox-md-default', label: 'Text', size: 'md' })
+          +uiCheckbox({ id: 'checkbox-md-disabled', name: 'checkbox-md-disabled', label: 'Text', size: 'md', disabled: true })
+          +uiCheckbox({ id: 'checkbox-md-active', name: 'checkbox-md-active', label: 'Text', size: 'md', checked: true })
+          +uiCheckbox({ id: 'checkbox-md-disabled-active', name: 'checkbox-md-disabled-active', label: 'Text', size: 'md', checked: true, disabled: true })
+          +uiCheckbox({ id: 'checkbox-md-error', name: 'checkbox-md-error', label: 'Text', size: 'md', error: true, checked: true })

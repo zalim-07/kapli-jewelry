@@ -1,0 +1,20 @@
+mixin uiButton(options = {})
+  - const tag = options.href ? 'a' : 'button'
+  - const type = options.type || 'button'
+  - const variant = options.variant || 'black'
+  - const disabled = options.disabled || false
+  - const className = ['ui-button', `ui-button--${variant}`, options.class || null].filter(Boolean).join(' ')
+
+  if tag === 'a'
+    a.ui-button(
+      class=className
+      href=disabled ? null : options.href
+      aria-disabled=disabled ? 'true' : null
+      tabindex=disabled ? -1 : null
+    )= options.label || options.text
+  else
+    button.ui-button(
+      class=className
+      type=type
+      disabled=disabled ? true : null
+    )= options.label || options.text

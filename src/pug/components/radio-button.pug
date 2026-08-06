@@ -1,0 +1,47 @@
+mixin uiRadio(options = {})
+  - const name = options.name || 'radio'
+  - const id = options.id || `${name}-${options.value || 'option'}`
+  - const size = options.size || 'md'
+  - const checked = options.checked || false
+  - const disabled = options.disabled || false
+  - const error = options.error || false
+  - const className = ['ui-radio', `ui-radio--${size}`, error ? 'ui-radio--error' : null, disabled ? 'ui-radio--disabled' : null, options.class || null].filter(Boolean).join(' ')
+
+  if options.fieldLabel
+    .ui-radio-field
+      span.ui-radio-field__label= options.fieldLabel
+      label.ui-radio(class=className for=id)
+        input.ui-radio__input(
+          type="radio"
+          id=id
+          name=name
+          value=options.value
+          checked=checked ? true : null
+          disabled=disabled ? true : null
+        )
+        span.ui-radio__control(aria-hidden="true")
+        if options.label
+          span.ui-radio__label= options.label
+  else
+    label.ui-radio(class=className for=id)
+      input.ui-radio__input(
+        type="radio"
+        id=id
+        name=name
+        value=options.value
+        checked=checked ? true : null
+        disabled=disabled ? true : null
+      )
+      span.ui-radio__control(aria-hidden="true")
+      if options.label
+        span.ui-radio__label= options.label
+
+mixin uiRadioGroup(options = {})
+  - const name = options.name || 'radio-group'
+  - const size = options.size || 'md'
+  - const items = Array.isArray(options.items) ? options.items : []
+
+  .ui-radio-group(role="radiogroup" aria-label=options.label || null)
+    each item in items
+      - const radioOptions = Object.assign({}, item, { name: name, size: size })
+      +uiRadio(radioOptions)

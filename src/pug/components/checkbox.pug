@@ -1,0 +1,20 @@
+mixin uiCheckbox(options = {})
+  - const id = options.id || options.name || 'checkbox'
+  - const size = options.size || 'md'
+  - const checked = options.checked || false
+  - const disabled = options.disabled || false
+  - const error = options.error || false
+  - const className = ['ui-checkbox', `ui-checkbox--${size}`, error ? 'ui-checkbox--error' : null, disabled ? 'ui-checkbox--disabled' : null, options.class || null].filter(Boolean).join(' ')
+
+  label.ui-checkbox(class=className for=id)
+    input.ui-checkbox__input(
+      type="checkbox"
+      id=id
+      name=options.name || id
+      value=options.value
+      checked=checked ? true : null
+      disabled=disabled ? true : null
+    )
+    span.ui-checkbox__control(aria-hidden="true")
+    if options.label
+      span.ui-checkbox__label= options.label
