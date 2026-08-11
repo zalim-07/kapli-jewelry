@@ -66,17 +66,31 @@ header.site-header(
 aside.site-sidemenu#site-sidemenu(aria-hidden="true" aria-label="Меню")
   button.site-sidemenu__backdrop(type="button" aria-label="Закрыть меню" tabindex="-1")
   .site-sidemenu__panel
-    button.site-sidemenu__close(type="button" aria-label="Закрыть меню") ×
     .site-sidemenu__inner
-      nav.site-sidemenu__nav(aria-label="Основная навигация")
-        ul.menu
-          li.menu-item
-            a(href="#collections") Каталог
-          li.menu-item
-            a(href="#catalog") Бестселлеры
-          li.menu-item
-            a(href="#journey") Производство
-          li.menu-item
-            a(href="#journal") Журнал
+      .site-sidemenu__top
+        .site-sidemenu__head
+          a.site-sidemenu__logo(href="/home.html" aria-label="Kapli Jewelry, главная")
+            include ../../assets/svg/logo.svg
+          button.site-sidemenu__close(type="button" aria-label="Закрыть меню")
+            include ../../assets/svg/close.svg
+        .site-sidemenu__menu
+          h2.site-sidemenu__title Меню
+          nav.site-sidemenu__nav(aria-label="Основная навигация")
+            ul.menu
+              li.menu-item
+                a(href="#collections") Каталог
+              li.menu-item
+                a(href="#catalog") Бестселлеры
+              li.menu-item
+                a(href="#journey") Производство
+              li.menu-item
+                a(href="#journal") Журнал
+      .site-sidemenu__bottom
+        .site-sidemenu__contacts-item
+          a.site-sidemenu__contacts-value(href="tel:+79252969444") +7 925 296 94 44
+          p.site-sidemenu__contacts-note Будем рады вашему звонку
+        .site-sidemenu__contacts-item
+          a.site-sidemenu__contacts-value(href="mailto:info@kapli-jewelry.ru") info@kapli-jewelry.ru
+          p.site-sidemenu__contacts-note Напишите нам
 
 include /includes/cart
