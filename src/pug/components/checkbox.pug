@@ -18,3 +18,6 @@ mixin uiCheckbox(options = {})
     span.ui-checkbox__control(aria-hidden="true")
     if options.label
       span.ui-checkbox__label= options.label
+    else if block
+      span.ui-checkbox__label
+        block

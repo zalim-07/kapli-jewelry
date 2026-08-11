@@ -18,6 +18,7 @@ import { initProductTabs } from './js/product-tabs.js';
 import { initCartPageItems } from './js/cart-page-items.js';
 import { initUiRadio } from './js/ui-radio.js';
 import { initUiCheckbox } from './js/ui-checkbox.js';
+import { initCheckoutPayment } from './js/checkout-payment.js';
 
 function initStaticHeaderTheme() {
   const header = document.querySelector('.site-header');
@@ -93,6 +94,10 @@ if (document.querySelector('.ui-radio')) {
 
 if (document.querySelector('.ui-checkbox')) {
   initUiCheckbox();
+}
+
+if (document.querySelector('[data-checkout-payment-card]')) {
+  initCheckoutPayment();
 }
 
 window.addEventListener('load', () => {

@@ -103,9 +103,11 @@
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(661px, 49.2%);
   align-items: center;
+  gap: 83px;
 
   @media screen and (max-width: $desktop-max) {
     grid-template-columns: 1fr 1fr;
+    gap: 48px;
   }
 
   @media screen and (max-width: $laptop-max) {
@@ -123,7 +125,7 @@
   overflow: hidden;
   background-color: #eee;
   aspect-ratio: 463 / 492;
-  max-width: 67.8%;
+  max-width: 77%;
 
   @media screen and (max-width: $desktop-max) {
     max-width: calc(100% - 100px);

@@ -11,10 +11,10 @@ mixin uiButton(options = {})
       href=disabled ? null : options.href
       aria-disabled=disabled ? 'true' : null
       tabindex=disabled ? -1 : null
-    )= options.label || options.text
+    )&attributes(options.attrs || {})= options.label || options.text
   else
     button(
       class=className
       type=type
       disabled=disabled ? true : null
-    )= options.label || options.text
+    )&attributes(options.attrs || {})= options.label || options.text

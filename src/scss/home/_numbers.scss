@@ -99,9 +99,11 @@
 }
 
 .stat-card {
+  position: relative;
   display: flex;
   aspect-ratio: 333/400;
   flex-direction: column;
+  overflow: hidden;
   padding: 20px 24px;
   color: #ffffff;
   gap: 9px;
@@ -111,26 +113,42 @@
     flex-shrink: 0;
   }
 
-  &:nth-child(1) {
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background-size: cover;
+    background-position: center;
+    transition: transform var(--transition);
+  }
+
+  &:nth-child(1)::before {
     background-image: url('/src/assets/images/numbers/number-1.webp');
   }
 
-  &:nth-child(2) {
+  &:nth-child(2)::before {
     background-image: url('/src/assets/images/numbers/number-2.webp');
   }
 
-  &:nth-child(3) {
+  &:nth-child(3)::before {
     background-image: url('/src/assets/images/numbers/number-3.webp');
   }
 
-  &:nth-child(4) {
+  &:nth-child(4)::before {
     background-image: url('/src/assets/images/numbers/number-4.webp');
   }
 
-  background-size: cover;
-  background-position: center;
+  @media (hover: hover) and (pointer: fine) {
+    &:hover::before {
+      transform: scale(1.2);
+    }
+  }
 
   &__value {
+    position: relative;
+    z-index: 1;
+
     strong {
       font-family: var(--font-family);
       font-weight: 400;
@@ -145,6 +163,9 @@
   }
 
   &__label {
+    position: relative;
+    z-index: 1;
+
     @media screen and (max-width: $mobile-max) {
       margin-top: 9px;
     }

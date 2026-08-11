@@ -1,3 +1,5 @@
+include /components/button
+
 section.unique-banner(aria-labelledby="unique-title")
   .section-inner.unique-banner__inner
     .unique-banner__copy
@@ -6,4 +8,4 @@ section.unique-banner(aria-labelledby="unique-title")
         span.section-heading__title--regular в своём роде
       .section-heading__text
         p Некоторые украшения невозможно найти готовыми. Их можно только создать. Вместе мы разработаем дизайн, подберём камни и воплотим идею в драгоценности, которая будет существовать только в одном экземпляре.
-      a.button.button--dark(href="#catalog") Создать уникальное украшение
+      +uiButton({ label: 'Создать уникальное украшение', variant: 'black', href: '#catalog' })

@@ -1,6 +1,7 @@
 include /components/input
 include /components/radio-button
 include /components/button
+include /components/checkbox
 
 mixin checkoutSectionTitle(step, title)
   .checkout-page__section-head
@@ -12,7 +13,7 @@ mixin checkoutSectionTitle(step, title)
     typeof checkoutDeliverySelected !== 'undefined' && checkoutDeliverySelected
 
 mixin checkoutPaymentCard(options = {})
-  .checkout-payment-card
+  .checkout-payment-card(data-checkout-payment-card)
     .checkout-payment-card__logos
       block
     +uiRadio({
@@ -114,14 +115,14 @@ main.checkout-page__main
               checked: true,
             })
               span.checkout-payment-card__logo.checkout-payment-card__logo--sbp(aria-hidden="true")
-                include ../../assets/svg/sbp.svg
+                include ../../assets/svg/payment-sbp.svg 
             +checkoutPaymentCard({
               id: 'checkout-payment-card',
               value: 'card',
               label: 'Банковская картой онлайн',
             })
               span.checkout-payment-card__logo-group.checkout-payment-card__logo--tpay-mir(aria-hidden="true")
-                include ../../assets/svg/tpay-mir.svg
+                include ../../assets/svg/payment-tbank-sber.svg
           .checkout-page__payment-row.checkout-page__payment-row--installments
             +checkoutPaymentCard({
               id: 'checkout-payment-dolyame',
@@ -129,21 +130,21 @@ main.checkout-page__main
               label: 'Долями — 4 платежа по 5125₽',
             })
               span.checkout-payment-card__logo(aria-hidden="true")
-                include ../../assets/svg/dolyame-logo.svg
+                include ../../assets/svg/payment-dolyami.svg
             +checkoutPaymentCard({
               id: 'checkout-payment-split',
               value: 'split',
               label: 'Яндекс Сплит — 4 × 5125₽',
             })
               span.checkout-payment-card__logo.checkout-payment-card__logo--split(aria-hidden="true")
-                include ../../assets/svg/split-logo.svg
+                include ../../assets/svg/payment-split.svg
             +checkoutPaymentCard({
               id: 'checkout-payment-podeli',
               value: 'podeli',
               label: 'Подели — 4 платежа по 5125₽',
             })
               span.checkout-payment-card__logo.checkout-payment-card__logo--podeli(aria-hidden="true")
-                include ../../assets/svg/podeli-black-logo.svg
+                include ../../assets/svg/payment-podeli.svg
 
     aside.checkout-page__aside
       +uiInput({
@@ -173,9 +174,30 @@ main.checkout-page__main
           span Сумма заказа
           strong 20 510 ₽
 
-      +uiButton({
-        label: isDeliverySelected ? 'Оформить заказ' : 'Заполните все данные',
-        variant: 'black',
-        disabled: !isDeliverySelected,
-        class: 'checkout-page__submit',
-      })
+      .checkout-page__submit-block
+        +uiButton({
+          label: isDeliverySelected ? 'Оформить заказ' : 'Заполните все данные',
+          variant: 'black',
+          disabled: !isDeliverySelected,
+          class: 'checkout-page__submit',
+          fullWidth: true,
+        })
+
+        .checkout-page__agreements
+          +uiCheckbox({
+            id: 'checkout-promo-subscribe',
+            name: 'promo_subscribe',
+            size: 'sm',
+            checked: true,
+            class: 'checkout-page__agreement',
+            label: 'Получать информацию об акциях и спецпредложениях Kapli Jewelry',
+          })
+          +uiCheckbox({
+            id: 'checkout-privacy-consent',
+            name: 'privacy_consent',
+            size: 'sm',
+            checked: true,
+            class: 'checkout-page__agreement',
+          })
+            | Нажимая на кнопку, вы соглашаетесь с&nbsp;
+            a(href="/page.html") Политикой обработки и защиты персональных данных

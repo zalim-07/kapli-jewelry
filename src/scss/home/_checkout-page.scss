@@ -218,6 +218,10 @@
   flex-direction: column;
   gap: 20px;
   width: 100%;
+
+  @media screen and (max-width: $laptop-max) {
+    gap: 15px;
+  }
 }
 
 .checkout-page__payment-row {
@@ -241,20 +245,30 @@
   flex: 1;
   flex-direction: column;
   justify-content: space-between;
-  gap: 12px;
+  gap: 20px;
   min-width: 174px;
-  min-height: 91px;
+  min-height: 99px;
   padding: 16px;
   border: 1px solid #ebebeb;
   border-radius: 0;
   box-shadow: 0 1px 2px rgba(16, 24, 40, 0.05);
+  cursor: pointer;
+  transition: border-color var(--transition);
+
+  &--active,
+  &:has(.ui-radio__input:checked) {
+    border-color: #111;
+  }
 
   .ui-radio {
     width: 100%;
+    pointer-events: none;
   }
 
   .ui-radio__label {
     color: #111;
+    font-size: 16px;
+    line-height: 1.4;
   }
 }
 
@@ -281,15 +295,6 @@
     height: auto;
   }
 
-  &--split svg {
-    width: 66px;
-    height: 15px;
-  }
-
-  &--podeli svg {
-    width: 56px;
-    height: auto;
-  }
 }
 
 .checkout-page__aside {
@@ -384,6 +389,37 @@
 
   strong {
     font-weight: 500;
+  }
+}
+
+.checkout-page__submit-block {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  width: 100%;
+  align-self: stretch;
+}
+
+.checkout-page__agreements {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+}
+
+.checkout-page__agreement.ui-checkbox {
+  align-items: flex-start;
+  width: 100%;
+
+  .ui-checkbox__control {
+    margin-top: 1px;
+  }
+
+  .ui-checkbox__label a {
+    color: inherit;
+    text-decoration: underline;
+    text-underline-offset: 2px;
   }
 }
 

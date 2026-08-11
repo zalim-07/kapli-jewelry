@@ -1,3 +1,5 @@
+include /components/button
+
 section.section.gift#gift(aria-labelledby="gift-title")
   .section-inner.gift__inner
     .gift__media
@@ -26,4 +28,4 @@ section.section.gift#gift(aria-labelledby="gift-title")
         button.gift__price(type="button" aria-pressed="false") 10000 ₽
         button.gift__price(type="button" aria-pressed="false") 20000 ₽
 
-      a.button.button--dark(href="#catalog") Оформить сертификат
+      +uiButton({ label: 'Оформить сертификат', variant: 'black', href: '#catalog' })

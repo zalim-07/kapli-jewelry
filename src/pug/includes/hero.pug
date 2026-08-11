@@ -1,3 +1,5 @@
+include /components/button
+
 section.hero(aria-label="Главный слайдер")
   .swiper.hero-swiper
     .swiper-wrapper
@@ -21,7 +23,12 @@ section.hero(aria-label="Главный слайдер")
               fetchpriority="high"
             )
 
-          a.button.hero__button(href="#collections") Перейти в каталог
+          +uiButton({
+            label: 'Перейти в каталог',
+            variant: 'white',
+            href: '#collections',
+            class: 'hero__button',
+          })
 
       .swiper-slide.hero-slide(data-theme="light")
         .section-inner.hero__inner
@@ -39,7 +46,12 @@ section.hero(aria-label="Главный слайдер")
               loading="lazy"
             )
 
-          a.button.hero__button(href="#collections") Подробнее
+          +uiButton({
+            label: 'Подробнее',
+            variant: 'black',
+            href: '#collections',
+            class: 'hero__button',
+          })
 
       .swiper-slide.hero-slide(data-theme="dark")
         .section-inner.hero__inner
@@ -57,6 +69,11 @@ section.hero(aria-label="Главный слайдер")
               loading="lazy"
             )
 
-          a.button.hero__button(href="#journey") От камня к украшению
+          +uiButton({
+            label: 'От камня к украшению',
+            variant: 'white',
+            href: '#journey',
+            class: 'hero__button',
+          })
 
     .swiper-pagination.hero-swiper__pagination(aria-label="Навигация по слайдам")

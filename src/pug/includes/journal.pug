@@ -1,10 +1,12 @@
+include /components/button
+
 section.section.journal#journal(aria-labelledby="journal-title")
   .section-inner
     .section-heading.section-heading--split.journal__header
       .section-heading__title
         em Журнал 
         span Kapli Jewelry 
-      a.button.button--dark(href="#journal-list") Смотреть всё
+      +uiButton({ label: 'Смотреть всё', variant: 'black', href: '#journal-list' })
 
     .swiper.journal-swiper
       .journal__grid.swiper-wrapper#journal-list

@@ -1,4 +1,5 @@
 include /includes/product-card
+include /components/button
 
 section.section.featured#catalog(aria-labelledby="featured-title")
   .section-inner
@@ -20,4 +21,4 @@ section.section.featured#catalog(aria-labelledby="featured-title")
           +productCard(product, { eager: true })
 
     .section-action
-      a.button.button--dark(href="#collections") Смотреть всё
+      +uiButton({ label: 'Смотреть всё', variant: 'black', href: '#collections' })

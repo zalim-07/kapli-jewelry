@@ -1,4 +1,5 @@
 include /includes/product-card
+include /components/button
 
 section.section.collections#archive(
   aria-labelledby="archive-title"
@@ -47,8 +48,11 @@ section.section.collections#archive(
     )
 
     .section-action(data-collections-action)
-      button.button.button--dark(
-        type="button"
-        data-collections-more
-        aria-controls="archive-grid"
-      ) Смотреть ещё
+      +uiButton({
+        label: 'Смотреть ещё',
+        variant: 'black',
+        attrs: {
+          'data-collections-more': true,
+          'aria-controls': 'archive-grid',
+        },
+      })

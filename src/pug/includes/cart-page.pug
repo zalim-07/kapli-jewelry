@@ -46,6 +46,7 @@ main.cart-page__main
         +uiInput({
           id: 'cart-promo',
           name: 'promo',
+          label: 'Промокод',
           placeholder: 'Введите промокод',
           size: 'md',
         })
@@ -78,16 +79,18 @@ main.cart-page__main
 
         .cart-page__installments
           .cart-page__installments-caption
-            span.cart-page__installments-text 4 платежа × 2 404 ₽
+            span.cart-page__installments-text 4 платежа x 2 404 ₽
             button.cart-page__installments-info(
               type="button"
               aria-label="Подробнее об оплате частями"
             )
               include ../../assets/svg/question.svg
           .cart-page__installments-logos(aria-label="Сервисы оплаты частями")
-            span.cart-page__installments-logo(aria-label="Подели")
-              include ../../assets/svg/podeli-black-logo.svg
-            span.cart-page__installments-logo(aria-label="Долями")
-              include ../../assets/svg/dolyame-logo.svg
-            span.cart-page__installments-logo(aria-label="Сплит")
-              include ../../assets/svg/split-logo.svg
+            span.cart-page__installments-logo.cart-page__installments-logo--podeli(aria-label="Подели")
+              include ../../assets/svg/payment-podeli-black-logo.svg
+            span.cart-page__installments-separator(aria-hidden="true")
+            span.cart-page__installments-logo.cart-page__installments-logo--dolyame(aria-label="Долями")
+              include ../../assets/svg/payment-dolyami.svg
+            span.cart-page__installments-separator(aria-hidden="true")
+            span.cart-page__installments-logo.cart-page__installments-logo--split(aria-label="Сплит")
+              include ../../assets/svg/payment-split.svg

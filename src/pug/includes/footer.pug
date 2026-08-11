@@ -1,3 +1,5 @@
+include /components/button
+
 footer.site-footer#contacts
   .section-inner.site-footer__inner
     .site-footer__newsletter
@@ -14,7 +16,7 @@ footer.site-footer#contacts
           name="email"
           placeholder="Example@mail.ru"
         )
-        button.button.button--light(type="submit") Подписаться
+        +uiButton({ label: 'Подписаться', variant: 'white', type: 'submit' })
 
     .site-footer__bottom
       .site-footer__row
