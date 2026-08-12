@@ -20,6 +20,7 @@ import { initProductTabs } from './js/product-tabs.js';
 import { initCartPageItems } from './js/cart-page-items.js';
 import { initUiRadio } from './js/ui-radio.js';
 import { initUiCheckbox } from './js/ui-checkbox.js';
+import { initUiSelect } from './js/ui-select.js';
 import { initCheckoutPayment } from './js/checkout-payment.js';
 
 function initStaticHeaderTheme() {
@@ -104,6 +105,10 @@ if (document.querySelector('.ui-radio')) {
 
 if (document.querySelector('.ui-checkbox')) {
   initUiCheckbox();
+}
+
+if (document.querySelector('[data-ui-select] select')) {
+  initUiSelect();
 }
 
 if (document.querySelector('[data-checkout-payment-card]')) {

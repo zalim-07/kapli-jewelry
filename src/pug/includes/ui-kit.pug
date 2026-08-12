@@ -3,6 +3,7 @@ include /components/text-button
 include /components/radio-button
 include /components/input
 include /components/checkbox
+include /components/select
 
 main.ui-kit
   .ui-kit__inner
@@ -80,6 +81,58 @@ main.ui-kit
           +uiInput({ id: 'input-lg-disabled', label: 'Label', placeholder: 'Placeholder', size: 'lg', disabled: true, tooltip: true })
           +uiInput({ id: 'input-lg-error', label: 'Label', placeholder: 'Placeholder', size: 'lg', error: true, tooltip: true })
           +uiInput({ id: 'input-lg-error-filled', label: 'Label', placeholder: 'Placeholder', value: 'Placeholder', size: 'lg', error: true, tooltip: true })
+
+
+    section.ui-kit__section(id="ui-kit-select", style="z-index:1")
+      h2.ui-kit__section-title Select
+      .ui-kit__group
+        h3.ui-kit__group-title Default
+        .ui-kit__items.ui-kit__items--input
+          +uiSelect({
+            id: 'select-filled',
+            label: 'Город',
+            value: 'Москва',
+            items: [
+              { value: 'moscow', label: 'Москва' },
+              { value: 'kian', label: 'Киан-Подгорное', meta: 'Ставропольский край' },
+              { value: 'astanino-1', label: 'Астанино, Егорьевский р-н', meta: '(Московская обл)' },
+              { value: 'astanino-2', label: 'Астанино, Егорьевский р-н', meta: '(Московская обл)' },
+              { value: 'avsyunino', label: 'Авсюнино', meta: '(Московская обл)' },
+              { value: 'kian1', label: 'Киан-Подгорное', meta: 'Ставропольский край' },
+              { value: 'astanino-11', label: 'Астанино, Егорьевский р-н', meta: '(Московская обл)' },
+              { value: 'astanino-21', label: 'Астанино, Егорьевский р-н', meta: '(Московская обл)' },
+              { value: 'avsyunino1', label: 'Авсюнино', meta: '(Московская обл)' },
+              { value: 'kian1', label: 'Киан-Подгорное', meta: 'Ставропольский край' },
+              { value: 'astanino-11', label: 'Астанино, Егорьевский р-н', meta: '(Московская обл)' },
+              { value: 'astanino-21', label: 'Астанино, Егорьевский р-н', meta: '(Московская обл)' },
+              { value: 'avsyunino1', label: 'Авсюнино', meta: '(Московская обл)' },
+            ],
+          })
+      .ui-kit__group
+        h3.ui-kit__group-title Placeholder
+        .ui-kit__items.ui-kit__items--input
+          +uiSelect({
+            id: 'select-placeholder',
+            label: 'Город',
+            placeholder: 'Placeholder',
+            items: [
+              { value: 'kian', label: 'Киан-Подгорное', meta: 'Ставропольский край' },
+              { value: 'astanino-1', label: 'Астанино, Егорьевский р-н', meta: '(Московская обл)' },
+              { value: 'astanino-2', label: 'Астанино, Егорьевский р-н', meta: '(Московская обл)' },
+              { value: 'avsyunino', label: 'Авсюнино', meta: '(Московская обл)' },
+            ],
+          })
+      .ui-kit__group
+        h3.ui-kit__group-title Disabled
+        .ui-kit__items.ui-kit__items--input
+          +uiSelect({
+            id: 'select-disabled',
+            label: 'Город',
+            placeholder: 'Placeholder',
+            disabled: true,
+            items: [],
+          })
+
 
     section.ui-kit__section(id="ui-kit-checkbox")
       h2.ui-kit__section-title Checkbox

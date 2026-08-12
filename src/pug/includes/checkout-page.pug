@@ -1,4 +1,5 @@
 include /components/input
+include /components/select
 include /components/radio-button
 include /components/button
 include /components/checkbox
@@ -72,12 +73,18 @@ main.checkout-page__main
       section.checkout-page__section
         +checkoutSectionTitle('2/3', 'Доставка СДЕК')
         .checkout-page__delivery
-          +uiInput({
+          +uiSelect({
             id: 'checkout-city',
             name: 'city',
             label: 'Город',
             value: 'Москва',
-            size: 'lg',
+            items: [
+              { value: 'moscow', label: 'Москва' },
+              { value: 'kian', label: 'Киан-Подгорное', meta: 'Ставропольский край' },
+              { value: 'astanino-1', label: 'Астанино, Егорьевский р-н', meta: '(Московская обл)' },
+              { value: 'astanino-2', label: 'Астанино, Егорьевский р-н', meta: '(Московская обл)' },
+              { value: 'avsyunino', label: 'Авсюнино', meta: '(Московская обл)' },
+            ],
           })
           .checkout-page__map
             img(

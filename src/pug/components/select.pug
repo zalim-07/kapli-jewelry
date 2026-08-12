@@ -1,0 +1,45 @@
+mixin uiSelect(options = {})
+  - const id = options.id || options.name || 'select'
+  - const items = Array.isArray(options.items) ? options.items : []
+  - const disabled = Boolean(options.disabled)
+  - const placeholder = options.placeholder || ''
+  - const selectedValue = typeof options.value !== 'undefined' ? options.value : null
+  - const hasSelectedValue = selectedValue !== null && selectedValue !== ''
+  -
+    let selectedItem = null
+    if (hasSelectedValue) {
+      selectedItem = items.find((item) => (item.value || item.label) === selectedValue || item.label === selectedValue) || { value: selectedValue, label: selectedValue }
+    } else {
+      selectedItem = items.find((item) => item.selected) || null
+    }
+
+    const hasMatchingSelectedItem = hasSelectedValue && items.some((item) => {
+      return (item.value || item.label) === selectedValue || item.label === selectedValue
+    })
+
+    const className = ['ui-select', disabled ? 'ui-select--disabled' : null, options.class || null].filter(Boolean).join(' ')
+
+  div(class=className data-ui-select)
+    if options.label
+      .ui-select__label-row
+        label.ui-select__label(for=id)= options.label
+    .ui-select__field
+      select.ui-select__source(
+        id=id
+        name=options.name || id
+        disabled=disabled ? true : null
+        data-placeholder=placeholder || null
+        data-has-value=selectedItem ? 'true' : null
+      )
+        if !selectedItem
+          option(value="" selected=true hidden=true)
+        if hasSelectedValue && !hasMatchingSelectedItem
+          option(value=selectedValue selected=true)= selectedValue
+        each item in items
+          - const itemValue = item.value || item.label
+          - const isSelected = selectedItem ? ((itemValue === (selectedItem.value || selectedItem.label)) || item.label === selectedItem.label) : false
+          option(
+            value=itemValue
+            selected=isSelected ? true : null
+            data-meta=item.meta || null
+          )= item.label
