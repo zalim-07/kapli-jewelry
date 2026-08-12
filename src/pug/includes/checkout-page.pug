@@ -183,21 +183,22 @@ main.checkout-page__main
           fullWidth: true,
         })
 
-        .checkout-page__agreements
-          +uiCheckbox({
-            id: 'checkout-promo-subscribe',
-            name: 'promo_subscribe',
-            size: 'sm',
-            checked: true,
-            class: 'checkout-page__agreement',
-            label: 'Получать информацию об акциях и спецпредложениях Kapli Jewelry',
-          })
-          +uiCheckbox({
-            id: 'checkout-privacy-consent',
-            name: 'privacy_consent',
-            size: 'sm',
-            checked: true,
-            class: 'checkout-page__agreement',
-          })
-            | Нажимая на кнопку, вы соглашаетесь с&nbsp;
-            a(href="/page.html") Политикой обработки и защиты персональных данных
+        if isDeliverySelected
+          .checkout-page__agreements
+            +uiCheckbox({
+              id: 'checkout-promo-subscribe',
+              name: 'promo_subscribe',
+              size: 'sm',
+              checked: true,
+              class: 'checkout-page__agreement',
+              label: 'Получать информацию об акциях и спецпредложениях Kapli Jewelry',
+            })
+            +uiCheckbox({
+              id: 'checkout-privacy-consent',
+              name: 'privacy_consent',
+              size: 'sm',
+              checked: true,
+              class: 'checkout-page__agreement',
+            })
+              | Нажимая на кнопку, вы соглашаетесь с&nbsp;
+              a(href="/page.html") Политикой обработки и защиты персональных данных

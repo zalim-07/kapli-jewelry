@@ -8,7 +8,7 @@
   padding: 100px 40px 60px;
 
   @media screen and (max-width: $desktop-max) {
-    padding: 80px 16px 40px;
+    padding: 80px 16px 60px;
   }
 }
 
@@ -24,7 +24,7 @@
   @media screen and (max-width: $mobile-max) {
     flex-direction: column;
     align-items: flex-start;
-    gap: 16px;
+    gap: 10px;
   }
 }
 
@@ -38,7 +38,7 @@
   letter-spacing: 0;
 
   @media screen and (max-width: $mobile-max) {
-    font-size: 32px;
+    font-size: 36px;
   }
 }
 
@@ -49,6 +49,10 @@
   font-weight: 400;
   line-height: 1.4;
   color: #434343;
+
+  @media screen and (max-width: $mobile-max) {
+    font-size: 14px;
+  }
 }
 
 .checkout-page__layout {
@@ -69,6 +73,10 @@
   flex-direction: column;
   gap: 10px;
   min-width: 0;
+
+  @media screen and (max-width: $laptop-max) {
+    gap: 40px;
+  }
 }
 
 .checkout-page__section {
@@ -76,6 +84,10 @@
   flex-direction: column;
   gap: 30px;
   padding: 24px 0;
+
+  @media screen and (max-width: $mobile-max) {
+    gap: 32px;
+  }
 }
 
 .checkout-page__section-head {
@@ -119,6 +131,10 @@
   flex-direction: column;
   gap: 40px;
   width: 100%;
+
+  @media screen and (max-width: $mobile-max) {
+    gap: 20px;
+  }
 }
 
 .checkout-page__pickup {
@@ -205,11 +221,18 @@
 .checkout-page__map {
   width: 100%;
   overflow: hidden;
+  max-height: 480px;
+
+  @media screen and (max-width: $mobile-max) {
+    height: 400px;
+    margin-bottom: 12px;
+  }
 
   img {
     display: block;
     width: 100%;
-    height: auto;
+    height: 100%;
+    object-fit: cover;
   }
 }
 
@@ -232,10 +255,15 @@
 
   &--primary {
     gap: 15px;
+
+    @media screen and (max-width: $mobile-max) {
+      gap: 12px;
+    }
   }
 
   @media screen and (max-width: $mobile-max) {
     flex-direction: column;
+    gap: 12px;
   }
 }
 

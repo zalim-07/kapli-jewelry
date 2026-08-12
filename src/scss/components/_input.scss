@@ -21,6 +21,7 @@
   font-size: 14px;
   line-height: 1.3;
   color: #111;
+  min-height: 20px;
 }
 
 .ui-input-field__content {
@@ -101,7 +102,7 @@
     }
 
     .ui-input-field__content {
-      min-height: 46px;
+      // min-height: 46px;
     }
   }
 }
