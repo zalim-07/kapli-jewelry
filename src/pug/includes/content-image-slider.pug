@@ -1,0 +1,53 @@
+-
+  const contentImageSliderSlides = [
+    {
+      src: '/src/assets/images/products/product-1.png',
+      alt: 'Ювелирное изделие Kapli',
+      caption: 'Подпись к картинке',
+    },
+    {
+      src: '/src/assets/images/products/product-2.png',
+      alt: 'Ювелирное изделие Kapli',
+      caption: 'Подпись к картинке',
+    },
+    {
+      src: '/src/assets/images/products/product-3.png',
+      alt: 'Ювелирное изделие Kapli',
+      caption: 'Третий слайд галереи',
+    },
+  ]
+
+.content-image-slider(data-content-image-slider)
+  .content-image-slider__gallery
+    .content-image-slider__stage
+      .swiper.content-image-slider__swiper
+        .swiper-wrapper
+          each slide in contentImageSliderSlides
+            .swiper-slide.content-image-slider__slide(data-caption=slide.caption)
+              .content-image-slider__media
+                img.content-image-slider__image(
+                  src=slide.src
+                  alt=slide.alt
+                  width="698"
+                  height="698"
+                  loading="lazy"
+                  decoding="async"
+                )
+      .content-image-slider__controls(aria-hidden="true")
+        button.content-image-slider__button.content-image-slider__button--prev(
+          type="button"
+          aria-label="Предыдущее изображение"
+        )
+          svg.content-image-slider__icon(width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true")
+            path(d="M10 3L5 8L10 13" stroke="#999999" stroke-width="1")
+        button.content-image-slider__button.content-image-slider__button--next(
+          type="button"
+          aria-label="Следующее изображение"
+        )
+          svg.content-image-slider__icon(width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true")
+            path(d="M6 3L11 8L6 13" stroke="#999999" stroke-width="1")
+      .content-image-slider__pagination.swiper-pagination(
+        role="tablist"
+        aria-label="Навигация по изображениям"
+      )
+  p.content-image-slider__caption= contentImageSliderSlides[0].caption

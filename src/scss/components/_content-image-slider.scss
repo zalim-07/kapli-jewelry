@@ -1,0 +1,137 @@
+@use '../breakpoints' as *;
+
+.content-image-slider {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+  margin-top: 24px;
+
+  @media (max-width: $mobile-max) {
+    margin-top: 36px;
+    margin-bottom: 64px;
+  }
+
+  &__gallery {
+    position: relative;
+  }
+
+  &__stage {
+    position: relative;
+  }
+
+  &__swiper {
+    overflow: hidden;
+  }
+
+  &__slide {
+    height: auto;
+  }
+
+  &__media {
+    aspect-ratio: 1 / 1;
+    background: rgba(17, 17, 17, 0.18);
+    overflow: hidden;
+
+    @media (min-width: #{$laptop-max + 1px}) {
+      aspect-ratio: 698 / 392;
+    }
+  }
+
+  &__image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  &__controls {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  &__button {
+    position: absolute;
+    top: 50%;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    border: 0;
+    background: #fff;
+    box-shadow: 0 0 6.25px rgba(31, 31, 31, 0.05);
+    transform: translateY(-50%);
+    cursor: pointer;
+    pointer-events: auto;
+
+    @media (min-width: #{$laptop-max + 1px}) {
+      width: 32px;
+      height: 32px;
+      box-shadow: 0 0 5px rgba(31, 31, 31, 0.05);
+    }
+
+    &--prev {
+      left: 4px;
+    }
+
+    &--next {
+      right: 4px;
+    }
+
+    &.swiper-button-disabled {
+      opacity: 0.35;
+      cursor: default;
+    }
+  }
+
+  &__icon {
+    display: block;
+  }
+
+  &__pagination {
+    position: absolute;
+    left: 50%;
+    bottom: 21px;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+    width: auto;
+    height: 4px;
+    margin: 0;
+    transform: translateX(-50%);
+
+    &.swiper-pagination-horizontal.swiper-pagination-bullets {
+      .swiper-pagination-bullet {
+        width: 4px;
+        height: 4px;
+        margin: 0;
+        opacity: 1;
+        background: #D7D7D7;
+        border-radius: 50%;
+        transition: background-color 0.2s ease;
+      }
+
+      .swiper-pagination-bullet-active {
+        background: #999999;
+      }
+    }
+  }
+
+
+}
+
+.text-page__body .content-image-slider__caption {
+  margin: 0;
+  font-family: var(--font-family-secondary);
+  font-size: 14px;
+  line-height: 1.5;
+  text-align: center;
+  color: #616161;
+  font-weight: 400;
+}

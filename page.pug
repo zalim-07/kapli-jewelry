@@ -36,11 +36,13 @@ html(lang="ru")
                         aria-current=item.active ? 'page' : null
                       )= item.title
 
-          .text-page__content
+          .text-page__content            
             .text-page__header
               h1.text-page__title Политика конфиденциальности
               p.text-page__subtitle Дата вступления в силу: 26 мая, 2025
             .text-page__body
+              h2 Заголовок 2
+              .interval
               include /includes/privacy-policy.pug
 
       include /includes/footer

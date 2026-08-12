@@ -4,7 +4,7 @@
   padding: 120px 28px 40px;
 
   @media (max-width: $laptop-max) {
-    padding: 80px 16px 60px;
+    padding: 72px 16px 60px;
   }
 }
 
@@ -21,6 +21,7 @@
 
   @media (max-width: $laptop-max) {
     grid-template-columns: 1fr;
+    gap: 36px;
   }
 }
 
@@ -59,6 +60,8 @@
   padding: 4px;
 
   @media (max-width: $laptop-max) {
+    border: none;
+    box-shadow: 0px 0px 1px 1px #EBEBEB;
     min-width: 0;
     overflow: hidden;
   }
@@ -73,6 +76,7 @@
   list-style: none;
 
   @media (max-width: $laptop-max) {
+    gap: 4px;
     flex-direction: row;
     flex-wrap: nowrap;
     overflow-x: auto;
@@ -99,6 +103,12 @@
   @media (max-width: $laptop-max) {
     width: auto;
     white-space: nowrap;
+    font-size: 12px;
+    letter-spacing: 0;
+    padding: 0 16px;
+    height: 36px;
+    display: flex;
+    align-items: center;
   }
 
   &:hover {
@@ -109,9 +119,6 @@
   &.is-active {
     background-color: #111;
     color: #fff;
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 1.2;
   }
 }
 
@@ -168,6 +175,10 @@
   flex-direction: column;
   gap: 40px;
   min-width: 0;
+
+  @media (max-width: $mobile-max) {
+    gap: 36px;
+  }
 }
 
 .text-page__header {
@@ -186,7 +197,9 @@
   text-align: center;
 
   @media (max-width: $mobile-max) {
-    font-size: 32px;
+    font-size: 36px;
+    text-align: left;
+    line-height: 1.1;
   }
 }
 
@@ -196,6 +209,11 @@
   font-size: 14px;
   line-height: 1.5;
   text-align: center;
+  letter-spacing: -0.28px;
+
+  @media (max-width: $mobile-max) {
+    text-align: left;
+  }
 }
 
 
@@ -204,15 +222,24 @@
   font-family: var(--font-family-secondary);
   padding-bottom: 80px;
 
+  @media (max-width: $laptop-max) {
+    padding-bottom: 0;
+  }
+
   h2 {
-    font-family: var(--font-family-secondary);
+    font-family: var(--font-family);
     font-weight: 500;
-    font-size: 24px;
+    font-size: 32px;
     line-height: 1.2;
-    margin-bottom: 24px;
+    margin-bottom: 48px;
     letter-spacing: 0;
 
-    &:not(:first-child) {
+    @media (max-width: $mobile-max) {
+      font-size: 28px;
+      margin-bottom: 40px;
+    }
+
+    &:not(:first-of-type) {
       margin-top: 48px;
     }
   }
@@ -220,25 +247,35 @@
   h3 {
     font-family: var(--font-family-secondary);
     font-weight: 500;
-    font-size: 22px;
+    font-size: 18px;
     line-height: 1.2;
-    margin-bottom: 22px;
+    margin-bottom: 24px;
     letter-spacing: 0;
 
-    &:not(:first-child) {
-      margin-top: 36px;
+
+
+    @media (max-width: $mobile-max) {
+      margin-bottom: 22px;
+    }
+
+    &:not(:first-of-type) {
+      margin-top: 48px;
     }
   }
 
   h4 {
     font-family: var(--font-family-secondary);
     font-weight: 500;
-    font-size: 20px;
-    line-height: 1.2;
-    margin-bottom: 20px;
+    font-size: 16px;
+    line-height: 1.5;
+    margin-bottom: 16px;
     letter-spacing: 0;
 
-    &:not(:first-child) {
+    @media (max-width: $mobile-max) {
+      margin-bottom: 13px;
+    }
+
+    &:not(:first-of-type) {
       margin-top: 24px;
     }
   }
@@ -246,52 +283,79 @@
   h5 {
     font-family: var(--font-family-secondary);
     font-weight: 500;
-    font-size: 18px;
+    font-size: 14px;
     line-height: 1.2;
-    margin-bottom: 18px;
+    margin-bottom: 14px;
     letter-spacing: 0;
 
-    &:not(:first-child) {
-      margin-top: 12px;
+    &:not(:first-of-type) {
+      margin-top: 16px;
     }
   }
 
   h6 {
     font-family: var(--font-family-secondary);
     font-weight: 500;
-    font-size: 16px;
+    font-size: 13px;
     line-height: 1.2;
-    margin-bottom: 16px;
+    margin-bottom: 13px;
     letter-spacing: 0;
 
-    &:not(:first-child) {
-      margin-top: 12px;
+    &:not(:first-of-type) {
+      margin-top: 18px;
     }
   }
 
   p {
     margin: 0;
     font-family: var(--font-family-secondary);
-    font-size: 16px;
-    line-height: 1.4;
+    font-size: 14px;
+    line-height: 1.5;
     color: var(--color-text);
   }
 
   ol {
     margin: 0;
     padding: 0;
-    list-style: none;
+    list-style-type: none;
+    counter-reset: item;
+
+
+    ol {
+      margin-top: 12px;
+      margin-left: 10px;
+
+      li {
+        margin-bottom: 12px;
+      }
+    }
+
+
+    ul {
+      padding-left: 24px;
+      margin-top: 8px;
+
+
+
+      li {
+        margin-bottom: 8px;
+      }
+    }
+
+
   }
 
   ul {
     margin: 0;
     padding: 0;
     list-style: none;
+    margin-top: 16px;
+    padding-left: 9px;
   }
 
   ul li {
     position: relative;
-    padding-left: 11px;
+    padding-left: 12px;
 
     &::before {
       content: '';
@@ -312,13 +376,10 @@
     letter-spacing: 0;
     margin-bottom: 16px;
 
-    ul {
-      margin-top: 16px;
-      padding-left: 9px;
-    }
-
-    li {
+    &:last-of-type {
       margin-bottom: 0;
     }
+
+
   }
 }
