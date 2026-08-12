@@ -3,7 +3,7 @@ function canHover() {
 }
 
 export function initCartPageItems() {
-  const items = [...document.querySelectorAll('.cart-page__item')];
+  const items = [...document.querySelectorAll('.cart-page .site-cart__item')];
 
   if (!items.length) {
     return;
@@ -15,7 +15,7 @@ export function initCartPageItems() {
         return;
       }
 
-      if (event.target.closest('a, .cart-page__item-remove')) {
+      if (event.target.closest('a, .site-cart__item-remove')) {
         return;
       }
 
@@ -36,7 +36,7 @@ export function initCartPageItems() {
       return;
     }
 
-    if (event.target.closest('.cart-page__item')) {
+    if (event.target.closest('.cart-page .site-cart__item')) {
       return;
     }
 

@@ -15,6 +15,7 @@
 
 include /components/text-button
 include /components/button
+include /components/cart-item
 
 aside.site-cart#site-cart(
   class=cartModifiers.length ? cartModifiers.join(' ') : false
@@ -48,7 +49,7 @@ aside.site-cart#site-cart(
           +uiButton({
             label: 'Перейти в каталог',
             variant: 'black',
-            href: '/archive.html',
+            href: '#collections',
             class: 'site-cart__empty-action',
           })
       else
@@ -70,53 +71,34 @@ aside.site-cart#site-cart(
             span 12 000 ₽
 
         .site-cart__body
-          article.site-cart__item
-            a.site-cart__item-media(href="/product.html")
-              img(src="/src/assets/images/products/product-1.png" alt="Кольцо Росток" width="160" height="180")
-            .site-cart__item-body
-              a.site-cart__item-title(href="/product.html") Кольцо Росток
-              p.site-cart__item-meta Размер: 16
-              p.site-cart__item-status Украшение добавлено
-              .site-cart__item-prices
-                span.site-cart__item-price.site-cart__item-price--old 18 204 ₽
-                span.site-cart__item-price 10 255 ₽
-              +uiTextButton({ label: 'Удалить', class: 'site-cart__item-remove' })
-
-          article.site-cart__item
-            a.site-cart__item-media(href="/product.html")
-              img(src="/src/assets/images/products/product-2.png" alt="Серьги Капля" width="160" height="180")
-            .site-cart__item-body
-              a.site-cart__item-title(href="/product.html") Серьги Капля
-              p.site-cart__item-meta Размер: —
-              p.site-cart__item-status Украшение добавлено
-              .site-cart__item-prices
-                span.site-cart__item-price.site-cart__item-price--old 18 200 ₽
-                span.site-cart__item-price 10 255 ₽
-              +uiTextButton({ label: 'Удалить', class: 'site-cart__item-remove' })
-
-          article.site-cart__item
-            a.site-cart__item-media(href="/product.html")
-              img(src="/src/assets/images/products/product-3.png" alt="Кольцо Росток" width="160" height="180")
-            .site-cart__item-body
-              a.site-cart__item-title(href="/product.html") Кольцо Росток
-              p.site-cart__item-meta Размер: 16
-              p.site-cart__item-status Украшение добавлено
-              .site-cart__item-prices
-                span.site-cart__item-price.site-cart__item-price--old 18 204 ₽
-                span.site-cart__item-price 10 255 ₽
-              +uiTextButton({ label: 'Удалить', class: 'site-cart__item-remove' })
-
-          article.site-cart__item
-            a.site-cart__item-media(href="/product.html")
-              img(src="/src/assets/images/products/product-4.png" alt="Кольцо Росток" width="160" height="180")
-            .site-cart__item-body
-              a.site-cart__item-title(href="/product.html") Кольцо Росток
-              p.site-cart__item-meta Размер: 16
-              p.site-cart__item-status Украшение добавлено
-              .site-cart__item-prices
-                span.site-cart__item-price.site-cart__item-price--old 18 204 ₽
-                span.site-cart__item-price 10 255 ₽
-              +uiTextButton({ label: 'Удалить', class: 'site-cart__item-remove' })
+          +uiCartItem({
+            title: 'Кольцо Росток',
+            image: '/src/assets/images/products/product-1.png',
+            size: '16',
+            oldPrice: '18 204 ₽',
+            price: '10 255 ₽',
+          })
+          +uiCartItem({
+            title: 'Серьги Капля',
+            image: '/src/assets/images/products/product-2.png',
+            size: '—',
+            oldPrice: '18 200 ₽',
+            price: '10 255 ₽',
+          })
+          +uiCartItem({
+            title: 'Кольцо Росток',
+            image: '/src/assets/images/products/product-3.png',
+            size: '16',
+            oldPrice: '18 204 ₽',
+            price: '10 255 ₽',
+          })
+          +uiCartItem({
+            title: 'Кольцо Росток',
+            image: '/src/assets/images/products/product-4.png',
+            size: '16',
+            oldPrice: '18 204 ₽',
+            price: '10 255 ₽',
+          })
 
         .site-cart__footer
           .site-cart__footer-col.site-cart__footer-cols

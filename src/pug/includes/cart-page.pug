@@ -1,6 +1,7 @@
 include /components/input
 include /components/button
 include /components/text-button
+include /components/cart-item
 
 main.cart-page__main
   .cart-page__header
@@ -13,31 +14,27 @@ main.cart-page__main
   .cart-page__layout
     .cart-page__primary
       .cart-page__items
-        article.cart-page__item
-          a.cart-page__item-media(href="/product.html")
-            img(src="/src/assets/images/products/product-1.png" alt="Кольцо Росток" width="160" height="160")
-          .cart-page__item-body
-            .cart-page__item-info
-              h2.cart-page__item-title
-                a(href="/product.html") Кольцо Росток
-              p.cart-page__item-meta Размер: 16
-            .cart-page__item-prices
-              span.cart-page__item-price.cart-page__item-price--old 18 204 ₽
-              span.cart-page__item-price 10 255 ₽
-            +uiTextButton({ label: 'Удалить', class: 'cart-page__item-remove' })
-
-        article.cart-page__item
-          a.cart-page__item-media(href="/product.html")
-            img(src="/src/assets/images/products/product-2.png" alt="Серьги Капля" width="160" height="160")
-          .cart-page__item-body
-            .cart-page__item-info
-              h2.cart-page__item-title
-                a(href="/product.html") Серьги Капля
-              p.cart-page__item-meta Размер: —
-            .cart-page__item-prices
-              span.cart-page__item-price.cart-page__item-price--old 18 204 ₽
-              span.cart-page__item-price 10 255 ₽
-            +uiTextButton({ label: 'Удалить', class: 'cart-page__item-remove' })
+        +uiCartItem({
+          title: 'Кольцо Росток',
+          image: '/src/assets/images/products/product-1.png',
+          size: '16',
+          oldPrice: '18 204 ₽',
+          price: '10 255 ₽',
+        })
+        +uiCartItem({
+          title: 'Серьги Капля',
+          image: '/src/assets/images/products/product-2.png',
+          size: '—',
+          oldPrice: '18 204 ₽',
+          price: '10 255 ₽',
+        })
+        +uiCartItem({
+          title: 'Серьги Капля',
+          image: '/src/assets/images/products/product-2.png',
+          size: '—',
+          oldPrice: '18 204 ₽',
+          price: '10 255 ₽',
+        })
 
       p.cart-page__note Корзина автоматически очистится через 24 часа
 

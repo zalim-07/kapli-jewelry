@@ -1,0 +1,26 @@
+include /components/text-button
+
+mixin uiCartItem(options = {})
+  - const href = options.href || '/product.html'
+  - const title = options.title || 'Кольцо Росток'
+  - const image = options.image || '/src/assets/images/products/product-1.png'
+  - const imageAlt = options.imageAlt || title
+  - const size = typeof options.size !== 'undefined' ? options.size : '16'
+  - const oldPrice = options.oldPrice || null
+  - const price = options.price || '10 255 ₽'
+  - const status = options.status !== false ? (options.status || 'Украшение добавлено') : null
+  - const className = ['site-cart__item', options.class || null].filter(Boolean).join(' ')
+
+  article(class=className)
+    a.site-cart__item-media(href=href)
+      img(src=image alt=imageAlt width="160" height="180")
+    .site-cart__item-body
+      a.site-cart__item-title(href=href)= title
+      p.site-cart__item-meta Размер: #{size}
+      if status
+        p.site-cart__item-status= status
+      .site-cart__item-prices
+        if oldPrice
+          span.site-cart__item-price.site-cart__item-price--old= oldPrice
+        span.site-cart__item-price= price
+      +uiTextButton({ label: 'Удалить', class: 'site-cart__item-remove' })

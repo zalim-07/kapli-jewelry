@@ -173,6 +173,15 @@ strong {
   margin-inline: auto;
 }
 
+.archive-page{
+  padding-top: 80px;
+
+  @media (max-width: $mobile-max) {
+    padding-top: 64px;
+
+  }
+}
+
 @media (max-width: $mobile-xs-max) {
   html {
     min-width: 0;

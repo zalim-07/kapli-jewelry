@@ -94,7 +94,7 @@ if (document.querySelector('.product-tabs')) {
   initProductTabs();
 }
 
-if (document.querySelector('.cart-page__item')) {
+if (document.querySelector('.cart-page .site-cart__item')) {
   initCartPageItems();
 }
 

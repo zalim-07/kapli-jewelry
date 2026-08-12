@@ -89,6 +89,22 @@ export function initHeaderCart() {
   backdrop?.addEventListener('click', close);
   closeButton?.addEventListener('click', close);
 
+  cart.addEventListener('click', (event) => {
+    const link = event.target.closest('a[href^="#"]');
+
+    if (!link || !cart.contains(link) || !cart.classList.contains('is-open')) {
+      return;
+    }
+
+    const hash = link.getAttribute('href');
+
+    if (!hash || hash === '#' || !document.querySelector(hash)) {
+      return;
+    }
+
+    close();
+  });
+
   document.addEventListener('keydown', (event) => {
     if (event.key === 'Escape' && cart.classList.contains('is-open')) {
       close();
