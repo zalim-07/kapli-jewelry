@@ -1,11 +1,15 @@
 -
   const product = {
-    title: 'Кольцо Ледник',
+    title: 'Подвеска Созвездие',
     sku: 'KA-12934023',
-    badge: 'Выбор покупателей',
+    badge: 'Новинка',
 
     kamen: [
       'Топаз'
+    ],
+
+    kamen_1: [
+      'Фианит'
     ],
 
     material: [
@@ -30,6 +34,7 @@
     ],
 
     sizes: [
+      '15',
       '16',
       '16,5',
       '17',
@@ -37,6 +42,8 @@
       '19',
       '20,5'
     ],
+
+    outOfStock: ['15'],
 
     selectedSize: '16,5',
 
@@ -57,6 +64,7 @@
 
   const summaryAttributes = [
     ...product.kamen,
+    ...product.kamen_1,    
     ...product.material,
   ]
 
@@ -81,6 +89,7 @@
     .slice(0, 4)
 
 include /includes/product-related-section
+include /components/button
 
 doctype html
 html(lang="ru")
@@ -100,33 +109,43 @@ html(lang="ru")
       main.product-main
         section.product-main__layout
           //- Галерея
-          - const galleryCount = Math.min(product.images.length, 3)
           .product-gallery(
+            data-product-gallery
             aria-label="Фотографии товара"
-            class=`product-gallery--count-${galleryCount}`
+            class=product.images.length <= 1 ? 'product-gallery--static' : null
           )
-            each image, index in product.images
-              -
-                let itemModifier = ''
-                if (galleryCount === 1) {
-                  itemModifier = 'product-gallery__item--full'
-                } else if (galleryCount === 2) {
-                  itemModifier = 'product-gallery__item--half'
-                } else {
-                  itemModifier = index < 2 ? 'product-gallery__item--half' : 'product-gallery__item--wide'
-                }
-                const imageWidth = galleryCount === 1 || (galleryCount === 3 && index >= 2) ? '820' : '408'
-                const imageHeight = galleryCount === 1 ? '980' : galleryCount === 2 ? '980' : index < 2 ? '534' : '980'
-              figure.product-gallery__item(class=itemModifier)
-                img.product-gallery__image(
-                  src=image.src
-                  alt=image.alt
-                  width=imageWidth
-                  height=imageHeight
-                  loading=index === 0 ? 'eager' : 'lazy'
-                  fetchpriority=index === 0 ? 'high' : null
-                  decoding="async"
+            .product-gallery__stage
+              .swiper.product-gallery__swiper
+                .swiper-wrapper
+                  each image, index in product.images
+                    .swiper-slide.product-gallery__slide
+                      figure.product-gallery__media
+                        img.product-gallery__image(
+                          src=image.src
+                          alt=image.alt
+                          width="484"
+                          height="632"
+                          loading=index === 0 ? 'eager' : 'lazy'
+                          fetchpriority=index === 0 ? 'high' : null
+                          decoding="async"
+                        )
+              .product-gallery__controls
+                button.product-gallery__button.product-gallery__button--prev(
+                  type="button"
+                  aria-label="Предыдущее фото"
                 )
+                  svg.product-gallery__icon(width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true")
+                    path(d="M10 3L5 8L10 13" stroke="#999999" stroke-width="1")
+                button.product-gallery__button.product-gallery__button--next(
+                  type="button"
+                  aria-label="Следующее фото"
+                )
+                  svg.product-gallery__icon(width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true")
+                    path(d="M6 3L11 8L6 13" stroke="#999999" stroke-width="1")
+            .product-gallery__pagination.swiper-pagination(
+              role="tablist"
+              aria-label="Навигация по фотографиям"
+            )
 
           //- Информация
           aside.product-main__summary
@@ -154,15 +173,24 @@ html(lang="ru")
                   legend.visually-hidden Выберите размер
 
                   .product-sizes__list
+                    -
+                      const outOfStockSizes = Array.isArray(product.outOfStock)
+                        ? product.outOfStock
+                        : []
                     each size, index in product.sizes
-                      .product-sizes__item
+                      -
+                        const isOutOfStock = outOfStockSizes.includes(size)
+                      .product-sizes__item(
+                        class=isOutOfStock ? 'product-sizes__item--out-of-stock' : null
+                      )
                         input.product-sizes__input(
                           type="radio"
                           name="product_size"
                           id=`product-size-${index}`
                           value=size
-                          checked=size === product.selectedSize
-                          required
+                          checked=!isOutOfStock && size === product.selectedSize
+                          disabled=isOutOfStock || null
+                          required=!isOutOfStock || null
                         )
 
                         label.product-sizes__label(
@@ -199,10 +227,13 @@ html(lang="ru")
                       span.product-payment__service
                         include src/assets/svg/split-logo.svg
 
-                button.button.button--dark.product-purchase__submit(
-                  type="submit"
-                )
-                  | Добавить в корзину
+                +uiButton({
+                  label: 'Добавить в корзину',
+                  variant: 'black',
+                  type: 'submit',
+                  fullWidth: true,
+                  class: 'product-purchase__submit',
+                })
 
               .product-tabs(data-product-tabs)
                 .product-tabs__navigation(
@@ -218,16 +249,6 @@ html(lang="ru")
                     tabindex="0"
                   )
                     | Характеристики
-
-                  button.product-tabs__button(
-                    type="button"
-                    role="tab"
-                    id="product-tab-description"
-                    aria-controls="product-panel-description"
-                    aria-selected="false"
-                    tabindex="-1"
-                  )
-                    | Описание
 
                   button.product-tabs__button(
                     type="button"
@@ -260,14 +281,6 @@ html(lang="ru")
                         .product-characteristics__row
                           dt= characteristic[0]
                           dd= characteristic[1]
-
-                  section.product-tabs__panel(
-                    role="tabpanel"
-                    id="product-panel-description"
-                    aria-labelledby="product-tab-description"
-                    hidden
-                  )
-                    p= product.description
 
                   section.product-tabs__panel(
                     role="tabpanel"

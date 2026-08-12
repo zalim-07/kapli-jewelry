@@ -12,6 +12,7 @@ import { initViewportScale } from './js/viewport-scale.js';
 import { initNumbersSwiper } from './js/init-numbers-swiper.js';
 import { initJournalSwiper } from './js/init-journal-swiper.js';
 import { initContentImageSlider } from './js/init-content-image-slider.js';
+import { initProductGallery } from './js/init-product-gallery.js';
 import { initAnchorScroll } from './js/anchor-scroll.js';
 import { scheduleScrollTriggerRefresh } from './js/scroll-trigger-refresh.js';
 
@@ -83,6 +84,10 @@ if (document.querySelector('.journal-swiper')) {
 
 if (document.querySelector('[data-content-image-slider]')) {
   initContentImageSlider();
+}
+
+if (document.querySelector('[data-product-gallery]')) {
+  initProductGallery();
 }
 
 if (document.querySelector('.product-tabs')) {
