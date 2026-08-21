@@ -5,12 +5,12 @@
 
   @media screen and (max-width: $desktop-max) {
     padding: 60px 0;
-    overflow: visible;
+    overflow-x: clip;
   }
 
   .section-inner {
     @media screen and (max-width: $desktop-max) {
-      overflow: visible;
+      overflow-x: clip;
     }
   }
 
@@ -90,7 +90,7 @@
 .numbers-swiper {
   @media screen and (max-width: $desktop-max) {
     margin-top: 40px;
-    overflow: visible;
+    overflow: hidden;
 
     .swiper-slide {
       width: 333px;

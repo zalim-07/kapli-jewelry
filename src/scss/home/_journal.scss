@@ -5,12 +5,12 @@
 
   @media screen and (max-width: $desktop-max) {
     padding: 60px 0;
-    overflow: visible;
+    overflow-x: clip;
   }
 
   .section-inner {
     @media screen and (max-width: $desktop-max) {
-      overflow: visible;
+      overflow-x: clip;
     }
   }
 
@@ -78,7 +78,7 @@
 
   @media screen and (max-width: $desktop-max) {
     margin-top: 32px;
-    overflow: visible;
+    overflow: hidden;
 
     .journal-card.swiper-slide {
       display: flex;

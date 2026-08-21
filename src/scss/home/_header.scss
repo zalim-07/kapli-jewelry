@@ -394,6 +394,7 @@
   z-index: 30;
   visibility: hidden;
   pointer-events: none;
+  overflow: hidden;
 
   &.is-open {
     visibility: visible;
