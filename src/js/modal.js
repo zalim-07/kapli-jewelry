@@ -1,3 +1,5 @@
+import { initModalUploads } from './modal-upload.js';
+
 const MODAL_ANIMATION_MS = 280;
 
 function closeModal(modal) {
@@ -67,34 +69,6 @@ function bindRecipientToggle(checkbox) {
   sync();
 }
 
-function bindUploadArea(area) {
-  const input = area.querySelector('.ui-modal-form__upload-input');
-
-  if (!input) {
-    return;
-  }
-
-  area.addEventListener('dragover', (event) => {
-    event.preventDefault();
-    area.classList.add('is-dragover');
-  });
-
-  area.addEventListener('dragleave', () => {
-    area.classList.remove('is-dragover');
-  });
-
-  area.addEventListener('drop', (event) => {
-    event.preventDefault();
-    area.classList.remove('is-dragover');
-
-    const file = event.dataTransfer?.files?.[0];
-
-    if (file) {
-      input.files = event.dataTransfer.files;
-    }
-  });
-}
-
 export function initModal() {
   const modals = [...document.querySelectorAll('.ui-modal')];
 
@@ -108,9 +82,11 @@ export function initModal() {
         closeModal(modal);
       });
     });
-
-    modal.querySelectorAll('.ui-modal-form__upload-area').forEach(bindUploadArea);
   });
+
+  if (document.querySelector('[data-modal-upload]')) {
+    initModalUploads();
+  }
 
   document.querySelectorAll('[data-modal-open]').forEach((trigger) => {
     trigger.addEventListener('click', (event) => {

@@ -35,19 +35,27 @@ mixin modalCustomJewelry()
 
           .ui-modal-form__upload
             span.ui-modal-form__upload-label Прикрепите фото, эскиз или референс для вдохновения
-            label.ui-modal-form__upload-area(for="custom-jewelry-file")
+            .ui-modal-form__upload-field(data-modal-upload)
               input.ui-modal-form__upload-input(
                 type="file"
                 id="custom-jewelry-file"
-                name="reference"
+                name="reference[]"
                 accept="image/*"
+                multiple
                 hidden
               )
-              span.ui-modal-form__upload-icon(aria-hidden="true")
-                include ../../assets/svg/picture.svg
-              span.ui-modal-form__upload-text
-                span.ui-modal-form__upload-title Нажмите, чтобы загрузить
-                span.ui-modal-form__upload-hint или перетащите изображение украшения
+              button.ui-modal-form__upload-drop(
+                type="button"
+                aria-label="Загрузить изображение"
+              )
+                span.ui-modal-form__upload-idle
+                  span.ui-modal-form__upload-icon(aria-hidden="true")
+                    include ../../assets/svg/picture.svg
+                  span.ui-modal-form__upload-text
+                    span.ui-modal-form__upload-title.ui-modal-form__upload-title--desktop Нажмите, чтобы загрузить
+                    span.ui-modal-form__upload-title.ui-modal-form__upload-title--mobile Прикрепите изображение
+                    span.ui-modal-form__upload-hint или перетащите изображение украшения
+              ul.ui-modal-form__upload-list(hidden)
 
     .ui-modal__footer
       +uiCheckbox({
