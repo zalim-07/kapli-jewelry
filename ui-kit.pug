@@ -8,4 +8,5 @@ html(lang="ru")
     .page-shell.ui-kit-page
       include /includes/ui-kit
 
-    script(type="module" src="/src/main.js")
+    include /includes/scripts
+    +scripts(['/src/js/select-page.js'])

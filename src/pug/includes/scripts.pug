@@ -1,0 +1,5 @@
+mixin scripts(modules)
+  script(type="module" src="/src/main.js")
+  if modules
+    each src in modules
+      script(type="module" src=src)

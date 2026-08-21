@@ -70,6 +70,12 @@
 }
 
 .journal-swiper {
+
+  .journal-card.swiper-slide {
+    display: flex;
+    flex-direction: column;
+  }
+
   @media screen and (max-width: $desktop-max) {
     margin-top: 32px;
     overflow: visible;
@@ -136,10 +142,8 @@
   }
 
   &__body {
-    @media screen and (max-width: $desktop-max) {
-      flex: 1;
-    }
-
+    flex: 1;
+    
     h3 {
       font-family: var(--font-family);
       font-weight: 400;

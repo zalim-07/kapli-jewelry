@@ -1,5 +1,4 @@
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
+let refreshImpl = null;
 let refreshFrame = null;
 let refreshTimeout = null;
 let anchorScrolling = false;
@@ -8,7 +7,15 @@ export function setAnchorScrolling(isScrolling) {
     anchorScrolling = isScrolling;
 }
 
+export function registerScrollTriggerRefresh(fn) {
+    refreshImpl = fn;
+}
+
 export function scheduleScrollTriggerRefresh() {
+    if (!refreshImpl) {
+        return;
+    }
+
     if (refreshFrame) {
         cancelAnimationFrame(refreshFrame);
     }
@@ -29,6 +36,6 @@ export function scheduleScrollTriggerRefresh() {
             return;
         }
 
-        ScrollTrigger.refresh();
+        refreshImpl();
     });
 }

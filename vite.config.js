@@ -23,6 +23,13 @@ const pugSettings = {
   },
 };
 
+const jsEntries = {
+  main: resolve(__dirname, 'src/main.js'),
+  'home-page': resolve(__dirname, 'src/js/home-page.js'),
+  'slider-page': resolve(__dirname, 'src/js/slider-page.js'),
+  'select-page': resolve(__dirname, 'src/js/select-page.js'),
+};
+
 const pugPages = Object.fromEntries(
   readdirSync(__dirname)
     .filter((file) => file.endsWith('.pug'))
@@ -78,11 +85,31 @@ export default defineConfig(({ command }) => {
           cssCodeSplit: false,
           assetsInlineLimit: 0,
           rollupOptions: {
-            input: pugPages,
+            input: {
+              ...pugPages,
+              ...jsEntries,
+            },
             output: {
               entryFileNames: 'js/[name].min.js',
               chunkFileNames: 'js/[name].min.js',
               assetFileNames,
+              manualChunks(id) {
+                const normalized = id.replace(/\\/g, '/');
+
+                if (normalized.includes('node_modules/gsap')) {
+                  return 'gsap';
+                }
+
+                if (normalized.includes('node_modules/swiper')) {
+                  return 'swiper';
+                }
+
+                if (normalized.includes('node_modules/tom-select')) {
+                  return 'tom-select';
+                }
+
+                return undefined;
+              },
             },
           },
         }

@@ -1,8 +1,4 @@
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { scheduleScrollTriggerRefresh } from './scroll-trigger-refresh.js';
-
-gsap.registerPlugin(ScrollTrigger);
 
 const DEFAULT_INITIAL_VISIBLE_COUNT = 8;
 const DEFAULT_LOAD_MORE_COUNT = 4;

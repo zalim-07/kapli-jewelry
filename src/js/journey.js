@@ -1,8 +1,15 @@
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { scheduleScrollTriggerRefresh } from './scroll-trigger-refresh.js';
+import {
+    registerScrollTriggerRefresh,
+    scheduleScrollTriggerRefresh,
+} from './scroll-trigger-refresh.js';
 
 gsap.registerPlugin(ScrollTrigger);
+
+registerScrollTriggerRefresh(() => {
+    ScrollTrigger.refresh();
+});
 
 const DESKTOP_MAX = 1439;
 

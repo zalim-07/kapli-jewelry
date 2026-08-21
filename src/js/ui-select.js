@@ -38,6 +38,9 @@ export function initUiSelect() {
           ].join('');
         },
       },
+      onChange() {
+        select.dispatchEvent(new Event('change', { bubbles: true }));
+      },
       onDropdownOpen() {
         uiSelect?.classList.add('ui-select--open');
       },

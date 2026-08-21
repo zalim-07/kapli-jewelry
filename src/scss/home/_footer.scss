@@ -9,7 +9,7 @@
     flex-direction: column;
     justify-content: space-between;
     color: #ffffff;
-    background: #030508 url('/src/assets/images/footer/bg.webp') no-repeat center / cover;
+    background: #030508 url('../../assets/images/footer/footer-bg.webp') no-repeat center / cover;
     gap: 48px;
 
     @media screen and (max-width: $desktop-max) {
