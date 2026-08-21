@@ -1,0 +1,78 @@
+include /components/modal
+include /components/input
+include /components/checkbox
+include /components/button
+
+mixin modalGiftCertificate(options = {})
+  - const amount = options.amount || '5000 ₽'
+
+  +uiModal({ id: 'modal-gift-certificate' })
+    .ui-modal__main
+      .ui-modal-form
+        .ui-modal-form__header
+          h2.ui-modal-form__title
+            | Подарочный сертификат 
+            span.ui-modal-form__title-amount(data-gift-modal-amount)= amount
+          p.ui-modal-form__description
+            | Выберите номинал и укажите, для кого он предназначен. Мы оформим сертификат и отправим его на почту.
+
+        .ui-modal-form__fields
+          +uiInput({
+            id: 'gift-certificate-name',
+            name: 'name',
+            label: 'Имя',
+            placeholder: 'Мария',
+          })
+
+          .ui-modal-form__field-group
+            +uiInput({
+              id: 'gift-certificate-email',
+              name: 'email',
+              type: 'email',
+              label: 'Ваш email',
+              placeholder: 'you@example.ru',
+            })
+
+            +uiCheckbox({
+              id: 'gift-certificate-recipient-toggle',
+              name: 'recipient_toggle',
+              size: 'sm',
+              class: 'ui-modal-form__recipient-toggle',
+              inputAttrs: { 'data-modal-recipient-toggle': 'gift-certificate-recipient-field' },
+            })
+              | Указать почту получателя
+
+          .ui-modal-form__field.ui-modal-form__field--toggleable(
+            id="gift-certificate-recipient-field"
+            hidden
+          )
+            +uiInput({
+              id: 'gift-certificate-recipient-email',
+              name: 'recipient_email',
+              type: 'email',
+              label: 'Email получателя сертификата',
+              placeholder: 'recipient@example.ru',
+            })
+
+          +uiInput({
+            id: 'gift-certificate-message',
+            name: 'message',
+            label: 'Пожелания',
+            placeholder: 'Несколько слов для получателя',
+          })
+
+    .ui-modal__footer
+      +uiCheckbox({
+        id: 'gift-certificate-privacy',
+        name: 'privacy_consent',
+        size: 'sm',
+        class: 'ui-modal-form__agreement',
+      })
+        | Нажимая на кнопку, вы соглашаетесь с&nbsp;
+        a(href="/page.html") Политикой обработки и защиты персональных данных
+      +uiButton({
+        label: 'Оформить сертификат',
+        variant: 'black',
+        fullWidth: true,
+        type: 'submit',
+      })

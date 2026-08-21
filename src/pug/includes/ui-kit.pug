@@ -4,6 +4,8 @@ include /components/radio-button
 include /components/input
 include /components/checkbox
 include /components/select
+include /includes/modal-custom-jewelry
+include /includes/modal-gift-certificate
 
 main.ui-kit
   .ui-kit__inner
@@ -152,3 +154,28 @@ main.ui-kit
           +uiCheckbox({ id: 'checkbox-md-active', name: 'checkbox-md-active', label: 'Text', size: 'md', checked: true })
           +uiCheckbox({ id: 'checkbox-md-disabled-active', name: 'checkbox-md-disabled-active', label: 'Text', size: 'md', checked: true, disabled: true })
           +uiCheckbox({ id: 'checkbox-md-error', name: 'checkbox-md-error', label: 'Text', size: 'md', error: true, checked: false })
+
+    section.ui-kit__section(id="ui-kit-modal")
+      h2.ui-kit__section-title Modal
+      .ui-kit__group
+        h3.ui-kit__group-title Forms
+        .ui-kit__items.ui-kit__items--row
+          +uiButton({
+            label: 'Создать уникальное украшение',
+            variant: 'black',
+            attrs: {
+              'data-modal-open': 'modal-custom-jewelry',
+              'aria-controls': 'modal-custom-jewelry',
+            },
+          })
+          +uiButton({
+            label: 'Оформить сертификат',
+            variant: 'black',
+            attrs: {
+              'data-modal-open': 'modal-gift-certificate',
+              'aria-controls': 'modal-gift-certificate',
+            },
+          })
+
++modalCustomJewelry()
++modalGiftCertificate()

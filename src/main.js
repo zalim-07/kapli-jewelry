@@ -13,6 +13,7 @@ import { initCartPageItems } from './js/cart-page-items.js';
 import { initUiRadio } from './js/ui-radio.js';
 import { initUiCheckbox } from './js/ui-checkbox.js';
 import { initCheckoutPayment } from './js/checkout-payment.js';
+import { initModal } from './js/modal.js';
 
 function initStaticHeaderTheme() {
   const header = document.querySelector('.site-header');
@@ -70,4 +71,8 @@ if (document.querySelector('.ui-checkbox')) {
 
 if (document.querySelector('[data-checkout-payment-card]')) {
   initCheckoutPayment();
+}
+
+if (document.querySelector('.ui-modal')) {
+  initModal();
 }

@@ -1,0 +1,66 @@
+include /components/modal
+include /components/input
+include /components/checkbox
+include /components/button
+
+mixin modalCustomJewelry()
+  +uiModal({ id: 'modal-custom-jewelry' })
+    .ui-modal__main
+      .ui-modal-form
+        .ui-modal-form__header
+          h2.ui-modal-form__title Создайте уникальное украшение
+          p.ui-modal-form__description
+            | Расскажите, каким вы его представляете. Мы уточним детали, поможем подобрать камни и расскажем о сроках и стоимости.
+
+        .ui-modal-form__fields.ui-modal-form__fields--sm
+          +uiInput({
+            id: 'custom-jewelry-name',
+            name: 'name',
+            label: 'Имя',
+            placeholder: 'Мария',
+          })
+          +uiInput({
+            id: 'custom-jewelry-phone',
+            name: 'phone',
+            type: 'tel',
+            label: 'Телефон',
+            placeholder: '+7 999 123 45 67',
+          })
+          +uiInput({
+            id: 'custom-jewelry-idea',
+            name: 'idea',
+            label: 'Расскажите об идее украшения',
+            placeholder: 'Камень, металл, форма, повод — всё, что для вас важно',
+          })
+
+          .ui-modal-form__upload
+            span.ui-modal-form__upload-label Прикрепите фото, эскиз или референс для вдохновения
+            label.ui-modal-form__upload-area(for="custom-jewelry-file")
+              input.ui-modal-form__upload-input(
+                type="file"
+                id="custom-jewelry-file"
+                name="reference"
+                accept="image/*"
+                hidden
+              )
+              span.ui-modal-form__upload-icon(aria-hidden="true")
+                include ../../assets/svg/picture.svg
+              span.ui-modal-form__upload-text
+                span.ui-modal-form__upload-title Нажмите, чтобы загрузить
+                span.ui-modal-form__upload-hint или перетащите изображение украшения
+
+    .ui-modal__footer
+      +uiCheckbox({
+        id: 'custom-jewelry-privacy',
+        name: 'privacy_consent',
+        size: 'sm',
+        class: 'ui-modal-form__agreement',
+      })
+        | Нажимая на кнопку, вы соглашаетесь с&nbsp;
+        a(href="/page.html") Политикой обработки и защиты персональных данных
+      +uiButton({
+        label: 'Обсудить украшение',
+        variant: 'black',
+        fullWidth: true,
+        type: 'submit',
+      })

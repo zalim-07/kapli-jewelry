@@ -28,4 +28,11 @@ section.section.gift#gift(aria-labelledby="gift-title")
         button.gift__price(type="button" aria-pressed="false") 10000 ₽
         button.gift__price(type="button" aria-pressed="false") 20000 ₽
 
-      +uiButton({ label: 'Оформить сертификат', variant: 'black', href: '#catalog' })
+      +uiButton({
+        label: 'Оформить сертификат',
+        variant: 'black',
+        attrs: {
+          'data-modal-open': 'modal-gift-certificate',
+          'aria-controls': 'modal-gift-certificate',
+        },
+      })

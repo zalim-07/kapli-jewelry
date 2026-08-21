@@ -14,7 +14,7 @@ mixin uiCheckbox(options = {})
       value=options.value
       checked=checked ? true : null
       disabled=disabled ? true : null
-    )
+    )&attributes(options.inputAttrs || {})
     span.ui-checkbox__control(aria-hidden="true")
     if options.label
       span.ui-checkbox__label= options.label
