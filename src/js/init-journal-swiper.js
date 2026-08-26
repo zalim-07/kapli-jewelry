@@ -1,6 +1,9 @@
 import Swiper from 'swiper';
 
 import 'swiper/css';
+import { scheduleScrollTriggerRefresh } from './scroll-trigger-refresh.js';
+
+const INITIAL_VISIBLE_COUNT = 4;
 
 const DESKTOP_MAX = 1439;
 
@@ -46,7 +49,30 @@ function initAutoGridSwiper(swiperElement) {
     mediaQuery.addEventListener('change', toggleSwiper);
 }
 
+function initJournalMore() {
+    document.querySelectorAll('.journal').forEach((section) => {
+        const button = section.querySelector('[data-journal-more]');
+        const cards = section.querySelectorAll('.journal-card');
+
+        if (!button) {
+            return;
+        }
+
+        if (cards.length <= INITIAL_VISIBLE_COUNT) {
+            button.hidden = true;
+            return;
+        }
+
+        button.addEventListener('click', () => {
+            section.classList.add('is-expanded');
+            button.hidden = true;
+            scheduleScrollTriggerRefresh();
+        });
+    });
+}
+
 export function initJournalSwiper() {
+    initJournalMore();
     document
         .querySelectorAll('.journal-swiper')
         .forEach(initAutoGridSwiper);

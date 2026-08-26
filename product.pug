@@ -16,7 +16,7 @@
       'Серебро 925'
     ],
 
-    description: 'Кольцо из серебра 925 пробы с натуральным эфиопским опалом. Камень раскрывается мягкими переливами оттенков и делает каждое изделие немного непохожим на другое.',
+    description: 'Кольцо из серебра 925 пробы с натуральным эфиопским опалом. Камень раскрывается мягкими переливами оттенков и делает каждое изделие немного непохожим на другое. Кольцо из серебра 925 пробы с натуральным эфиопским опалом. Камень раскрывается мягкими переливами оттенков и делает каждое изделие немного непохожим на другое.',
 
     images: [
       {
@@ -166,9 +166,16 @@ html(lang="ru")
 
                   span.product-summary__sku= product.sku
 
-              p.product-summary__description= product.description
+              .product-summary__description(data-product-description)
+                .product-summary__description-text= product.description
+                button.product-summary__description-toggle.ui-text-button(type="button" hidden aria-expanded="false")
+                  span.product-summary__description-toggle-label Показать все
+                  span.product-summary__description-toggle-icon.product-summary__description-toggle-icon--down(aria-hidden="true")
+                    include src/assets/svg/arrow-down-outline.svg
+                  span.product-summary__description-toggle-icon.product-summary__description-toggle-icon--up(aria-hidden="true" hidden)
+                    include src/assets/svg/arrow-up-outline.svg
 
-              form.product-purchase(action="#" method="post")
+              form.product-purchase.variations_form(action="#" method="post")
                 fieldset.product-sizes
                   legend.visually-hidden Выберите размер
 
@@ -197,8 +204,11 @@ html(lang="ru")
                           for=`product-size-${index}`
                         )= size
 
-                  a.product-sizes__guide(href="#size-guide")
-                    | Узнать свой размер
+                  a.product-sizes__guide.ui-text-button(
+                    href="#size-guide"
+                    data-modal-open="modal-size-guide"
+                    aria-controls="modal-size-guide"
+                  ) Узнать свой размер
 
                 .product-purchase__row
                   .product-price
@@ -315,6 +325,9 @@ html(lang="ru")
         })
 
       include /includes/footer
+
+    include /includes/modal-size-guide
+    +modalSizeGuide()
 
     include /includes/scripts
     +scripts(['/src/js/slider-page.js'])

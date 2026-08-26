@@ -10,12 +10,14 @@
     display: grid;
     grid-template-columns: minmax(0, 972fr) minmax(0, 460fr);
     align-items: start;
-    min-height: calc(var(--viewport-height) - 8px);
+    min-height: min(calc(var(--viewport-height) - 8px), 1100px);
+    max-height: 1100px;
     overflow: visible;
 
     @media (max-width: $desktop-max) {
         grid-template-columns: 1fr;
         min-height: 0;
+        max-height: none;
     }
 }
 
@@ -28,9 +30,9 @@
     align-self: start;
     width: 100%;
     min-width: 0;
-    height: calc(var(--viewport-height) - 8px);
+    height: min(calc(var(--viewport-height) - 76px), 1100px);
     position: sticky;
-    top: 4px;
+    top: 72px;
 
     @media (max-width: $desktop-max) {
         position: static;
@@ -348,11 +350,66 @@
 
 .product-summary__description {
     align-self: stretch;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
     margin: 0;
+}
+
+.product-summary__description-text {
+    align-self: stretch;
+    margin: 0;
+    overflow: hidden;
     font-family: var(--font-family-secondary);
     font-size: 16px;
     line-height: 1.4;
     color: #000;
+    transition: height 280ms ease;
+
+    p {
+        margin: 0;
+
+        &:not(:last-child) {
+            margin-bottom: 0.6em;
+        }
+    }
+}
+
+.product-summary__description.is-clamped:not(.is-expanded) .product-summary__description-text {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 4;
+    overflow: hidden;
+}
+
+.product-summary__description-toggle {
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 3px;
+    font-weight: 500;
+
+    &[hidden] {
+        display: none;
+    }
+}
+
+.product-summary__description-toggle-icon {
+    display: flex;
+    flex-shrink: 0;
+    width: 18px;
+    height: 18px;
+
+    svg {
+        display: block;
+        width: 18px;
+        height: 18px;
+    }
+
+    &[hidden] {
+        display: none;
+    }
 }
 
 /* Размеры */
@@ -362,7 +419,10 @@
     flex-direction: column;
     align-items: flex-start;
     align-self: stretch;
-    margin: 28px 0 0;
+}
+
+.variations_form {
+    margin-top: 24px;
 }
 
 .product-sizes {
@@ -449,14 +509,6 @@
 .product-sizes__guide {
     display: inline-block;
     margin-top: 0;
-    font-family: var(--font-family-secondary);
-    font-size: 14px;
-    font-weight: 500;
-    line-height: 1.4;
-    color: #616161;
-    text-decoration: underline;
-    text-underline-offset: 2px;
-    letter-spacing: 0;
 }
 
 /* Цена и рассрочка */
@@ -653,7 +705,19 @@
 }
 
 .product-tabs__panel>p {
-    margin: 0;
+    margin: 0 0 12px;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.product-tabs__panel>p:last-child {
+    margin-bottom: 0;
+}
+
+.product-tabs__panel ul,
+.product-tabs__panel ol {
+    margin: 0 0 12px;
+    padding-left: 18px;
     font-size: 14px;
     line-height: 1.5;
 }

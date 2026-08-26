@@ -6,7 +6,7 @@ section.section.journal#journal(aria-labelledby="journal-title")
       .section-heading__title
         em Журнал 
         span Kapli Jewelry 
-      +uiButton({ label: 'Смотреть всё', variant: 'black', href: '#journal-list' })
+      +uiButton({ label: 'Смотреть всё', variant: 'black', attrs: { 'data-journal-more': true } })
 
     .swiper.journal-swiper
       .journal__grid.swiper-wrapper#journal-list
@@ -33,4 +33,16 @@ section.section.journal#journal(aria-labelledby="journal-title")
           .journal-card__body
             h3 Почему ручная работа имеет значение
             p О том, какие этапы невозможно заменить машинным производством.
+          p.date 12/09/2024
+        article.journal-card.swiper-slide
+          span.badge О камнях
+          .journal-card__body
+            h3 Как рождается цвет в минерале
+            p О природных включениях, которые делают каждый камень уникальным.
+          p.date 12/09/2024
+        article.journal-card.swiper-slide
+          span.badge О бренде
+          .journal-card__body
+            h3 Зачем мы собираем коллекции вокруг камня
+            p Как один минерал задаёт характер всей линейки украшений.
           p.date 12/09/2024

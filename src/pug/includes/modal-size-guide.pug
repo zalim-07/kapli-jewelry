@@ -1,0 +1,82 @@
+include /components/modal
+
+-
+  const sizeGuideTable = [
+    ['49–50 мм', '16'],
+    ['51–52 мм', '16,5'],
+    ['53–54 мм', '17'],
+    ['54–55 мм', '17,5'],
+    ['55–56 мм', '18'],
+    ['57–58 мм', '18,5'],
+    ['59–60 мм', '19'],
+    ['61–62 мм', '19,5'],
+    ['63–64 мм', '20'],
+    ['65–66 мм', '20,5'],
+  ]
+
+mixin sizeGuideTip(text)
+  .size-guide-modal__tip
+    .size-guide-modal__tip-head
+      span.size-guide-modal__tip-icon(aria-hidden="true")
+        include ../../assets/svg/info-circle-bold.svg
+      h3.size-guide-modal__tip-title Небольшая подсказка
+    p.size-guide-modal__tip-text= text
+
+mixin modalSizeGuide()
+  +uiModal({ id: 'modal-size-guide', class: 'ui-modal--size-guide' })
+    .ui-modal__main
+      .size-guide-modal
+        .size-guide-modal__header
+          h2.size-guide-modal__title Как узнать размер кольца?
+          p.size-guide-modal__intro
+            | Выберите удобный способ — понадобится кольцо, которое хорошо сидит на нужном пальце, или обычная полоска бумаги.
+
+        .size-guide-modal__tabs(data-size-guide-tabs)
+          .size-guide-modal__tablist(role="tablist" aria-label="Способ определения размера")
+            button.size-guide-modal__tab.is-active(
+              type="button"
+              role="tab"
+              id="size-guide-tab-ring"
+              aria-controls="size-guide-panel-ring"
+              aria-selected="true"
+              tabindex="0"
+            ) Если есть подходящее кольцо
+            button.size-guide-modal__tab(
+              type="button"
+              role="tab"
+              id="size-guide-tab-thread"
+              aria-controls="size-guide-panel-thread"
+              aria-selected="false"
+              tabindex="-1"
+            ) Если кольца под рукой нет
+
+          .size-guide-modal__panels
+            section.size-guide-modal__panel(
+              role="tabpanel"
+              id="size-guide-panel-ring"
+              aria-labelledby="size-guide-tab-ring"
+            )
+              .size-guide-modal__content
+                p Положите кольцо на линейку и измерьте его внутренний диаметр по самой широкой части.
+                p Полученное значение в миллиметрах и будет размером кольца. Например: внутренний диаметр 17 мм — размер 17.
+              +sizeGuideTip('Измеряйте именно внутренний диаметр кольца — от одного внутреннего края до другого, через центр. Если значение получилось между двумя размерами, лучше выбрать больший.')
+
+            section.size-guide-modal__panel(
+              role="tabpanel"
+              id="size-guide-panel-thread"
+              aria-labelledby="size-guide-tab-thread"
+              hidden
+            )
+              .size-guide-modal__content
+                p Оберните палец тонкой нитью в том месте, где будет сидеть кольцо. Нить должна прилегать плотно, но не перетягивать палец.
+                p Отметьте место соединения, распрямите нить и измерьте её длину линейкой. Затем найдите полученное значение в таблице.
+              .size-guide-modal__table-wrap
+                .size-guide-modal__table(role="table")
+                  .size-guide-modal__table-row.size-guide-modal__table-row--head(role="row")
+                    .size-guide-modal__table-cell(role="columnheader") Окружность пальца
+                    .size-guide-modal__table-cell(role="columnheader") Размер кольца
+                  each row in sizeGuideTable
+                    .size-guide-modal__table-row(role="row")
+                      .size-guide-modal__table-cell(role="cell")= row[0]
+                      .size-guide-modal__table-cell(role="cell")= row[1]
+              +sizeGuideTip('Лучше делать замер вечером, когда размер пальца наиболее естественный. Нить должна прилегать плотно, но не перетягивать палец, и свободно проходить через сустав.')

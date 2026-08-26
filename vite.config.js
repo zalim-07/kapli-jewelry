@@ -28,6 +28,7 @@ const jsEntries = {
   'home-page': resolve(__dirname, 'src/js/home-page.js'),
   'slider-page': resolve(__dirname, 'src/js/slider-page.js'),
   'select-page': resolve(__dirname, 'src/js/select-page.js'),
+  'checkout-city': resolve(__dirname, 'src/js/checkout-city.js'),
 };
 
 const pugPages = Object.fromEntries(

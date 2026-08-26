@@ -3,6 +3,20 @@
 $modal-transition-duration: 0.28s;
 $modal-transition-timing: ease;
 
+html.is-modal-open {
+  @media screen and (max-width: $mobile-max) {
+    overflow: hidden;
+    height: var(--viewport-height);
+  }
+}
+
+html.is-modal-open body {
+  @media screen and (max-width: $mobile-max) {
+    overflow: hidden;
+    height: var(--viewport-height);
+  }
+}
+
 .ui-modal {
   position: fixed;
   inset: 0;
@@ -11,6 +25,8 @@ $modal-transition-timing: ease;
   align-items: center;
   justify-content: center;
   padding: 4px;
+  overflow: hidden;
+  overscroll-behavior: none;
 
   &[hidden] {
     display: none;
@@ -71,6 +87,7 @@ $modal-transition-timing: ease;
     padding: 0;
     border-radius: 0;
     box-shadow: none;
+    overflow: hidden;
     transform: translateY(16px);
 
     .ui-modal.is-open & {
@@ -121,14 +138,15 @@ $modal-transition-timing: ease;
 
 .ui-modal__main {
   flex: 1 1 auto;
-  // min-height: 0;
+  min-height: 0;
   padding: 24px;
-  // overflow-y: auto;
   background: #fff;
+  overscroll-behavior: contain;
 
   @media screen and (max-width: $mobile-max) {
     padding: 0 16px;
-    overflow-y: scroll;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
   }
 }
 
@@ -457,10 +475,6 @@ $modal-transition-timing: ease;
       }
     }
   }
-}
-
-body.is-modal-open {
-  overflow: hidden;
 }
 
 @media (prefers-reduced-motion: reduce) {

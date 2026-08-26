@@ -20,6 +20,10 @@
     gap: 10px;
     justify-content: space-between;
 
+    @media screen and (min-width: $desktop-max) {
+      min-height: 48px;
+    }
+
     @media screen and (max-width: $desktop-max) {
       padding-left: 16px;
       padding-right: 16px;
@@ -66,6 +70,14 @@
     width: auto;
     height: auto;
     margin: 0;
+  }
+
+  .journal:not(.is-expanded) .journal-swiper .journal-card:nth-child(n + 5) {
+    display: none;
+  }
+
+  .journal.is-expanded [data-journal-more] {
+    display: none;
   }
 }
 
@@ -143,7 +155,7 @@
 
   &__body {
     flex: 1;
-    
+
     h3 {
       font-family: var(--font-family);
       font-weight: 400;

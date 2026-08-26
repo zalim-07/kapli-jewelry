@@ -3,7 +3,7 @@ import { initJourneySections } from './journey.js';
 import { initNumbersSwiper } from './init-numbers-swiper.js';
 import { initJournalSwiper } from './init-journal-swiper.js';
 import { scheduleScrollTriggerRefresh } from './scroll-trigger-refresh.js';
-import { syncGiftModalAmount } from './modal.js';
+import { syncGiftModalAmount } from './gift-modal-sync.js';
 
 if (document.querySelector('.hero-swiper')) {
   const startHero = () => initHeroSwiper();

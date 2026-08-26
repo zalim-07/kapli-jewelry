@@ -3,7 +3,7 @@ import 'tom-select/dist/css/tom-select.css';
 
 export function initUiSelect() {
   document.querySelectorAll('[data-ui-select] select').forEach((select) => {
-    if (select.tomselect) {
+    if (select.tomselect || select.dataset.cdekCity !== undefined) {
       return;
     }
 

@@ -68,8 +68,8 @@ mixin productCard(product, options = {})
           each image, index in images
             span.product-card__zone(data-product-zone=index)
 
-    if images.length > 1
-      .product-card__dots(data-product-dots aria-hidden="true")
+    .product-card__dots(data-product-dots aria-hidden="true")
+      if images.length > 1
         each image, index in images
           span.product-card__dot(class=index === 0 ? 'is-active' : null)
 

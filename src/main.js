@@ -9,11 +9,13 @@ import { initHeaderCart } from './js/header-cart.js';
 import { initViewportScale } from './js/viewport-scale.js';
 import { initAnchorScroll } from './js/anchor-scroll.js';
 import { initProductTabs } from './js/product-tabs.js';
+import { initProductDescription } from './js/product-description.js';
 import { initCartPageItems } from './js/cart-page-items.js';
 import { initUiRadio } from './js/ui-radio.js';
 import { initUiCheckbox } from './js/ui-checkbox.js';
 import { initCheckoutPayment } from './js/checkout-payment.js';
 import { initModal } from './js/modal.js';
+import { initSizeGuideModal } from './js/size-guide-modal.js';
 
 function initStaticHeaderTheme() {
   const header = document.querySelector('.site-header');
@@ -57,6 +59,10 @@ if (document.querySelector('.product-tabs')) {
   initProductTabs();
 }
 
+if (document.querySelector('[data-product-description]')) {
+  initProductDescription();
+}
+
 if (document.querySelector('.cart-page .site-cart__item')) {
   initCartPageItems();
 }
@@ -75,4 +81,8 @@ if (document.querySelector('[data-checkout-payment-card]')) {
 
 if (document.querySelector('.ui-modal')) {
   initModal();
+}
+
+if (document.querySelector('[data-size-guide-tabs]')) {
+  initSizeGuideModal();
 }

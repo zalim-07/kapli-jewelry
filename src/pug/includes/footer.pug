@@ -9,14 +9,16 @@ footer.site-footer#contacts
         em ближе
       .section-heading__text
         p Подпишитесь на рассылку, чтобы первыми узнавать о новых украшениях, лимитированных коллекциях и специальных предложениях.
-      form.newsletter-form(action="#" method="post")
-        label.visually-hidden(for="newsletter-email") Ваш email
-        input#newsletter-email(
-          type="email"
-          name="email"
-          placeholder="Example@mail.ru"
-        )
-        +uiButton({ label: 'Подписаться', variant: 'white', type: 'submit' })
+      .newsletter-form
+        .newsletter-form__label Email
+        .tnp.tnp-subscription-minimal  
+          form(action="#" method="post")          
+            input#newsletter-email(
+              type="email"
+              name="email"
+              placeholder="Example@mail.ru"
+            )
+            +uiButton({ label: 'Подписаться', variant: 'white', type: 'submit' })
 
     .site-footer__bottom
       .site-footer__row

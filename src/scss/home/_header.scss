@@ -307,6 +307,10 @@
   --header-button-color: #fff;
   --header-button-background: #111;
   --header-border-color: rgba(17, 17, 17, 0.35);
+
+  .site-header__icon {
+    color: #999;
+  }
 }
 
 .site-header--dark,
@@ -333,7 +337,7 @@
   }
 
   .site-header__icon {
-    color: #999999;
+    color: #999;
   }
 }
 

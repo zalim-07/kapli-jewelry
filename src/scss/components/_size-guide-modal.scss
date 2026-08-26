@@ -1,0 +1,237 @@
+@use '../breakpoints' as *;
+
+
+.size-guide-modal {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.size-guide-modal__header {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.size-guide-modal__title {
+  margin: 0;
+  padding-right: 28px;
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 28px;
+  line-height: 1.1;
+  color: #000;
+  letter-spacing: 0;
+}
+
+.size-guide-modal__intro {
+  margin: 0;
+  font-family: var(--font-family-secondary);
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.4;
+  color: #434343;
+}
+
+.size-guide-modal__tabs {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.size-guide-modal__tablist {
+  display: flex;
+  gap: 2px;
+}
+
+.size-guide-modal__tab {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  flex: 1 1 0;
+  align-items: center;
+  justify-content: center;
+  min-width: 100px;
+  height: 56px;
+  padding: 8px 40px 16px;
+  border: 0;
+  border-radius: 8px 8px 0 0;
+  background: transparent;
+  cursor: pointer;
+  font-family: var(--font-family-secondary);
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.16;
+  text-align: center;
+  letter-spacing: 0;
+  color: #111;
+
+
+
+  &::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 4px;
+    background: #111;
+    opacity: 0;
+    transition: opacity var(--transition);
+  }
+
+  &.is-active::after {
+    opacity: 1;
+  }
+}
+
+.size-guide-modal__panels {
+  display: flex;
+  flex-direction: column;
+}
+
+.size-guide-modal__panel {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  &[hidden] {
+    display: none;
+  }
+}
+
+.size-guide-modal__content {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  p {
+    margin: 0;
+    font-family: var(--font-family-secondary);
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.4;
+    color: #434343;
+  }
+}
+
+.size-guide-modal__table-wrap {
+  max-height: 200px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #d7d7d7 transparent;
+
+  &::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #d7d7d7;
+    border-radius: 999px;
+  }
+}
+
+.size-guide-modal__table {
+  width: 100%;
+}
+
+.size-guide-modal__table-row {
+  display: flex;
+  gap: 16px;
+  min-height: 40px;
+  align-items: center;
+  border-bottom: 1px solid #ebebeb;
+}
+
+.size-guide-modal__table-cell {
+  flex: 1 1 0;
+  padding: 10px 0;
+  font-family: var(--font-family-secondary);
+  font-size: 14px;
+  line-height: 1.16;
+  color: #111;
+}
+
+.size-guide-modal__table-row--head .size-guide-modal__table-cell {
+  font-weight: 500;
+}
+
+.size-guide-modal__table-row:not(.size-guide-modal__table-row--head) .size-guide-modal__table-cell {
+  font-weight: 400;
+}
+
+.size-guide-modal__tip {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.size-guide-modal__tip-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.size-guide-modal__tip-icon {
+  display: flex;
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+
+  svg {
+    display: block;
+    width: 18px;
+    height: 18px;
+  }
+}
+
+.size-guide-modal__tip-title {
+  margin: 0;
+  font-family: var(--font-family-secondary);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.4;
+  letter-spacing: 0;
+  color: #434343;
+}
+
+.size-guide-modal__tip-text {
+  margin: 0;
+  font-family: var(--font-family-secondary);
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.4;
+  color: #434343;
+}
+
+@media screen and (max-width: $mobile-max) {
+  .ui-modal--size-guide {
+    .ui-modal__main {
+      padding: 0 16px 24px;
+    }
+  }
+
+  .size-guide-modal__tab {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .size-guide-modal__panel,
+  .size-guide-modal__tabs {
+    gap: 20px;
+  }
+
+  .size-guide-modal__table-row {
+    gap: 8px;
+  }
+
+  .size-guide-modal__table-wrap {
+    max-height: inherit;
+  }
+
+  .size-guide-modal__title {
+    padding-right: 0;
+    font-size: 24px;
+    line-height: 1.24;
+  }
+}

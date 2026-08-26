@@ -177,7 +177,12 @@ export function initCollections() {
         });
 
         loadMoreButton?.addEventListener('click', () => {
-            visibleCount += step;
+            visibleCount = loadMoreButton.hasAttribute(
+                'data-collections-show-all',
+            )
+                ? getFilteredCards().length
+                : visibleCount + step;
+
             renderProducts();
         });
 

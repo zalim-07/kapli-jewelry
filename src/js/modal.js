@@ -1,6 +1,94 @@
 import { initModalUploads } from './modal-upload.js';
 
 const MODAL_ANIMATION_MS = 280;
+const MOBILE_MEDIA = window.matchMedia('(max-width: 767px)');
+const SCROLL_KEYS = new Set([
+  'ArrowUp',
+  'ArrowDown',
+  'PageUp',
+  'PageDown',
+  'Home',
+  'End',
+  ' ',
+  'Spacebar',
+]);
+
+let scrollY = 0;
+let scrollLockCount = 0;
+
+function isMobileViewport() {
+  return MOBILE_MEDIA.matches;
+}
+
+function isModalScrollTarget(target) {
+  return Boolean(
+    target?.closest?.('.ui-modal__main, .ui-modal-form__upload-field'),
+  );
+}
+
+function preventPageScroll(event) {
+  if (isModalScrollTarget(event.target)) {
+    return;
+  }
+
+  event.preventDefault();
+}
+
+function preventScrollKeys(event) {
+  if (!SCROLL_KEYS.has(event.key)) {
+    return;
+  }
+
+  if (isModalScrollTarget(event.target)) {
+    return;
+  }
+
+  event.preventDefault();
+}
+
+function lockScrollPosition() {
+  if (window.scrollY !== scrollY) {
+    window.scrollTo(0, scrollY);
+  }
+}
+
+function lockPageScroll() {
+  if (!isMobileViewport()) {
+    return;
+  }
+
+  if (scrollLockCount === 0) {
+    scrollY = window.scrollY;
+    document.documentElement.classList.add('is-modal-open');
+    document.addEventListener('wheel', preventPageScroll, { passive: false });
+    document.addEventListener('touchmove', preventPageScroll, {
+      passive: false,
+    });
+    document.addEventListener('keydown', preventScrollKeys);
+    window.addEventListener('scroll', lockScrollPosition, { passive: true });
+  }
+
+  scrollLockCount += 1;
+}
+
+function unlockPageScroll() {
+  if (scrollLockCount === 0) {
+    return;
+  }
+
+  scrollLockCount -= 1;
+
+  if (scrollLockCount > 0) {
+    return;
+  }
+
+  document.documentElement.classList.remove('is-modal-open');
+  document.removeEventListener('wheel', preventPageScroll);
+  document.removeEventListener('touchmove', preventPageScroll);
+  document.removeEventListener('keydown', preventScrollKeys);
+  window.removeEventListener('scroll', lockScrollPosition);
+  window.scrollTo(0, scrollY);
+}
 
 function closeModal(modal) {
   if (!modal.classList.contains('is-open')) {
@@ -9,7 +97,7 @@ function closeModal(modal) {
 
   modal.classList.remove('is-open');
   modal.setAttribute('aria-hidden', 'true');
-  document.body.classList.remove('is-modal-open');
+  unlockPageScroll();
 
   const trigger = document.querySelector(`[data-modal-open="${modal.id}"][aria-controls="${modal.id}"]`);
 
@@ -24,7 +112,7 @@ function closeModal(modal) {
 function openModal(modal) {
   modal.hidden = false;
   modal.setAttribute('aria-hidden', 'false');
-  document.body.classList.add('is-modal-open');
+  lockPageScroll();
 
   requestAnimationFrame(() => {
     modal.classList.add('is-open');
@@ -116,24 +204,5 @@ export function initModal() {
     if (openModalElement) {
       closeModal(openModalElement);
     }
-  });
-}
-
-export function syncGiftModalAmount() {
-  const amountElement = document.querySelector('[data-gift-modal-amount]');
-  const priceGroup = document.querySelector('[data-gift-prices]');
-
-  if (!amountElement || !priceGroup) {
-    return;
-  }
-
-  priceGroup.addEventListener('click', (event) => {
-    const button = event.target.closest('.gift__price');
-
-    if (!button) {
-      return;
-    }
-
-    amountElement.textContent = button.textContent.trim();
   });
 }

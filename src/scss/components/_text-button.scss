@@ -13,7 +13,20 @@
   cursor: pointer;
   transition: color var(--transition);
 
+  svg {
+    path {
+      transition: color var(--transition);
+    }
+  }
+
   &:hover {
     text-decoration: none;
+    color: #999999;
+
+    svg {
+      path {
+        fill: #999;
+      }
+    }
   }
 }
