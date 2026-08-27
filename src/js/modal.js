@@ -15,6 +15,7 @@ const SCROLL_KEYS = new Set([
 
 let scrollY = 0;
 let scrollLockCount = 0;
+let activeModalTrigger = null;
 
 function isMobileViewport() {
   return MOBILE_MEDIA.matches;
@@ -99,17 +100,21 @@ function closeModal(modal) {
   modal.setAttribute('aria-hidden', 'true');
   unlockPageScroll();
 
-  const trigger = document.querySelector(`[data-modal-open="${modal.id}"][aria-controls="${modal.id}"]`);
+  const trigger = activeModalTrigger;
 
   window.setTimeout(() => {
     if (!modal.classList.contains('is-open')) {
       modal.hidden = true;
-      trigger?.focus();
+
+      if (trigger && document.contains(trigger)) {
+        trigger.focus({ preventScroll: true });
+      }
     }
   }, MODAL_ANIMATION_MS);
 }
 
-function openModal(modal) {
+function openModal(modal, trigger = null) {
+  activeModalTrigger = trigger;
   modal.hidden = false;
   modal.setAttribute('aria-hidden', 'false');
   lockPageScroll();
@@ -178,6 +183,8 @@ export function initModal() {
 
   document.querySelectorAll('[data-modal-open]').forEach((trigger) => {
     trigger.addEventListener('click', (event) => {
+      event.preventDefault();
+
       const modalId = trigger.dataset.modalOpen;
       const modal = document.getElementById(modalId);
 
@@ -185,8 +192,7 @@ export function initModal() {
         return;
       }
 
-      event.preventDefault();
-      openModal(modal);
+      openModal(modal, trigger);
     });
   });
 

@@ -153,7 +153,7 @@ export function initAnchorScroll() {
     document.addEventListener('click', (event) => {
         const link = event.target.closest('a[href]');
 
-        if (!link || !isSamePageHashLink(link)) {
+        if (!link || link.hasAttribute('data-modal-open') || !isSamePageHashLink(link)) {
             return;
         }
 

@@ -205,7 +205,7 @@ html(lang="ru")
                         )= size
 
                   a.product-sizes__guide.ui-text-button(
-                    href="#size-guide"
+                    href="#"
                     data-modal-open="modal-size-guide"
                     aria-controls="modal-size-guide"
                   ) Узнать свой размер
@@ -298,7 +298,28 @@ html(lang="ru")
                     aria-labelledby="product-tab-delivery"
                     hidden
                   )
-                    p Информация о способах, стоимости и сроках доставки.
+                    .product-info
+                      .product-info__block
+                        h5.product-info__title Доставка по Москве
+                        .product-info__group
+                          p.product-info__line Курьером СДЭК от 440 ₽
+                          p.product-info__line В пункт выдачи СДЭК от 245 ₽
+                        p.product-info__line Срок доставки: 2-4 рабочих дня
+                        p.product-info__text Выберите ближайший адрес пункта самовывоза СДЭК при оформлении заказа и узнайте точную стоимость.
+
+                      .product-info__block
+                        h5.product-info__title Доставка по России
+                        p.product-info__text Доставка по России осуществляется с помощью курьерской службы СДЭК во все регионы.
+                        p.product-info__text Срок доставки зависит от региона.
+
+                      .product-info__block
+                        h5.product-info__title Бесплатная доставка
+                        p.product-info__text При покупке онлайн на сумму от 12 000 ₽ доставка осуществляется бесплатно.
+
+                      .product-info__block
+                        h5.product-info__title Примерка
+                        p.product-info__text Примерка доступна при доставке СДЭК до пункта выдачи или курьером. Оформите и оплатите заказ онлайн, а при получении примерьте украшения и выберите те, которые подойдут вам больше всего. На примерку будет 15 минут.
+                        p.product-info__text Украшения, которые вы решите не оставлять, отправятся обратно к нам. Как только они поступят на склад, мы оформим возврат денежных средств.
 
                   section.product-tabs__panel(
                     role="tabpanel"

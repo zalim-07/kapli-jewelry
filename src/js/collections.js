@@ -67,7 +67,7 @@ export function initCollections() {
             '[data-collections-action]',
         );
 
-        if (!cards.length || !filterButtons.length) {
+        if (!cards.length) {
             return;
         }
 
