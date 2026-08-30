@@ -3,7 +3,7 @@
 :root {
   --layout-max-width: 1440px;
   --content-max-width: 2560px;
-  --layout-min-width: #{$mobile-xs-max};
+  --layout-min-width: 320px;
   --layout-padding: 4px;
   --column-padding: 40px;
   --controls-gap: 8px;
@@ -45,7 +45,7 @@
 }
 
 html {
-  min-width: 320px;
+  min-width: 375px;
   background: var(--color-background);
   scroll-behavior: auto;
 
@@ -55,7 +55,7 @@ html {
 }
 
 body {
-  min-width: 320px;
+  min-width: 375px;
   min-height: 100vh;
   min-height: var(--viewport-height);
   margin: 0;
@@ -185,28 +185,6 @@ strong {
   @media (max-width: $mobile-max) {
     padding-top: 64px;
 
-  }
-}
-
-@media (max-width: $mobile-xs-max) {
-  html {
-    min-width: 0;
-    overflow-x: hidden;
-  }
-
-  body {
-    min-width: 0;
-    overflow-x: hidden;
-    display: flex;
-    justify-content: center;
-  }
-
-  .page-shell {
-    width: var(--layout-min-width);
-    min-width: var(--layout-min-width);
-    flex-shrink: 0;
-    transform: scale(calc(100vw / var(--layout-min-width)));
-    transform-origin: top center;
   }
 }
 

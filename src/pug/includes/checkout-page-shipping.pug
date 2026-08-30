@@ -1,0 +1,230 @@
+include /components/input
+include /components/select
+include /components/radio-button
+include /components/button
+include /components/checkbox
+
+mixin checkoutSectionTitle(step, title)
+  .checkout-page__section-head
+    span.checkout-page__section-step= step
+    h2.checkout-page__section-title= title
+
+-
+  const isDeliverySelected =
+    typeof checkoutDeliverySelected !== 'undefined' && checkoutDeliverySelected
+
+mixin checkoutPaymentCard(options = {})
+  .checkout-payment-card(data-checkout-payment-card)
+    .checkout-payment-card__logos
+      block
+    +uiRadio({
+      id: options.id,
+      name: options.name || 'checkout-payment',
+      value: options.value,
+      label: options.label,
+      checked: options.checked || false,
+      size: 'md',
+    })
+
+main.checkout-page__main
+  .checkout-page__header
+    .checkout-page__header-inner
+      h1.checkout-page__title Оформление заказа
+      p.checkout-page__count 2 украшения
+
+  .checkout-page__layout(
+    class=isDeliverySelected ? 'checkout-page__layout--delivery-selected' : null
+  )
+    .checkout-page__content
+      section.checkout-page__section
+        +checkoutSectionTitle('1/3', 'Информация')
+        .checkout-page__fields.checkout-page__fields--grid
+          +uiInput({
+            id: 'checkout-first-name',
+            name: 'first_name',
+            label: 'Имя',
+            placeholder: 'Мария',
+            size: 'lg',
+          })
+          +uiInput({
+            id: 'checkout-last-name',
+            name: 'last_name',
+            label: 'Фамилия',
+            placeholder: 'Иванова',
+            size: 'lg',
+          })
+          +uiInput({
+            id: 'checkout-email',
+            name: 'email',
+            label: 'Email',
+            placeholder: 'info@kapli-jewelry.ru',
+            size: 'lg',
+            type: 'email',
+          })
+          +uiInput({
+            id: 'checkout-phone',
+            name: 'phone',
+            label: 'Номер телефона',
+            placeholder: '+7 999 123 45 67',
+            size: 'lg',
+            type: 'tel',
+          })
+
+      section.checkout-page__section
+        +checkoutSectionTitle('2/3', 'Доставка СДЕК')
+        .checkout-page__delivery
+          +uiSelect({
+            id: 'checkout-city',
+            name: 'city',
+            label: 'Город',
+            value: 'Москва',
+            items: [
+              { value: 'moscow', label: 'Москва' },
+              { value: 'kian', label: 'Киан-Подгорное', meta: 'Ставропольский край' },
+              { value: 'astanino-1', label: 'Астанино, Егорьевский р-н', meta: '(Московская обл)' },
+              { value: 'astanino-2', label: 'Астанино, Егорьевский р-н', meta: '(Московская обл)' },
+              { value: 'avsyunino', label: 'Авсюнино', meta: '(Московская обл)' },
+            ],
+          })
+          .checkout-page__map(data-cdek-free-office="0" data-cdek-free-door="0")
+            table.shop_table.checkout-page__shipping-table
+              tbody
+                tr.woocommerce-shipping-totals.shipping
+                  th Доставка
+                  td(data-title="Доставка")
+                    ul#shipping_method.woocommerce-shipping-methods
+                      li
+                        input.shipping_method(
+                          type="radio"
+                          name="shipping_method[0]"
+                          data-index="0"
+                          id="shipping_method_0_official_cdek139"
+                          value="official_cdek:139"
+                        )
+                        label(for="shipping_method_0_official_cdek139") Доставка курьером
+                        span.shipping-method-price
+                          span.woocommerce-Price-amount.amount
+                            bdi
+                              | 970&nbsp;
+                              span.woocommerce-Price-currencySymbol(translate="no") ₽
+                      li
+                        input.shipping_method(
+                          type="radio"
+                          name="shipping_method[0]"
+                          data-index="0"
+                          id="shipping_method_0_official_cdek138"
+                          value="official_cdek:138"
+                          checked
+                        )
+                        label(for="shipping_method_0_official_cdek138") ПВЗ СДЕК
+                        .cdek-office-info NN41, Нижний Новгород, пр-т Ленина, 67/1
+                        span.shipping-method-price.shipping-method-price--free Бесплатно
+                        .open-pvz-btn(data-city="Нижний Новгород")
+                          a Изменить адрес
+                        input.cdek-office-code(name="office_code" type="hidden" value="NN41")
+          +uiInput({
+            id: 'checkout-comment',
+            name: 'comment',
+            label: 'Комментарий к заказу',
+            placeholder: 'Информация, которую нам нужно знать',
+            size: 'lg',
+          })
+
+      section.checkout-page__section
+        +checkoutSectionTitle('3/3', 'Оплата заказа')
+        .checkout-page__payment
+          .checkout-page__payment-row.checkout-page__payment-row--primary
+            +checkoutPaymentCard({
+              id: 'checkout-payment-sbp',
+              value: 'sbp',
+              label: 'Оплата через СБП',
+              checked: true,
+            })
+              span.checkout-payment-card__logo.checkout-payment-card__logo--sbp(aria-hidden="true")
+                include ../../assets/svg/payment-sbp.svg
+            +checkoutPaymentCard({
+              id: 'checkout-payment-card',
+              value: 'card',
+              label: 'Банковская картой онлайн',
+            })
+              span.checkout-payment-card__logo-group.checkout-payment-card__logo--tpay-mir(aria-hidden="true")
+                include ../../assets/svg/payment-tbank-sber.svg
+          .checkout-page__payment-row.checkout-page__payment-row--installments
+            +checkoutPaymentCard({
+              id: 'checkout-payment-dolyame',
+              value: 'dolyame',
+              label: 'Долями — 4 платежа по 5125₽',
+            })
+              span.checkout-payment-card__logo(aria-hidden="true")
+                include ../../assets/svg/payment-dolyami.svg
+            +checkoutPaymentCard({
+              id: 'checkout-payment-split',
+              value: 'split',
+              label: 'Яндекс Сплит — 4 × 5125₽',
+            })
+              span.checkout-payment-card__logo.checkout-payment-card__logo--split(aria-hidden="true")
+                include ../../assets/svg/payment-split.svg
+            +checkoutPaymentCard({
+              id: 'checkout-payment-podeli',
+              value: 'podeli',
+              label: 'Подели — 4 платежа по 5125₽',
+            })
+              span.checkout-payment-card__logo.checkout-payment-card__logo--podeli(aria-hidden="true")
+                include ../../assets/svg/payment-podeli.svg
+
+    aside.checkout-page__aside
+      +uiInput({
+        id: 'checkout-promo',
+        name: 'promo',
+        label: 'Промокод',
+        value: '',
+        placeholder: 'Promo10',
+        size: 'md',
+      })
+
+      .checkout-page__order
+        h2.checkout-page__order-title Ваш заказ
+
+        .checkout-page__order-rows
+          .checkout-page__order-row
+            span Товары
+            strong 36 408 ₽
+          .checkout-page__order-row
+            span Скидка
+            strong − 15 892 ₽
+          .checkout-page__order-row
+            span Доставка
+            span Бесплатно
+
+        .checkout-page__order-total
+          span Сумма заказа
+          strong 20 510 ₽
+
+      .checkout-page__submit-block
+        +uiButton({
+          label: isDeliverySelected ? 'Оформить заказ' : 'Заполните все данные',
+          variant: 'black',
+          disabled: !isDeliverySelected,
+          class: 'checkout-page__submit',
+          fullWidth: true,
+        })
+
+        if isDeliverySelected
+          .checkout-page__agreements
+            +uiCheckbox({
+              id: 'checkout-promo-subscribe',
+              name: 'promo_subscribe',
+              size: 'sm',
+              checked: true,
+              class: 'checkout-page__agreement',
+              label: 'Получать информацию об акциях и спецпредложениях Kapli Jewelry',
+            })
+            +uiCheckbox({
+              id: 'checkout-privacy-consent',
+              name: 'privacy_consent',
+              size: 'sm',
+              checked: true,
+              class: 'checkout-page__agreement',
+            })
+              | Нажимая на кнопку, вы соглашаетесь с&nbsp;
+              a(href="/page.html") Политикой обработки и защиты персональных данных

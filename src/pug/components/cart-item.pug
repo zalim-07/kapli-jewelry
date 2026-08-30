@@ -12,7 +12,7 @@ mixin uiCartItem(options = {})
   - const className = ['site-cart__item', options.class || null].filter(Boolean).join(' ')
 
   article(class=className)
-    a.site-cart__item-media(href=href)
+    .site-cart__item-media
       img(src=image alt=imageAlt width="160" height="180")
     .site-cart__item-body
       a.site-cart__item-title(href=href)= title

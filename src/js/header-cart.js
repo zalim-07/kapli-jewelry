@@ -9,11 +9,42 @@ const SCROLL_KEYS = new Set([
   'Spacebar',
 ]);
 
+function isCartRoutePage() {
+  if (document.querySelector('.page-shell.cart-page, .page-shell.checkout-page')) {
+    return true;
+  }
+
+  const path = window.location.pathname.replace(/\/+$/, '') || '/';
+
+  return /\/cart$/.test(path) || /\/checkout$/.test(path);
+}
+
+function getCartPageUrl(cartButton) {
+  if (cartButton instanceof HTMLAnchorElement && cartButton.href) {
+    return cartButton.href;
+  }
+
+  return '/cart/';
+}
+
 export function initHeaderCart() {
   const cartButton = document.querySelector('.site-header__action--cart');
   const cart = document.querySelector('#site-cart');
 
   if (!cartButton || !cart) {
+    return;
+  }
+
+  if (isCartRoutePage()) {
+    if (cartButton instanceof HTMLAnchorElement) {
+      return;
+    }
+
+    cartButton.addEventListener('click', (event) => {
+      event.preventDefault();
+      window.location.href = getCartPageUrl(cartButton);
+    });
+
     return;
   }
 

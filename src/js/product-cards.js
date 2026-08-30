@@ -211,33 +211,38 @@ function initProductCardGallery(card) {
     mobileMedia.addEventListener('change', toggleModes);
 }
 
-export function initProductCards() {
-    document
-        .querySelectorAll('[data-product-card]')
-        .forEach(initProductCardGallery);
+export function initProductCards(root = document) {
+    const scope = root instanceof Element ? root : document;
 
-    const sizeGroups = document.querySelectorAll(
-        '[data-product-sizes]',
-    );
-
-    sizeGroups.forEach((sizeGroup) => {
-        const moreButton = sizeGroup.querySelector(
-            '[data-product-sizes-more]',
-        );
-
-        if (!moreButton) {
-            return;
-        }
-
-        function openSizes() {
-            sizeGroup.classList.add('is-expanded');
-            moreButton.setAttribute('aria-expanded', 'true');
-            moreButton.blur();
-        }
-
-        moreButton.addEventListener('click', (event) => {
-            event.preventDefault();
-            openSizes();
+    scope
+        .querySelectorAll('[data-product-card]:not([data-product-card-init])')
+        .forEach((card) => {
+            card.dataset.productCardInit = '1';
+            initProductCardGallery(card);
         });
-    });
+
+    scope
+        .querySelectorAll('[data-product-sizes]:not([data-product-sizes-init])')
+        .forEach((sizeGroup) => {
+            const moreButton = sizeGroup.querySelector(
+                '[data-product-sizes-more]',
+            );
+
+            if (!moreButton) {
+                return;
+            }
+
+            sizeGroup.dataset.productSizesInit = '1';
+
+            function openSizes() {
+                sizeGroup.classList.add('is-expanded');
+                moreButton.setAttribute('aria-expanded', 'true');
+                moreButton.blur();
+            }
+
+            moreButton.addEventListener('click', (event) => {
+                event.preventDefault();
+                openSizes();
+            });
+        });
 }

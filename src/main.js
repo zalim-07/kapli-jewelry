@@ -6,7 +6,6 @@ import { initSidemenu } from './js/sidemenu.js';
 import { initHeaderSticky } from './js/header-sticky.js';
 import { initHeaderContacts } from './js/header-contacts.js';
 import { initHeaderCart } from './js/header-cart.js';
-import { initViewportScale } from './js/viewport-scale.js';
 import { initAnchorScroll } from './js/anchor-scroll.js';
 import { initProductTabs } from './js/product-tabs.js';
 import { initProductDescription } from './js/product-description.js';
@@ -39,6 +38,8 @@ if (document.querySelector('.featured, .collections, [data-collections], .produc
   initProductCards();
 }
 
+window.kapliInitProductCards = initProductCards;
+
 if (document.querySelector('[data-collections]')) {
   initCollections();
 }
@@ -49,10 +50,6 @@ if (document.querySelector('[data-gift-prices]')) {
 
 if (document.querySelector('#site-sidemenu')) {
   initSidemenu();
-}
-
-if (document.querySelector('.page-shell')) {
-  initViewportScale();
 }
 
 if (document.querySelector('.product-tabs')) {

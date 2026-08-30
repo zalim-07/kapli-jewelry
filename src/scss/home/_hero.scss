@@ -226,7 +226,7 @@
 
   overflow: hidden;
   text-align: center;
-  transform: translateX(-50%);
+  transform: translateX(-50%) !important;
 
   &.is-animating {
     pointer-events: none;

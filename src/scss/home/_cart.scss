@@ -417,17 +417,16 @@
 
 @media screen and (max-width: $mobile-max) {
   .site-cart {
-    inset: auto;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: var(--viewport-height);
+    inset: 0;
+    height: auto;
 
     &__panel {
       width: min(361px, 100%);
       max-width: 361px;
-      height: var(--viewport-height);
+      height: auto;
+      top: 0;
       right: 0;
+      bottom: 0;
       left: auto;
       padding: 4px 0px;
     }
