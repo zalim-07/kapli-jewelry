@@ -257,6 +257,9 @@
       .cdek-office-info {
         grid-area: info;
         min-width: 0;
+        white-space: nowrap;     /* Запрещает перенос строки */
+        overflow: hidden;        /* Скрывает текст, который вылезает за границы */
+        text-overflow: ellipsis; /* Добавляет троеточие в конце */
 
         @media (max-width: $desktop-max) {
           font-family: var(--font-family-secondary);
