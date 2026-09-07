@@ -1,8 +1,3 @@
-import {
-    scheduleScrollTriggerRefresh,
-    setAnchorScrolling,
-} from './scroll-trigger-refresh.js';
-
 function normalizePathname(pathname) {
     if (!pathname || pathname === '/') {
         return '/';
@@ -62,91 +57,22 @@ function isSamePageHashLink(link) {
     }
 }
 
-function getStickyHeaderOffset() {
-    const header = document.querySelector('.site-header');
-
-    if (!header) {
-        return 0;
+export function scrollToHash({
+    hash = window.location.hash,
+    behavior = 'auto',
+} = {}) {
+    if (!hash || hash === '#') {
+        return false;
     }
 
-    const wasSticky = header.classList.contains('is-sticky');
+    const target = document.querySelector(hash);
 
-    if (!wasSticky) {
-        header.classList.add('is-sticky');
+    if (!target) {
+        return false;
     }
 
-    const offset = header.getBoundingClientRect().height;
-
-    if (!wasSticky) {
-        header.classList.remove('is-sticky');
-    }
-
-    return offset;
-}
-
-function getScrollTopForTarget(target) {
-    return Math.max(
-        0,
-        target.getBoundingClientRect().top +
-            window.scrollY -
-            getStickyHeaderOffset(),
-    );
-}
-
-function waitForScrollEnd(onComplete) {
-    if ('onscrollend' in window) {
-        window.addEventListener('scrollend', onComplete, {
-            once: true,
-        });
-        return;
-    }
-
-    let lastScrollY = window.scrollY;
-    let stableFrames = 0;
-
-    function check() {
-        const currentScrollY = window.scrollY;
-
-        if (Math.abs(currentScrollY - lastScrollY) < 1) {
-            stableFrames += 1;
-        } else {
-            stableFrames = 0;
-            lastScrollY = currentScrollY;
-        }
-
-        if (stableFrames >= 4) {
-            onComplete();
-            return;
-        }
-
-        requestAnimationFrame(check);
-    }
-
-    requestAnimationFrame(check);
-}
-
-function scrollToTarget(target, { updateHistory = true } = {}) {
-    const top = getScrollTopForTarget(target);
-
-    setAnchorScrolling(true);
-
-    window.scrollTo({
-        top,
-        behavior: 'smooth',
-    });
-
-    if (updateHistory) {
-        const id = target.id;
-
-        if (id) {
-            history.pushState(null, '', `#${id}`);
-        }
-    }
-
-    waitForScrollEnd(() => {
-        setAnchorScrolling(false);
-        scheduleScrollTriggerRefresh();
-    });
+    target.scrollIntoView({ behavior, block: 'start' });
+    return true;
 }
 
 export function initAnchorScroll() {
@@ -165,40 +91,6 @@ export function initAnchorScroll() {
         }
 
         event.preventDefault();
-        scrollToTarget(target);
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
-
-    function scrollToInitialHash() {
-        const { hash } = window.location;
-
-        if (!hash || hash === '#') {
-            return;
-        }
-
-        const target = document.querySelector(hash);
-
-        if (!target) {
-            return;
-        }
-
-        setAnchorScrolling(true);
-
-        window.scrollTo({
-            top: getScrollTopForTarget(target),
-            behavior: 'auto',
-        });
-
-        requestAnimationFrame(() => {
-            setAnchorScrolling(false);
-            scheduleScrollTriggerRefresh();
-        });
-    }
-
-    if (document.readyState === 'complete') {
-        scrollToInitialHash();
-    } else {
-        window.addEventListener('load', scrollToInitialHash, {
-            once: true,
-        });
-    }
 }

@@ -299,6 +299,10 @@
   cursor: pointer;
   transition: border-color var(--transition);
 
+  &:not(&--active):hover{
+    border-color: #999;
+  }
+
   &--active,
   &:has(.ui-radio__input:checked) {
     border-color: #111;

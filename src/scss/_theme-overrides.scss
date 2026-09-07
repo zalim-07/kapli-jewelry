@@ -153,6 +153,11 @@
         grid-template-columns: 20px minmax(0, min-content) minmax(0, 1.5fr) auto auto;
         grid-template-areas: 'radio label info price action';
         justify-content: flex-start;
+        transition: border-color var(--transition);
+
+        &:hover {
+          border-color: #999;
+        }
 
         &:not(:has(.cdek-office-info)) {
           grid-template-columns: 20px minmax(0, min-content) 1fr auto;

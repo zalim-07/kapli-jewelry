@@ -2,20 +2,11 @@ import { initModalUploads } from './modal-upload.js';
 
 const MODAL_ANIMATION_MS = 280;
 const MOBILE_MEDIA = window.matchMedia('(max-width: 767px)');
-const SCROLL_KEYS = new Set([
-  'ArrowUp',
-  'ArrowDown',
-  'PageUp',
-  'PageDown',
-  'Home',
-  'End',
-  ' ',
-  'Spacebar',
-]);
 
 let scrollY = 0;
 let scrollLockCount = 0;
 let activeModalTrigger = null;
+let scrollLockListenersBound = false;
 
 function isMobileViewport() {
   return MOBILE_MEDIA.matches;
@@ -23,50 +14,51 @@ function isMobileViewport() {
 
 function isModalScrollTarget(target) {
   return Boolean(
-    target?.closest?.('.ui-modal__main, .ui-modal-form__upload-field'),
+    target?.closest?.('.ui-modal__dialog, .ui-modal-form__upload-field'),
   );
 }
 
 function preventPageScroll(event) {
-  if (isModalScrollTarget(event.target)) {
+  if (!isMobileViewport() || isModalScrollTarget(event.target)) {
     return;
   }
 
   event.preventDefault();
 }
 
-function preventScrollKeys(event) {
-  if (!SCROLL_KEYS.has(event.key)) {
+function bindScrollLockListeners() {
+  if (scrollLockListenersBound) {
     return;
   }
 
-  if (isModalScrollTarget(event.target)) {
-    return;
-  }
-
-  event.preventDefault();
+  scrollLockListenersBound = true;
+  document.addEventListener('touchmove', preventPageScroll, { passive: false });
+  document.addEventListener('wheel', preventPageScroll, { passive: false });
 }
 
-function lockScrollPosition() {
-  if (window.scrollY !== scrollY) {
-    window.scrollTo(0, scrollY);
+function unbindScrollLockListeners() {
+  if (!scrollLockListenersBound) {
+    return;
   }
+
+  scrollLockListenersBound = false;
+  document.removeEventListener('touchmove', preventPageScroll);
+  document.removeEventListener('wheel', preventPageScroll);
 }
 
 function lockPageScroll() {
-  if (!isMobileViewport()) {
-    return;
-  }
-
   if (scrollLockCount === 0) {
     scrollY = window.scrollY;
     document.documentElement.classList.add('is-modal-open');
-    document.addEventListener('wheel', preventPageScroll, { passive: false });
-    document.addEventListener('touchmove', preventPageScroll, {
-      passive: false,
-    });
-    document.addEventListener('keydown', preventScrollKeys);
-    window.addEventListener('scroll', lockScrollPosition, { passive: true });
+
+    if (isMobileViewport()) {
+      document.body.style.position = 'fixed';
+      document.body.style.top = `-${scrollY}px`;
+      document.body.style.left = '0';
+      document.body.style.right = '0';
+      document.body.style.width = '100%';
+      bindScrollLockListeners();
+    }
   }
 
   scrollLockCount += 1;
@@ -84,10 +76,16 @@ function unlockPageScroll() {
   }
 
   document.documentElement.classList.remove('is-modal-open');
-  document.removeEventListener('wheel', preventPageScroll);
-  document.removeEventListener('touchmove', preventPageScroll);
-  document.removeEventListener('keydown', preventScrollKeys);
-  window.removeEventListener('scroll', lockScrollPosition);
+
+  if (isMobileViewport()) {
+    document.body.style.position = '';
+    document.body.style.top = '';
+    document.body.style.left = '';
+    document.body.style.right = '';
+    document.body.style.width = '';
+    unbindScrollLockListeners();
+  }
+
   window.scrollTo(0, scrollY);
 }
 
@@ -192,7 +190,17 @@ export function initModal() {
         return;
       }
 
+      if (modalId === 'modal-custom-jewelry' && typeof window.kapliResetCustomJewelryModal === 'function') {
+        window.kapliResetCustomJewelryModal();
+      }
+
       openModal(modal, trigger);
+
+      if (modalId === 'modal-custom-jewelry' && typeof window.kapliEnsureCustomJewelryPhoneMask === 'function') {
+        window.setTimeout(() => {
+          window.kapliEnsureCustomJewelryPhoneMask();
+        }, MODAL_ANIMATION_MS);
+      }
     });
   });
 

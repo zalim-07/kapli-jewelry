@@ -1,9 +1,14 @@
 import closeSvg from '../assets/svg/close.svg?raw';
 
 const MAX_FILES = 5;
+const IMAGE_EXTENSION_PATTERN = /\.(jpe?g|png|gif|webp|heic|heif|bmp|avif)$/i;
 
 function isImageFile(file) {
-  return file.type.startsWith('image/');
+  if (file.type && file.type.startsWith('image/')) {
+    return true;
+  }
+
+  return IMAGE_EXTENSION_PATTERN.test(file.name || '');
 }
 
 function initUploadField(field) {
@@ -116,6 +121,14 @@ function initUploadField(field) {
     addFiles(event.dataTransfer?.files || []);
   });
 
+  field.kapliUploadReset = () => {
+    files.length = 0;
+    input.value = '';
+    render();
+  };
+
+  field.kapliUploadGetFiles = () => files.slice();
+
   field.dataset.modalUploadInitialized = 'true';
   render();
 }
@@ -124,4 +137,22 @@ export function initModalUploads() {
   document.querySelectorAll('[data-modal-upload]').forEach((field) => {
     initUploadField(field);
   });
+}
+
+export function resetModalUpload(field) {
+  if (!field) {
+    return;
+  }
+
+  if (typeof field.kapliUploadReset === 'function') {
+    field.kapliUploadReset();
+    return;
+  }
+
+  initUploadField(field);
+}
+
+if (typeof window !== 'undefined') {
+  window.kapliInitModalUploads = initModalUploads;
+  window.kapliResetModalUpload = resetModalUpload;
 }

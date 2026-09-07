@@ -3,6 +3,7 @@ import { initJourneySections } from './journey.js';
 import { initNumbersSwiper } from './init-numbers-swiper.js';
 import { initJournalSwiper } from './init-journal-swiper.js';
 import { scheduleScrollTriggerRefresh } from './scroll-trigger-refresh.js';
+import { scrollToHash } from './anchor-scroll.js';
 import { syncGiftModalAmount } from './gift-modal-sync.js';
 
 if (document.querySelector('.hero-swiper')) {
@@ -27,8 +28,22 @@ if (document.querySelector('.journal-swiper')) {
   initJournalSwiper();
 }
 
+function scrollToPageHashAfterLayout() {
+  if (!window.location.hash || window.location.hash === '#') {
+    return;
+  }
+
+  scrollToHash({ behavior: 'auto' });
+}
+
 window.addEventListener('load', () => {
   scheduleScrollTriggerRefresh();
+  scrollToPageHashAfterLayout();
+  window.setTimeout(scrollToPageHashAfterLayout, 300);
 }, { once: true });
+
+if (document.fonts?.ready) {
+  document.fonts.ready.then(scrollToPageHashAfterLayout);
+}
 
 syncGiftModalAmount();
