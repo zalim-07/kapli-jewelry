@@ -203,6 +203,69 @@
   margin-top: 24px;
 }
 
+.cart-page__promo {
+  .ui-input-field__content {
+    position: relative;
+  }
+
+  .ui-button--apply {
+    position: absolute;
+    right: 0;
+    bottom: -1px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    border-radius: 0;
+    background: #111;
+
+    &:hover {
+      background: #252525;
+    }
+
+    &[hidden] {
+      display: none;
+    }
+  }
+
+  .ui-input-field {
+    position: relative;
+    min-height: 83px;
+
+    &:has(#coupon_code.has-error) .ui-input-field__content {
+      border-bottom-color: #d92616;
+    }
+
+    > .coupon-success-notice {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      margin: 0;
+      font-weight: 400;
+      font-size: 12px;
+      line-height: 1.2;
+      letter-spacing: 0;
+      color: #111;
+    }
+  }
+
+  .ui-input-field__content .coupon-error-notice {
+    position: absolute;
+    bottom: -20px;
+    left: 0;
+    display: block;
+    width: 100%;
+    margin: 0;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 1.2;
+    letter-spacing: 0;
+    color: #d92616;
+  }
+}
+
 .cart-page__installments {
   display: flex;
   flex-direction: column;
