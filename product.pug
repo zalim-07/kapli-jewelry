@@ -226,12 +226,13 @@ html(lang="ru")
                         aria-label="Подробнее об оплате частями"
                       )
                         include src/assets/svg/question.svg
+                        span.installments-info__tooltip(role="tooltip")
+                          strong.installments-info__tooltip-title Разделить платёж на 4 части
+                          span.installments-info__tooltip-text Разделите стоимость покупки на четыре равных платежа. Первый спишется сразу, остальные — по графику.
 
                     .product-payment__services(
                       aria-label="Сервисы оплаты частями"
                     )
-                      span.product-payment__service
-                        include src/assets/svg/podeli-black-logo.svg
                       span.product-payment__service
                         include src/assets/svg/dolyame-logo.svg
                       span.product-payment__service

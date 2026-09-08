@@ -154,6 +154,7 @@
         grid-template-areas: 'radio label info price action';
         justify-content: flex-start;
         transition: border-color var(--transition);
+        cursor: pointer;
 
         &:hover {
           border-color: #999;

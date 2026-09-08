@@ -299,6 +299,10 @@
   cursor: pointer;
   transition: border-color var(--transition);
 
+  .ui-radio--md .ui-radio__label {
+    font-size: 14px;
+  }
+
   &:not(&--active):hover{
     border-color: #999;
   }

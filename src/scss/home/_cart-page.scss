@@ -295,20 +295,7 @@
 }
 
 .cart-page__installments-info {
-  display: inline-flex;
   flex-shrink: 0;
-  align-items: center;
-  justify-content: center;
-  padding: 0;
-  border: 0;
-  background: transparent;
-  cursor: pointer;
-
-  svg {
-    display: block;
-    width: 14px;
-    height: 14px;
-  }
 }
 
 .cart-page__installments-logos {
